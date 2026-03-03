@@ -11,7 +11,6 @@ import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 import { routes } from './app.routes';
-import { InMemoryDataService } from './in-memory-data.service';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
@@ -22,12 +21,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     provideStore(),
     provideEffects(),
-    importProvidersFrom(
-      HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
-        delay: 500,
-        passThruUnknownUrl: true,
-      })
-    ),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: false, // set true for prod

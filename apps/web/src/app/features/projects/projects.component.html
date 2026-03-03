@@ -1,0 +1,54 @@
+<section class="projects" id="projects">
+  <p class="projects__section-label">Projects</p>
+
+  <h2 class="projects__title" appReveal>
+    Selected<br />
+    <em class="projects__title-ghost">work</em>
+  </h2>
+
+  <div class="projects__grid">
+    @for (project of projects(); track project.num; let i = $index) {
+      <article
+        class="projects__card"
+        [class.projects__card--featured]="project.featured"
+        appReveal
+        [appRevealDelay]="i * 80">
+        @if (project.featured && project.visual) {
+          <!-- Featured layout: text + visual side by side -->
+          <div class="projects__card-body">
+            <p class="projects__card-num">{{ project.num }} — Featured</p>
+            <h3 class="projects__card-title">{{ project.title }}</h3>
+            <p class="projects__card-desc">{{ project.description }}</p>
+            <div class="projects__card-tags">
+              @for (tag of project.tags; track tag) {
+                <span class="projects__card-tag">{{ tag }}</span>
+              }
+            </div>
+            <a class="projects__card-link" [href]="project.link"> {{ project.linkLabel }} → </a>
+          </div>
+
+          <div class="projects__card-visual" aria-hidden="true">
+            <p class="projects__visual-comment">// live stream</p>
+            @for (line of project.visual; track line.label) {
+              <p class="projects__visual-line">
+                <span class="projects__visual-key">{{ line.label }}:</span>
+                <span class="projects__visual-val">{{ line.value }}</span>
+              </p>
+            }
+          </div>
+        } @else {
+          <!-- Standard layout -->
+          <p class="projects__card-num">{{ project.num }}</p>
+          <h3 class="projects__card-title">{{ project.title }}</h3>
+          <p class="projects__card-desc">{{ project.description }}</p>
+          <div class="projects__card-tags">
+            @for (tag of project.tags; track tag) {
+              <span class="projects__card-tag">{{ tag }}</span>
+            }
+          </div>
+          <a class="projects__card-link" [href]="project.link"> {{ project.linkLabel }} → </a>
+        }
+      </article>
+    }
+  </div>
+</section>

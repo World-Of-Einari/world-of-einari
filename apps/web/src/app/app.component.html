@@ -1,5 +1,8 @@
-<div class="navbar">
-  <img src="/logo.svg" alt="" class="logo" />
-</div>
-
-<router-outlet></router-outlet>
+@defer (on idle) {
+  <app-cursor />
+}
+<app-nav />
+<main class="app__main">
+  <router-outlet />
+</main>
+<app-footer />

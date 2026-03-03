@@ -1,20 +1,184 @@
-@use './style/material';
+@use '@angular/material' as mat;
+@use 'styles/material.scss' as app-theme;
 
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
-
-
-* {
-  box-sizing: border-box;
-  &::before, &::after {
-    box-sizing: inherit;
-  }
-}
-
-html, body {
-  margin: 0;
+// Apply Material Theme
+html {
+  @include mat.all-component-themes(app-theme.$theme);
 }
 
 body {
-  font-family: 'Ubuntu', sans-serif;
-  color: #272727;
+  cursor: none;
+}
+
+// Design Tokens
+:root {
+  --black: #020408;
+  --surface: #080e18;
+  --card: #0c1522;
+  --border: #0e2040;
+
+  --cyan: #00e5ff;
+  --cyan-dim: #00b8cc;
+  --cyan-glow: rgba(0, 229, 255, 0.15);
+  --cyan-glow-strong: rgba(0, 229, 255, 0.3);
+
+  --white: #f0f6ff;
+  --muted: #4a6080;
+  --text: #c8daf0;
+
+  --font-display: 'Syne', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --font-body: 'Instrument Sans', sans-serif;
+}
+
+// Global Reset & Base
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--black);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Grid Overlay
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 229, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.015) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+// Typography Helpers
+.font-display {
+  font-family: var(--font-display);
+}
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--white);
+}
+
+// Material Overrides
+
+// Buttons
+.mat-mdc-button,
+.mat-mdc-raised-button,
+.mat-mdc-outlined-button {
+  font-family: var(--font-mono) !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  border-radius: 0 !important;
+}
+
+// Cards
+.mat-mdc-card {
+  background: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 0 !important;
+  color: var(--text) !important;
+}
+
+// Form fields
+.mat-mdc-form-field {
+  font-family: var(--font-body) !important;
+}
+
+// Chips / tags
+.mat-mdc-chip {
+  border-radius: 0 !important;
+  font-family: var(--font-mono) !important;
+  font-size: 12px !important;
+  letter-spacing: 0.06em !important;
+}
+
+// Toolbar
+.mat-toolbar {
+  background: var(--black) !important;
+  border-bottom: 1px solid var(--border) !important;
+  font-family: var(--font-display) !important;
+}
+
+// Ripples — tone down to cyan
+.mat-ripple-element {
+  background-color: var(--cyan-glow) !important;
+}
+
+// Utility Classes
+.text-cyan {
+  color: var(--cyan);
+}
+.text-muted {
+  color: var(--muted);
+}
+.text-white {
+  color: var(--white);
+}
+
+.bg-surface {
+  background: var(--surface);
+}
+.bg-card {
+  background: var(--card);
+}
+
+.border-subtle {
+  border: 1px solid var(--border);
+}
+
+// Reveal animation (used with IntersectionObserver)
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Section label pattern
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--cyan);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+
+  &::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--cyan);
+  }
 }

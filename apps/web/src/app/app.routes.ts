@@ -3,7 +3,8 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    loadChildren: () =>
-      import('./banking/banking.routes').then((m) => m.bankingRoutes),
+    loadComponent: () =>
+      import('./features/home/home.component').then(m => m.HomeComponent),
   },
+  { path: '**', redirectTo: '' },
 ];

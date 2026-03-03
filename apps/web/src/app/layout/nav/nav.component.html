@@ -1,0 +1,15 @@
+<nav class="nav" [class.nav--scrolled]="scrolled()">
+  <div class="nav__logo">{{ initials() }}<span class="nav__logo-dot">.</span></div>
+
+  <ul class="nav__links">
+    @for (link of navLinks; track link.href) {
+      <li class="nav__item">
+        <a class="nav__link" [href]="'#' + link.href" (click)="scrollTo($event, link.href)">{{
+          link.label
+        }}</a>
+      </li>
+    }
+  </ul>
+
+  <a class="nav__cta" href="#contact" (click)="scrollTo($event, 'contact')">Let's Talk</a>
+</nav>

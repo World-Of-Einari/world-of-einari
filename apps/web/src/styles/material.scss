@@ -1,0 +1,46 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+// --cyan: #00e5ff brand color
+$cyan-palette: (
+  0: #000000,
+  10: #001f26,
+  20: #003640,
+  25: #00424d,
+  30: #004f5c,
+  35: #005c6b,
+  40: #006978,
+  50: #008598,
+  60: #00a2b8,
+  70: #00bfda,
+  80: #00ddf8,
+  90: #8aeeff,
+  95: #c8f7ff,
+  98: #edfcff,
+  99: #f6feff,
+  100: #ffffff,
+);
+
+$dark-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: dark,
+      primary: mat.$cyan-palette,
+      tertiary: mat.$azure-palette,
+    ),
+    typography: (
+      plain-family: 'Instrument Sans, sans-serif',
+      brand-family: 'Syne, sans-serif',
+      bold-weight: 800,
+      medium-weight: 600,
+      regular-weight: 400,
+    ),
+    density: (
+      scale: 0,
+    ),
+  )
+);
+
+// Export theme for use in styles.scss
+$theme: $dark-theme;

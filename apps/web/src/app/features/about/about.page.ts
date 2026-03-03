@@ -3,7 +3,7 @@ import { MatCardModule } from '@angular/material/card';
 
 @Component({
   imports: [MatCardModule],
-  styleUrls: ['./about.page.scss'],
   templateUrl: './about.page.html',
+  styleUrls: ['./about.page.scss'],
 })
 export class AboutPage {}

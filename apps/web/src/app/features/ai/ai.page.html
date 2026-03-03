@@ -1,14 +1,14 @@
-<header>
-  <h1>AI Lab</h1>
-  <div class="muted">
+<header class="ai__header">
+  <h1 class="ai__heading">AI Lab</h1>
+  <div class="ai__muted">
     A tasteful demo: chat + sources + tool calls. This is currently stubbed and will be wired to RAG
     + MCP.
   </div>
 </header>
 
-<section class="grid">
-  <mat-card>
-    <mat-card-content class="chat">
+<section class="ai__grid">
+  <mat-card class="ai__card">
+    <mat-card-content class="ai__chat">
       <mat-form-field appearance="outline">
         <mat-label>Ask about my work</mat-label>
         <input
@@ -26,35 +26,35 @@
         @if (busy()) {
           <mat-spinner diameter="22" />
         }
-        <div class="meta">API: {{ apiBase() }}</div>
+        <div class="ai__meta">API: {{ apiBase() }}</div>
       </div>
 
       @if (answer()) {
-        <div class="answer">{{ answer() }}</div>
+        <div class="ai__answer">{{ answer() }}</div>
       } @else {
-        <div class="meta">
+        <div class="ai__meta">
           Try: “What have you built with Angular?” or “Explain MCP and how you’d use it here.”
         </div>
       }
     </mat-card-content>
   </mat-card>
 
-  <mat-card>
+  <mat-card class="ai__card">
     <mat-card-content>
-      <div style="font-weight: 650; letter-spacing: -0.01em; margin-bottom: 10px">Sources</div>
+      <div class="ai__title">Sources</div>
       @if (sources().length === 0) {
-        <div class="meta">
+        <div class="ai__meta">
           No sources yet. When wired to RAG, this will list the chunks used to answer.
         </div>
       } @else {
         @for (s of sources(); track s.title) {
-          <div class="src">
-            <div class="src-title">{{ s.title }}</div>
+          <div class="ai__src">
+            <div class="ai__src-title">{{ s.title }}</div>
             @if (s.snippet) {
-              <div class="meta">{{ s.snippet }}</div>
+              <div class="ai__meta">{{ s.snippet }}</div>
             }
             @if (s.url) {
-              <a class="meta" [href]="s.url" target="_blank" rel="noreferrer">Open</a>
+              <a class="ai__meta" [href]="s.url" target="_blank" rel="noreferrer">Open</a>
             }
           </div>
           <div style="height: 10px"></div>

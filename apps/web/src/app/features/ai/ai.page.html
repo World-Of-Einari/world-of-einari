@@ -1,0 +1,65 @@
+<header>
+  <h1>AI Lab</h1>
+  <div class="muted">
+    A tasteful demo: chat + sources + tool calls. This is currently stubbed and will be wired to RAG
+    + MCP.
+  </div>
+</header>
+
+<section class="grid">
+  <mat-card>
+    <mat-card-content class="chat">
+      <mat-form-field appearance="outline">
+        <mat-label>Ask about my work</mat-label>
+        <input
+          matInput
+          [value]="message()"
+          (input)="message.set($any($event.target).value)"
+          (keydown.enter)="send()"
+        />
+      </mat-form-field>
+
+      <div style="display: flex; gap: 10px; align-items: center">
+        <button mat-raised-button color="primary" class="glow" (click)="send()" [disabled]="busy()">
+          Send
+        </button>
+        @if (busy()) {
+          <mat-spinner diameter="22" />
+        }
+        <div class="meta">API: {{ apiBase() }}</div>
+      </div>
+
+      @if (answer()) {
+        <div class="answer">{{ answer() }}</div>
+      } @else {
+        <div class="meta">
+          Try: “What have you built with Angular?” or “Explain MCP and how you’d use it here.”
+        </div>
+      }
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-content>
+      <div style="font-weight: 650; letter-spacing: -0.01em; margin-bottom: 10px">Sources</div>
+      @if (sources().length === 0) {
+        <div class="meta">
+          No sources yet. When wired to RAG, this will list the chunks used to answer.
+        </div>
+      } @else {
+        @for (s of sources(); track s.title) {
+          <div class="src">
+            <div class="src-title">{{ s.title }}</div>
+            @if (s.snippet) {
+              <div class="meta">{{ s.snippet }}</div>
+            }
+            @if (s.url) {
+              <a class="meta" [href]="s.url" target="_blank" rel="noreferrer">Open</a>
+            }
+          </div>
+          <div style="height: 10px"></div>
+        }
+      }
+    </mat-card-content>
+  </mat-card>
+</section>

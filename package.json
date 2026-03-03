@@ -1,0 +1,19 @@
+{
+  "name": "einarinau",
+  "private": true,
+  "packageManager": "pnpm@9.15.6",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "setup:web": "bash scripts/create-web.sh",
+    "dev": "pnpm -r dev",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "format": "pnpm -r format"
+  },
+  "dependencies": {
+    "@types/node": "^20.17.19"
+  }
+}

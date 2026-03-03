@@ -1,0 +1,43 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+// Use Material "M2 theming" API (prefixed with m2-*)
+$primary: mat.m2-define-palette(mat.$m2-indigo-palette);
+$accent: mat.m2-define-palette(mat.$m2-teal-palette);
+
+$theme: mat.m2-define-dark-theme((
+  color: (
+    primary: $primary,
+    accent: $accent,
+  ),
+  typography: mat.m2-define-typography-config(
+    $font-family: 'Inter, system-ui, sans-serif',
+  ),
+  density: 0,
+));
+
+@include mat.all-component-themes($theme);
+
+/* highlight.js */
+@import 'highlight.js/styles/github-dark.css';
+
+/* Your app tokens */
+:root {
+  --brand: #6366f1;
+  --bg: #0b0d12;
+  --surface: #11141a;
+  --surface-2: #161a22;
+  --border: #232938;
+  --text: #e6eaf2;
+  --text-2: #a3a9b8;
+}
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, sans-serif;
+}

@@ -1,7 +1,8 @@
 import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
-import { ResumeService } from '../../core/services/resume.service';
-import { RevealDirective } from '../../shared/directives/reveal.directive';
+
+import { RevealDirective } from '@en/shared/directives/reveal.directive';
 import { SectionHeaderComponent } from '@en/shared/section-header/section-header.component';
+import { ResumeService } from '@en/core/services/resume.service';
 
 @Component({
   selector: 'app-contact',

@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
-import { ResumeService } from '../../core/services/resume.service';
+
+import { ResumeService } from '@en/core/services/resume.service';
 
 @Component({
   selector: 'app-footer',

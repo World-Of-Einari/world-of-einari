@@ -1,7 +1,8 @@
-import { Component, ChangeDetectionStrategy, inject, computed } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { ResumeService } from '../../core/services/resume.service';
+import { Component, ChangeDetectionStrategy, inject, computed } from '@angular/core';
+
 import { SectionHeaderComponent } from '@en/shared/section-header/section-header.component';
+import { ResumeService } from '@en/core/services/resume.service';
 
 @Component({
   selector: 'app-hero',

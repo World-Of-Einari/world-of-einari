@@ -1,3 +1,4 @@
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import {
   Component,
   ChangeDetectionStrategy,
@@ -7,8 +8,8 @@ import {
   signal,
   PLATFORM_ID,
 } from '@angular/core';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { ResumeService } from '../../core/services/resume.service';
+
+import { ResumeService } from '@en/core/services/resume.service';
 
 @Component({
   selector: 'app-nav',

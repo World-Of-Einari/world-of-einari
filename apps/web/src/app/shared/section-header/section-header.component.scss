@@ -37,6 +37,12 @@
     line-height: 0.95;
   }
 
+  &--hero {
+    font-size: clamp(36px, 8vw, 108px);
+    letter-spacing: -0.04em;
+    line-height: 0.92;
+  }
+
   &--centered {
     text-align: center;
   }

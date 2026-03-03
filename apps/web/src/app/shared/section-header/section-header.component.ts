@@ -11,6 +11,6 @@ export class SectionHeaderComponent {
   readonly label = input.required<string>();
   readonly title = input.required<string>();
   readonly ghost = input.required<string>();
-  readonly size = input<'default' | 'large'>('default');
+  readonly size = input<'default' | 'large' | 'hero'>('default');
   readonly centered = input<boolean>(false);
 }

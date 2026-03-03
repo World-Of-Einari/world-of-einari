@@ -1,12 +1,7 @@
 <section class="about" id="about">
-  <p class="about__section-label">About</p>
-
   <div class="about__grid" appReveal>
     <div class="about__text">
-      <h2 class="about__title">
-        Building things<br />
-        <em class="about__title-ghost">that matter</em>
-      </h2>
+      <app-section-header label="About" title="Building things" ghost="that matter" />
 
       @for (para of paragraphs(); track $index) {
         <p class="about__paragraph" [innerHTML]="para"></p>

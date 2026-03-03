@@ -4,42 +4,6 @@
   padding: 120px 60px;
   background: var(--black);
 
-  &__section-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--cyan);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin: 0 0 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-
-    &::before {
-      content: '';
-      width: 24px;
-      height: 1px;
-      background: var(--cyan);
-      flex-shrink: 0;
-    }
-  }
-
-  &__title {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: clamp(36px, 5vw, 64px);
-    color: var(--white);
-    letter-spacing: -0.03em;
-    line-height: 1;
-    margin: 0 0 60px;
-  }
-
-  &__title-ghost {
-    font-style: normal;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(240, 246, 255, 0.25);
-  }
-
   &__timeline {
     position: relative;
     display: flex;

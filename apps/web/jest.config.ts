@@ -16,7 +16,7 @@ const config: Config = {
   moduleFileExtensions: ['ts', 'html', 'js', 'mjs'],
   testMatch: ['**/*.spec.ts'],
   moduleNameMapper: {
-    '^@app/(.*)$': '<rootDir>/src/app/$1',
+    '^@en/(.*)$': '<rootDir>/src/app/$1',
   },
 };
 

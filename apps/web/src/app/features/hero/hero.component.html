@@ -3,12 +3,11 @@
   <div class="hero__glow hero__glow--secondary" aria-hidden="true"></div>
 
   <div class="hero__content">
-    <p class="hero__label">{{ title() }}</p>
-
-    <h1 class="hero__name">
-      <span class="hero__name-line1">{{ nameLine1 }}</span>
-      <span class="hero__name-line2">{{ nameLine2 }}</span>
-    </h1>
+    <app-section-header
+      [label]="title()"
+      [title]="nameParts().first"
+      [ghost]="nameParts().last"
+      size="large" />
 
     <p class="hero__tagline">{{ tagline() }}</p>
 

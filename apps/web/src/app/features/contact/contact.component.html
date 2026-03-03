@@ -1,11 +1,11 @@
 <section class="contact" id="contact">
   <div class="contact__inner">
-    <p class="contact__section-label">Contact</p>
-
-    <h2 class="contact__title" appReveal>
-      Let's build<br />
-      <span class="contact__title-ghost">something</span>
-    </h2>
+    <app-section-header
+      label="Contact"
+      title="Let's build"
+      ghost="something"
+      size="large"
+      [centered]="true"></app-section-header>
 
     <p class="contact__sub" appReveal [appRevealDelay]="100">
       Open to senior / principal engineering roles, fractional CTO engagements, and the occasional

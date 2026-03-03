@@ -1,10 +1,5 @@
 <section class="experience" id="experience">
-  <p class="experience__section-label">Experience</p>
-
-  <h2 class="experience__title" appReveal>
-    Where I've<br />
-    <em class="experience__title-ghost">shipped</em>
-  </h2>
+  <app-section-header label="Experience" title="Where I've" ghost="shipped" />
 
   <div class="experience__timeline">
     @for (item of experience(); track item.company; let i = $index) {

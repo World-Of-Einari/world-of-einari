@@ -1,10 +1,5 @@
 <section class="projects" id="projects">
-  <p class="projects__section-label">Projects</p>
-
-  <h2 class="projects__title" appReveal>
-    Selected<br />
-    <em class="projects__title-ghost">work</em>
-  </h2>
+  <app-section-header label="Projects" title="Selected" ghost="work" />
 
   <div class="projects__grid">
     @for (project of projects(); track project.num; let i = $index) {

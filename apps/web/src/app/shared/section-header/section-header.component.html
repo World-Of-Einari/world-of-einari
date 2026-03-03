@@ -1,0 +1,11 @@
+<p class="section-header__label" [class.section-header__label--centered]="centered()">
+  {{ label() }}
+</p>
+
+<h2
+  class="section-header__title"
+  [class.section-header__title--large]="size() === 'large'"
+  [class.section-header__title--centered]="centered()">
+  {{ title() }}<br />
+  <em class="section-header__ghost">{{ ghost() }}</em>
+</h2>

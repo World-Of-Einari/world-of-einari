@@ -1,11 +1,13 @@
-import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, computed } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { ResumeService } from '../../core/services/resume.service';
+import { SectionHeaderComponent } from '@en/shared/section-header/section-header.component';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [SectionHeaderComponent],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.scss',
 })
@@ -16,10 +18,13 @@ export class HeroComponent {
   readonly title = this.resume.title;
   readonly tagline = this.resume.tagline;
   readonly stats = this.resume.stats;
-
-  // Split name into two lines
-  readonly nameLine1 = 'Einari';
-  readonly nameLine2 = 'Naukkarinen';
+  readonly nameParts = computed(() => {
+    const parts = this.resume.name().split(' ');
+    return {
+      first: parts[0],
+      last: parts.slice(1).join(' '),
+    };
+  });
 
   scrollTo(event: Event, id: string): void {
     event.preventDefault();

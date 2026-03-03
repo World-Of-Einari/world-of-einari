@@ -1,0 +1,32 @@
+@use '@angular/material' as mat;
+
+$orange: #fd971f;
+
+$primary-palette: (
+  50: #fff3e6,
+  100: #ffe0bf,
+  200: #ffcc95,
+  300: #ffb86b,
+  400: #ffa84a,
+  500: $orange,
+  600: #f58c18,
+  700: #da7a12,
+  800: #bf690d,
+  900: #8f4a06,
+  contrast: (
+    50: rgba(0, 0, 0, 0.87),
+    100: rgba(0, 0, 0, 0.87),
+    200: rgba(0, 0, 0, 0.87),
+    300: rgba(0, 0, 0, 0.87),
+    400: rgba(0, 0, 0, 0.87),
+    500: rgba(0, 0, 0, 0.87),
+    600: rgba(0, 0, 0, 0.87),
+    700: white,
+    800: white,
+    900: white,
+  ),
+);
+
+$primary: mat.m2-define-palette($primary-palette, 500, 200, 700);
+$accent: mat.m2-define-palette(mat.$m2-grey-palette, 800, 600, 900);
+$warn: mat.m2-define-palette(mat.$m2-red-palette, 700, 500, 900);

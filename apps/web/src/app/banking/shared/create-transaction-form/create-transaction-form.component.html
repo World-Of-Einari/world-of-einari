@@ -1,0 +1,61 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="form">
+  <h2>Create transaction</h2>
+
+  <!-- Transaction type -->
+  <mat-form-field appearance="outline" class="full">
+    <mat-label>Transaction type</mat-label>
+    <mat-select formControlName="transaction_type">
+      @for (type of transactionTypes; track type) {
+        <mat-option [value]="type.value">
+          {{ type.label }}
+        </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Source account -->
+  @if (showSourceAccount) {
+    <app-account-select-field
+      formControlName="source_bank_account_id"
+      label="Source account"
+      [accounts]="accounts()"></app-account-select-field>
+
+    @if (form.get('target_bank_account_id')?.hasError('noValidTargetAccounts')) {
+      <mat-error> No valid target accounts available for the selected source account. </mat-error>
+    }
+  }
+
+  <!-- Target account -->
+  @if (showTargetAccount) {
+    <app-account-select-field
+      formControlName="target_bank_account_id"
+      label="Target account"
+      [accounts]="(targetAccounts$ | async) || []"></app-account-select-field>
+  }
+
+  <!-- Amount -->
+  @if (showAmount) {
+    <app-amount-input-field
+      [amountControl]="amountField"
+      [withdrawFullValueControl]="withdrawFullValueField"
+      [showWithdrawFullValueToggle]="showWithdrawFullValueToggle"
+      [balance$]="balance$"
+      [enableBalanceCheck]="(validationEnabled$ | async) ?? false">
+    </app-amount-input-field>
+  }
+
+  <!-- Description -->
+  @if (showDescription) {
+    <mat-form-field appearance="outline" class="full">
+      <mat-label>Description (optional)</mat-label>
+      <textarea matInput rows="2" formControlName="description"></textarea>
+    </mat-form-field>
+  }
+
+  <div class="actions">
+    <button mat-button type="button" (click)="cancel()">Cancel</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+      Create
+    </button>
+  </div>
+</form>

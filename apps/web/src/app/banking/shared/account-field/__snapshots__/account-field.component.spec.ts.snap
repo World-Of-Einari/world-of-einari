@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccountFieldComponent should render an account field correctly 1`] = `
+<app-account-field
+  account={[Function Object]}
+>
+   Miss Jane A Smith · Bank A (****1111)
+</app-account-field>
+`;
+
+exports[`AccountFieldComponent should render an empty state correctly 1`] = `
+<app-account-field
+  account="undefined"
+>
+   —
+</app-account-field>
+`;

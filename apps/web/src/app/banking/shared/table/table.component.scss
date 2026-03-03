@@ -1,0 +1,61 @@
+@use '@angular/material' as mat;
+@use '../../../../style/palettes' as theme;
+
+.tx-table {
+  width: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+
+  .mat-mdc-header-row,
+  .mat-mdc-row {
+    height: 3.5rem;
+  }
+
+  .mat-mdc-header-cell {
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    background: rgba(0, 0, 0, 0.02);
+  }
+
+  .tx-row:hover .mat-mdc-cell {
+    background: rgba(0, 0, 0, 0.02);
+  }
+
+  .amount-column {
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .description {
+    display: block;
+    max-width: 10rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.chip {
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: 999px;
+  border: 1px solid;
+
+  &[data-type='DEPOSIT'] {
+    background-color: rgba(46, 125, 50, 0.16);
+    color: #2e7d32;
+    border-color: rgba(46, 125, 50, 0.35);
+  }
+
+  &[data-type='WITHDRAW'] {
+    background-color: rgba(211, 47, 47, 0.14);
+    color: #d32f2f;
+    border-color: rgba(211, 47, 47, 0.35);
+  }
+  &[data-type='TRANSFER'] {
+    background-color: mat.m2-get-color-from-palette(theme.$primary, 100);
+    color: mat.m2-get-color-from-palette(theme.$primary, 900);
+    border-color: mat.m2-get-color-from-palette(theme.$primary, 300);
+  }
+}

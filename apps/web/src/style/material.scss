@@ -1,0 +1,15 @@
+@use '@angular/material' as mat;
+@use './palettes' as theme;
+
+@include mat.elevation-classes();
+@include mat.app-background();
+
+$theme: mat.m2-define-light-theme((
+  color: (
+    primary: theme.$primary,
+    accent: theme.$accent,
+    warn: theme.$warn,
+  ),
+));
+
+@include mat.all-component-themes($theme);

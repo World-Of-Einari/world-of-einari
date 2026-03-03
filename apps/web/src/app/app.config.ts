@@ -1,21 +1,35 @@
-import { ApplicationConfig, provideZonelessChangeDetection } from '@angular/core';
-import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
-import { provideClientHydration } from '@angular/platform-browser';
-import { provideHttpClient, withFetch } from '@angular/common/http';
-import { provideAnimations } from '@angular/platform-browser/animations';
+import {
+  ApplicationConfig,
+  importProvidersFrom,
+  provideZonelessChangeDetection,
+} from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { provideEffects } from '@ngrx/effects';
+import { provideStore } from '@ngrx/store';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 import { routes } from './app.routes';
+import { InMemoryDataService } from './in-memory-data.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    // provideZoneChangeDetection({ eventCoalescing: true }),
     provideZonelessChangeDetection(),
-    provideRouter(
-      routes,
-      withComponentInputBinding(),
-      withInMemoryScrolling({ scrollPositionRestoration: 'enabled' }),
+    provideRouter(routes),
+    provideHttpClient(),
+    provideStore(),
+    provideEffects(),
+    importProvidersFrom(
+      HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
+        delay: 500,
+        passThruUnknownUrl: true,
+      })
     ),
-    provideClientHydration(),
-    provideHttpClient(withFetch()),
-    provideAnimations(),
+    provideStoreDevtools({
+      maxAge: 25,
+      logOnly: false, // set true for prod
+    }),
   ],
 };

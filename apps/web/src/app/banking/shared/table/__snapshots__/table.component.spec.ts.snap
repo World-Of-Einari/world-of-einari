@@ -1,0 +1,153 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableComponent should render 1`] = `
+<app-table
+  displayedColumns={[Function Array]}
+  transactions={[Function Array]}
+>
+  <table
+    class="mat-mdc-table mdc-data-table__table cdk-table tx-table mat-elevation-z2"
+    mat-table=""
+    matsort=""
+    role="table"
+  >
+    <thead
+      role="rowgroup"
+    >
+      <tr
+        class="mat-mdc-header-row mdc-data-table__header-row cdk-header-row tx-header"
+        mat-header-row=""
+        role="row"
+      >
+        <th
+          class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-type mat-column-type"
+          mat-header-cell=""
+          mat-sort-header=""
+          role="columnheader"
+        >
+          Type
+        </th>
+        <th
+          class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell amount-column cdk-column-amount mat-column-amount"
+          mat-header-cell=""
+          mat-sort-header=""
+          role="columnheader"
+        >
+          Amount
+        </th>
+        <th
+          class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-source mat-column-source"
+          mat-header-cell=""
+          role="columnheader"
+        >
+          Source
+        </th>
+        <th
+          class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-target mat-column-target"
+          mat-header-cell=""
+          role="columnheader"
+        >
+          Target
+        </th>
+        <th
+          class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-description mat-column-description"
+          mat-header-cell=""
+          role="columnheader"
+        >
+          Description
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="mdc-data-table__content"
+      role="rowgroup"
+    >
+      <tr
+        class="mat-mdc-row mdc-data-table__row cdk-row tx-row"
+        mat-row=""
+        role="row"
+      >
+        <td
+          class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-type mat-column-type"
+          mat-cell=""
+          role="cell"
+        >
+          <mat-chip
+            class="mat-mdc-chip chip mat-primary mdc-evolution-chip mat-mdc-standard-chip"
+            data-type="DEPOSIT"
+            disableripple=""
+            id="mat-mdc-chip-a0"
+            mat-ripple-loader-class-name="mat-mdc-chip-ripple"
+            mat-ripple-loader-disabled=""
+            mat-ripple-loader-uninitialized=""
+          >
+            <span
+              class="mat-mdc-chip-focus-overlay"
+            />
+            <span
+              class="mdc-evolution-chip__cell mdc-evolution-chip__cell--primary"
+            >
+              <span
+                aria-disabled="false"
+                class="mdc-evolution-chip__action mat-mdc-chip-action mdc-evolution-chip__action--primary mdc-evolution-chip__action--presentational"
+                matchipaction=""
+              >
+                <span
+                  class="mdc-evolution-chip__text-label mat-mdc-chip-action-label"
+                >
+                   Deposit 
+                  <span
+                    class="mat-mdc-chip-primary-focus-indicator mat-focus-indicator"
+                  />
+                </span>
+              </span>
+            </span>
+          </mat-chip>
+        </td>
+        <td
+          class="mat-mdc-cell mdc-data-table__cell cdk-cell amount-column cdk-column-amount mat-column-amount"
+          mat-cell=""
+          role="cell"
+        >
+           £100.00 
+        </td>
+        <td
+          class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-source mat-column-source"
+          mat-cell=""
+          role="cell"
+        >
+          <app-account-field>
+             —
+          </app-account-field>
+        </td>
+        <td
+          class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-target mat-column-target"
+          mat-cell=""
+          role="cell"
+        >
+          <app-account-field>
+             account name · Bank B (****2222)
+          </app-account-field>
+        </td>
+        <td
+          class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-description mat-column-description"
+          mat-cell=""
+          role="cell"
+        >
+          <span
+            class="description"
+          >
+             Thomas' birthday present 
+          </span>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot
+      class="mat-mdc-table-sticky"
+      role="rowgroup"
+      style="display: none; bottom: 0px; z-index: 10;"
+    >
+    </tfoot>
+  </table>
+</app-table>
+`;

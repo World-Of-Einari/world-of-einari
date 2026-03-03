@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  justify-content: center;
+  padding: 4rem 2rem;
+}
+
+.banking {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 1100px;
+  flex: 1;
+
+  &__create-btn {
+    width: 11rem;
+    align-self: flex-end;
+  }
+
+  mat-card {
+    flex-basis: 12rem;
+  }
+}

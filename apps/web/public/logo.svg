@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Bank icon">
+  <!-- Bank icon -->
+  <g transform="translate(16,20)">
+    <!-- roof -->
+    <path fill="#fd971f" d="M48 0 0 20v6h96v-6L48 0z"/>
+
+    <!-- columns -->
+    <rect x="10" y="30" width="12" height="40" rx="3" fill="#fd971f"/>
+    <rect x="30" y="30" width="12" height="40" rx="3" fill="#fd971f"/>
+    <rect x="54" y="30" width="12" height="40" rx="3" fill="#fd971f"/>
+    <rect x="74" y="30" width="12" height="40" rx="3" fill="#fd971f"/>
+
+    <!-- base -->
+    <rect x="4" y="72" width="88" height="10" rx="4" fill="#fd971f"/>
+
+    <!-- coin -->
+    <circle cx="84" cy="18" r="12" fill="#ffffff"/>
+    <circle cx="84" cy="18" r="10" fill="#fd971f"/>
+
+    <!-- plus symbol -->
+    <path d="M80 18h8" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+    <path d="M84 14v8" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  </g>
+</svg>

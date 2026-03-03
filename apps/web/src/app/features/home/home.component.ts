@@ -6,7 +6,7 @@ import { ProjectsComponent }   from '../projects/projects.component';
 import { ContactComponent }    from '../contact/contact.component';
 
 @Component({
-  selector: 'app-home',
+  selector: 'en-home',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
@@ -17,11 +17,11 @@ import { ContactComponent }    from '../contact/contact.component';
     ContactComponent,
   ],
   template: `
-    <app-hero />
-    <app-about />
-    <app-experience />
-    <app-projects />
-    <app-contact />
+    <en-hero />
+    <en-about />
+    <en-experience />
+    <en-projects />
+    <en-contact />
   `,
 })
 export class HomeComponent {}

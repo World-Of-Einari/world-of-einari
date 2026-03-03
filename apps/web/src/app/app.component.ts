@@ -5,7 +5,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { CursorComponent } from './shared/components/cursor/cursor.component';
 
 @Component({
-  selector: 'app-root',
+  selector: 'en-root',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterOutlet, NavComponent, FooterComponent, CursorComponent],

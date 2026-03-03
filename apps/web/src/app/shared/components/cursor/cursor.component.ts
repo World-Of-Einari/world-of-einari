@@ -9,7 +9,7 @@ import {
 import { DOCUMENT } from '@angular/common';
 
 @Component({
-  selector: 'app-cursor',
+  selector: 'en-cursor',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './cursor.component.html',
@@ -27,7 +27,7 @@ export class CursorComponent implements OnInit, OnDestroy {
   private animFrame?: number;
   private cleanups: Array<() => void> = [];
 
-  ngOnInit(): void {
+  ngOnInit() {
     const doc = this.document;
 
     const onMove = (e: MouseEvent) => {
@@ -65,7 +65,7 @@ export class CursorComponent implements OnInit, OnDestroy {
     this.animFrame = requestAnimationFrame(animate);
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.cleanups.forEach((fn) => fn());
     if (this.animFrame) cancelAnimationFrame(this.animFrame);
   }

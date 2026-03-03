@@ -30,7 +30,7 @@ export class RevealDirective implements OnInit, OnDestroy {
   private readonly platformId = inject(PLATFORM_ID);
   private observer?: IntersectionObserver;
 
-  ngOnInit(): void {
+  ngOnInit() {
     if (!isPlatformBrowser(this.platformId)) {
       this.visible.set(true);
       return;
@@ -50,7 +50,7 @@ export class RevealDirective implements OnInit, OnDestroy {
     this.observer.observe(this.el.nativeElement);
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.observer?.disconnect();
   }
 }

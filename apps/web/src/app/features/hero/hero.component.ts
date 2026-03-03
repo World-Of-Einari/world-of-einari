@@ -5,7 +5,7 @@ import { SectionHeaderComponent } from '@en/shared/section-header/section-header
 import { ResumeService } from '@en/core/services/resume.service';
 
 @Component({
-  selector: 'app-hero',
+  selector: 'en-hero',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [SectionHeaderComponent],
@@ -27,7 +27,7 @@ export class HeroComponent {
     };
   });
 
-  scrollTo(event: Event, id: string): void {
+  scrollTo(event: Event, id: string) {
     event.preventDefault();
     this.document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   }

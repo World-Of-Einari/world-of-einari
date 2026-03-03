@@ -12,7 +12,7 @@ import {
 import { ResumeService } from '@en/core/services/resume.service';
 
 @Component({
-  selector: 'app-nav',
+  selector: 'en-nav',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './nav.component.html',
@@ -35,17 +35,17 @@ export class NavComponent implements OnInit, OnDestroy {
 
   private readonly onScroll = () => this.scrolled.set(window.scrollY > 40);
 
-  ngOnInit(): void {
+  ngOnInit() {
     if (!isPlatformBrowser(this.platformId)) return;
     window.addEventListener('scroll', this.onScroll, { passive: true });
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     if (!isPlatformBrowser(this.platformId)) return;
     window.removeEventListener('scroll', this.onScroll);
   }
 
-  scrollTo(event: Event, id: string): void {
+  scrollTo(event: Event, id: string) {
     event.preventDefault();
     this.document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   }

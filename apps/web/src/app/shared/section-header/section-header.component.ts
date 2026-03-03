@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, input } from '@angular/core';
 
 @Component({
-  selector: 'app-section-header',
+  selector: 'en-section-header',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './section-header.component.html',

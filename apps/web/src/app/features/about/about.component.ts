@@ -5,7 +5,7 @@ import { SectionHeaderComponent } from '@en/shared/section-header/section-header
 import { ResumeService } from '@en/core/services/resume.service';
 
 @Component({
-  selector: 'app-about',
+  selector: 'en-about',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RevealDirective, SectionHeaderComponent],

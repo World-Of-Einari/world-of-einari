@@ -5,7 +5,7 @@ import { SectionHeaderComponent } from '@en/shared/section-header/section-header
 import { ResumeService } from '@en/core/services/resume.service';
 
 @Component({
-  selector: 'app-experience',
+  selector: 'en-experience',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RevealDirective, SectionHeaderComponent],

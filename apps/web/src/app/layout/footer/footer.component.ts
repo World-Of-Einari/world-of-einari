@@ -3,7 +3,7 @@ import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { ResumeService } from '@en/core/services/resume.service';
 
 @Component({
-  selector: 'app-footer',
+  selector: 'en-footer',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './footer.component.html',

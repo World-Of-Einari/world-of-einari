@@ -1,7 +1,7 @@
 <section class="about" id="about">
   <div class="about__grid" appReveal>
     <div class="about__text">
-      <app-section-header label="About" title="Building things" ghost="that matter" />
+      <en-section-header label="About" title="Building things" ghost="that matter" />
 
       @for (para of paragraphs(); track $index) {
         <p class="about__paragraph" [innerHTML]="para"></p>

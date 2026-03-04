@@ -10,7 +10,7 @@ export class ResumeService {
   readonly email = signal('einari.naukkarinen@outlook.com');
   readonly domain = signal('einarinau.com');
   readonly tagline = signal(
-    'I architect & build high-scale systems and lead engineering teams that ship products people love.'
+    'I architect & build high-scale systems, leading engineering teams that ship products people love.'
   );
 
   readonly stats = signal<Stat[]>([

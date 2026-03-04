@@ -1,0 +1,25 @@
+// Utilities — single-purpose helper classes.
+
+// Text
+.text-cyan {
+  color: var(--cyan);
+}
+.text-muted {
+  color: var(--muted);
+}
+.text-white {
+  color: var(--white);
+}
+
+// Backgrounds
+.bg-surface {
+  background: var(--surface);
+}
+.bg-card {
+  background: var(--card);
+}
+
+// Borders
+.border-subtle {
+  border: 1px solid var(--border);
+}

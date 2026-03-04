@@ -7,11 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.svg" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Preload critical fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap"
-      rel="stylesheet" />
+      rel="preload"
+      href="/fonts/syne-v24-latin-800.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin />
+    <link
+      rel="preload"
+      href="/fonts/instrument-sans-v4-latin-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin />
+    <link
+      rel="preload"
+      href="/fonts/dm-mono-v16-latin-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin />
   </head>
   <body>
     <en-root></en-root>

@@ -1,0 +1,44 @@
+// Vendor overrides — Angular Material customisations to match the design system.
+
+// Buttons
+.mat-mdc-button,
+.mat-mdc-raised-button,
+.mat-mdc-outlined-button {
+  font-family: var(--font-mono) !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  border-radius: 0 !important;
+}
+
+// Cards
+.mat-mdc-card {
+  background: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 0 !important;
+  color: var(--text) !important;
+}
+
+// Form fields
+.mat-mdc-form-field {
+  font-family: var(--font-body) !important;
+}
+
+// Chips
+.mat-mdc-chip {
+  border-radius: 0 !important;
+  font-family: var(--font-mono) !important;
+  font-size: 12px !important;
+  letter-spacing: 0.06em !important;
+}
+
+// Toolbar
+.mat-toolbar {
+  background: var(--black) !important;
+  border-bottom: 1px solid var(--border) !important;
+  font-family: var(--font-display) !important;
+}
+
+// Ripples
+.mat-ripple-element {
+  background-color: var(--cyan-glow) !important;
+}

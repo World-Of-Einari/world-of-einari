@@ -30,6 +30,7 @@ $dark-theme: mat.define-theme(
       tertiary: mat.$azure-palette,
     ),
     typography: (
+      // Font families — keep in sync with --font-display and --font-body in _01-settings.scss
       plain-family: 'Instrument Sans, sans-serif',
       brand-family: 'Syne, sans-serif',
       bold-weight: 800,

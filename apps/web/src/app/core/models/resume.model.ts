@@ -27,8 +27,8 @@ export interface Project {
   title: string;
   description: string;
   tags: string[];
-  linkLabel: string;
-  link: string;
+  linkLabel?: string;
+  link?: string;
   featured?: boolean;
   visual?: ProjectVisualLine[];
 }

@@ -104,8 +104,8 @@ export class ResumeService {
       description:
         'Established internal open-source-style standards across a large engineering organisation. Created tech-agnostic starter templates, automated releases and versioning, and drove adoption across teams.',
       tags: ['InnerSource', 'GitHub', 'TypeScript', 'Terraform'],
-      link: 'https://github.com/enaukkarinen',
-      linkLabel: 'GitHub',
+      // link: 'https://github.com/enaukkarinen',
+      // linkLabel: 'GitHub',
       featured: true,
       visual: [
         { label: 'scope', value: 'org-wide' },
@@ -115,21 +115,36 @@ export class ResumeService {
     },
     {
       num: '02',
+      title: 'EG Radius Data Exchange',
+      description:
+        "The UK's only contributory data platform for commercial real estate. Agents and surveyors contribute deals and transactions in exchange for market intelligence, enriched with multiple third-party datasets and visualised through a geospatial map interface. As Principal Engineer, led the full technical estate owned by my team across 4 years — driving architecture and delivery across the entire stack, introducing TypeScript and PostgreSQL on AWS RDS, building complex ETL pipelines, and solving large-scale geospatial challenges like visualising 27M land title boundaries as vector tiles on Google Maps.",
+      tags: ['Angular', 'TypeScript', 'Deck.gl', 'Elasticsearch', 'PostgreSQL', 'Node.js', 'AWS'],
+      // link: 'https://www.eg.co.uk/radius/',
+      // linkLabel: 'View product',
+      featured: true,
+      visual: [
+        { label: 'market', value: 'UK CRE' },
+        { label: 'titles', value: '27M polygons' },
+        { label: 'model', value: 'contributory' },
+      ],
+    },
+    {
+      num: '03',
       title: 'AI Developer Tooling',
       description:
         'AI-assisted tooling to improve discoverability of shared knowledge, documentation, and platform capabilities across InnerSource repositories. Built with OpenAI and MCP.',
       tags: ['OpenAI', 'MCP', 'RAG', 'TypeScript', 'Node.js'],
-      link: 'https://github.com/enaukkarinen',
-      linkLabel: 'GitHub',
+      // link: 'https://github.com/enaukkarinen',
+      // linkLabel: 'GitHub',
     },
     {
-      num: '03',
+      num: '04',
       title: 'CRE Market Analytics Platform',
       description:
         'Re-structured front-end for a commercial real estate analytics product. Data visualisation with Deck.gl, robust Google Maps integrations, and close collaboration with in-house designers.',
       tags: ['Angular', 'Deck.gl', 'TypeScript', 'Node.js'],
-      link: '#',
-      linkLabel: 'View project',
+      // link: '#',
+      // linkLabel: 'View project',
     },
   ]);
 

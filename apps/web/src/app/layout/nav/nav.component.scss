@@ -29,10 +29,38 @@
     letter-spacing: -0.02em;
     cursor: default;
     user-select: none;
+    padding: 4px 8px;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+    transition: color 0.25s ease;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--cyan);
+      transform: translateX(-100%);
+      transition: transform 0.25s ease;
+      z-index: -1;
+    }
+
+    &:hover {
+      color: var(--black);
+
+      &::before {
+        transform: translateX(0);
+      }
+
+      .nav__logo-dot {
+        color: var(--black);
+      }
+    }
   }
 
   &__logo-dot {
     color: var(--cyan);
+    transition: color 0.2s ease;
   }
 
   &__links {

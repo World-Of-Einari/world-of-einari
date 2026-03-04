@@ -4,6 +4,7 @@ import { Experience, Project, SkillGroup, Stat } from '@en/core/models/resume.mo
 @Injectable({ providedIn: 'root' })
 export class ResumeService {
   readonly name = signal('Einari Naukkarinen');
+  readonly pronunciation = signal('AY-nah-ree NOW-kah-ree-nen');
   readonly initials = signal('EN');
   readonly title = signal('Principal Software Engineer');
   readonly email = signal('einari.naukkarinen@outlook.com');

@@ -3,11 +3,25 @@
   <div class="hero__glow hero__glow--secondary" aria-hidden="true"></div>
 
   <div class="hero__content">
-    <en-section-header
-      [label]="title()"
-      [title]="nameParts().first"
-      [ghost]="nameParts().last"
-      size="hero" />
+    <div class="hero__name-group">
+      <en-section-header
+        [label]="title()"
+        [title]="nameParts().first"
+        [ghost]="nameParts().last"
+        size="hero" />
+
+      <div class="hero__pronunciation" aria-label="Pronunciation guide">
+        <span class="hero__pronunciation-text">
+          <img
+            class="hero__pronunciation-icon"
+            src="/icons/speaker.svg"
+            alt=""
+            aria-hidden="true" />
+          <span class="hero__pronunciation-slash">/</span>{{ pronunciation()
+          }}<span class="hero__pronunciation-slash">/</span>
+        </span>
+      </div>
+    </div>
 
     <p class="hero__tagline">{{ tagline() }}</p>
 

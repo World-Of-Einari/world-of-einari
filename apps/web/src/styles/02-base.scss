@@ -23,6 +23,10 @@ body {
 body {
   cursor: none;
 
+  @media (hover: none) {
+    cursor: auto;
+  }
+
   // Subtle grid overlay — purely decorative
   &::before {
     content: '';

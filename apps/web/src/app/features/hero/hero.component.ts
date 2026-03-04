@@ -18,6 +18,7 @@ export class HeroComponent {
 
   readonly title = this.resume.title;
   readonly tagline = this.resume.tagline;
+  readonly pronunciation = this.resume.pronunciation;
   readonly stats = this.resume.stats;
   readonly nameParts = computed(() => {
     const parts = this.resume.name().split(' ');

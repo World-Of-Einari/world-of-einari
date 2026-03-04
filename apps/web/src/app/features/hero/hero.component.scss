@@ -38,6 +38,52 @@
     max-width: 900px;
   }
 
+  // Wraps the section header + pronunciation so hover is scoped to the name
+  &__name-group {
+    display: inline-block;
+    cursor: default;
+  }
+
+  &__pronunciation {
+    overflow: hidden;
+    height: 24px;
+    margin-top: -48px;
+    margin-bottom: 24px;
+  }
+
+  &__pronunciation-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    transform: translateY(28px);
+    opacity: 0;
+    transition:
+      transform 0.4s ease,
+      opacity 0.4s ease;
+  }
+
+  &__pronunciation-icon {
+    flex-shrink: 0;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+  }
+
+  &__pronunciation-slash {
+    color: rgba(0, 229, 255, 0.35);
+    font-weight: 300;
+  }
+
+  &__name-group:hover &__pronunciation-text {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
   &__tagline {
     font-size: 18px;
     color: var(--muted);
@@ -200,6 +246,10 @@
 
     &__scroll {
       left: 24px;
+    }
+
+    &__pronunciation {
+      display: none;
     }
   }
 }

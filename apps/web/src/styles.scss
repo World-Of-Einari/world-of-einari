@@ -149,7 +149,8 @@ h3 {
   border: 1px solid var(--border);
 }
 
-// Reveal animation (used with IntersectionObserver)
+// Reveal animation — used by RevealDirective, defined once here
+// since Angular directives don't support styleUrl.
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -157,7 +158,7 @@ h3 {
     opacity 0.7s ease,
     transform 0.7s ease;
 
-  &.visible {
+  &--visible {
     opacity: 1;
     transform: translateY(0);
   }

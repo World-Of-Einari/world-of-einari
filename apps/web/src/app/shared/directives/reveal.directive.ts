@@ -10,9 +10,8 @@ import {
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
-// Adds reveal animation to an element when it enters the viewport.
-// It uses IntersectionObserver to detect when the element is visible.
-// Adds CSS classes 'reveal' and 'reveal--visible' to control animation states.
+// Adds a scroll-triggered reveal animation to any host element via IntersectionObserver.
+// Animation styles live in global styles.scss under .reveal / .reveal--visible.
 @Directive({
   selector: '[appReveal]',
   standalone: true,

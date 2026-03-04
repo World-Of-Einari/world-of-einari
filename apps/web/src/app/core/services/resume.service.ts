@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { Experience, Project, SkillGroup, Stat } from '../models/resume.model';
+import { Experience, Project, SkillGroup, Stat } from '@en/core/models/resume.model';
 
 @Injectable({ providedIn: 'root' })
 export class ResumeService {
@@ -9,103 +9,124 @@ export class ResumeService {
   readonly email = signal('einari.naukkarinen@outlook.com');
   readonly domain = signal('einarinau.com');
   readonly tagline = signal(
-    'I architect high-scale systems and lead engineering teams that ship products people love.'
+    'I architect & build high-scale systems and lead engineering teams that ship products people love.'
   );
 
   readonly stats = signal<Stat[]>([
     { num: '10+', label: 'Years experience' },
-    { num: '40+', label: 'Engineers led' },
+    { num: '4+', label: 'Years as Principal' },
     { num: '∞', label: 'Problems solved' },
   ]);
 
   readonly aboutParagraphs = signal<string[]>([
-    `Hi, I'm Einari. I'm a Principal Software Engineer who lives at the intersection of deep technical execution and engineering leadership. I care about code that lasts, teams that thrive, and products that genuinely change how people work.`,
-    `Over the past decade I've shipped everything from <strong>real-time data pipelines</strong> handling millions of events per second, to <strong>consumer-grade mobile apps</strong> used by hundreds of thousands. I've built teams from scratch and inherited ones that needed rebuilding.`,
-    `My approach: <strong>ruthless pragmatism</strong>. The right abstraction over the clever one. The boring technology that ships over the exciting one that doesn't.`,
+    `Hi, I'm Einari. I'm a Principal Software Engineer based in London, currently at <strong>LexisNexis Risk Solutions</strong> where I operate at cross-team and organisational scope — leading initiatives, raising standards, and helping engineering teams do their best work.`,
+    `My career spans front-end craftsmanship at <strong>Business of Fashion</strong>, full stack development in fintech at <strong>Tieto</strong> and <strong>Basware</strong>, and most recently a deep focus on <strong>InnerSource</strong>, AI-assisted developer tooling, and platform enablement at scale. I've also completed an award-winning <strong>Future Leaders programme</strong>.`,
+    `I'm at my best as a <strong>technical multiplier</strong> — the person who makes everyone around them more effective. Whether that's mentoring engineers, championing new technology, or building the shared infrastructure that lets product teams move faster.`,
   ]);
 
   readonly skills = signal<SkillGroup[]>([
     {
-      group: 'Core',
+      group: 'Leadership',
       tags: [
-        'System Design',
-        'Architecture',
-        'Engineering Leadership',
-        'TypeScript',
-        'Go',
-        'Python',
+        'Solution Architecture',
+        'InnerSource',
+        'Team Leadership',
+        'Line Management',
+        'Change Management',
+        'Agile',
       ],
-      featured: ['System Design', 'Architecture', 'Engineering Leadership'],
-    },
-    {
-      group: 'Platform',
-      tags: ['Kubernetes', 'GCP', 'AWS', 'Terraform', 'Kafka', 'PostgreSQL'],
+      featured: ['Solution Architecture', 'InnerSource', 'Team Leadership'],
     },
     {
       group: 'Frontend',
-      tags: ['Angular', 'React', 'GraphQL', 'WebSockets'],
-      featured: ['Angular'],
+      tags: ['TypeScript', 'Angular', 'React', 'RxJS', 'Material Design', 'Deck.gl'],
+      featured: ['TypeScript', 'Angular'],
+    },
+    {
+      group: 'Backend & cloud',
+      tags: ['Node.js', 'AWS', 'Terraform', 'PostgreSQL', 'MongoDB', 'Elasticsearch'],
+      featured: ['AWS', 'Node.js'],
+    },
+    {
+      group: 'AI & tooling',
+      tags: ['OpenAI', 'MCP', 'RAG', 'GitHub Advanced Security', 'Jest', 'Cypress'],
+      featured: ['OpenAI', 'MCP'],
     },
   ]);
 
   readonly experience = signal<Experience[]>([
     {
-      date: '2022 — Present',
-      company: 'Acme Corp',
+      date: 'Dec 2020 — Present',
+      company: 'LexisNexis Risk Solutions',
       role: 'Principal Software Engineer',
       description:
-        'Leading platform architecture for a suite of B2B SaaS products. Drove migration from monolith to event-driven microservices, reducing p99 latency by 60%. Built and scaled the core engineering team from 8 to 30+.',
-      tags: ['Go', 'Kafka', 'GCP', 'Kubernetes'],
+        'Operating at cross-team and organisational scope, providing technical leadership and strategic delivery across multiple product squads. Led the GitHub InnerSource initiative, contributed to an AI enablement group building OpenAI and MCP proof-of-concepts, and completed an award-winning Future Leaders programme.',
+      tags: ['TypeScript', 'AWS', 'OpenAI', 'MCP', 'InnerSource', 'PostgreSQL'],
     },
     {
-      date: '2019 — 2022',
-      company: 'Startup Ltd',
+      date: 'Jun 2018 — Dec 2020',
+      company: 'LexisNexis Risk Solutions',
       role: 'Senior Software Engineer',
-      description:
-        'Full-stack ownership of consumer product from 0 to 200k MAU. Designed and built real-time analytics dashboard processing 5M events/day. Led a team of 6 engineers across frontend and backend.',
-      tags: ['TypeScript', 'Angular', 'PostgreSQL', 'AWS'],
+      description: `Led the re-structuring of the company's CRE market analytics front-end, working closely with in-house designers on UI. End-to-end full stack JavaScript development with robust Google Maps integrations and data visualisation using Deck.gl and Chart.js.`,
+      tags: ['TypeScript', 'Angular', 'Deck.gl', 'Node.js', 'MongoDB'],
     },
     {
-      date: '2016 — 2019',
-      company: 'Agency Co',
+      date: 'Jun 2017 — Jun 2018',
+      company: 'Business of Fashion',
       role: 'Software Engineer',
       description:
-        'Delivered 12+ web and mobile products for enterprise clients across fintech, healthcare, and logistics. Introduced CI/CD practices that cut deployment time by 80%.',
-      tags: ['React', 'Node.js', 'Python'],
+        'Agile front-end development on a global digital media platform. Strong emphasis on pixel-perfect UI and forming coding standards across the engineering team.',
+      tags: ['Angular', 'AngularJS', 'TypeScript', 'GraphQL', 'Node.js'],
+    },
+    {
+      date: 'Jun 2016 — Jun 2017',
+      company: 'Tieto',
+      role: 'Software Developer',
+      description:
+        'Agile full stack JavaScript development in the financial sector. Mobile-first, user-oriented design with close customer collaboration throughout the development process.',
+      tags: ['AngularJS', 'TypeScript', 'Node.js', 'MongoDB'],
+    },
+    {
+      date: 'Jun 2015 — Jun 2016',
+      company: 'Basware',
+      role: 'Software Engineer',
+      description:
+        'Design and implementation of financial purchase-to-pay processes. Client-side user and state management, external system integration, localisation, and version control support.',
+      tags: ['AngularJS', 'TypeScript', 'ASP.NET', 'SQL Server', 'Node.js'],
     },
   ]);
 
   readonly projects = signal<Project[]>([
     {
       num: '01',
-      title: 'Real-time Analytics Platform',
+      title: 'GitHub InnerSource Initiative',
       description:
-        'Event-driven data pipeline processing 5M+ events per day with sub-second query latency. Built on Kafka, ClickHouse, and a WebSocket-powered live dashboard.',
-      tags: ['Go', 'Kafka', 'ClickHouse', 'Angular'],
-      link: '#',
-      linkLabel: 'View case study',
+        'Established internal open-source-style standards across a large engineering organisation. Created tech-agnostic starter templates, automated releases and versioning, and drove adoption across teams.',
+      tags: ['InnerSource', 'GitHub', 'TypeScript', 'Terraform'],
+      link: 'https://github.com/enaukkarinen',
+      linkLabel: 'GitHub',
       featured: true,
       visual: [
-        { label: 'events/sec', value: '48,203' },
-        { label: 'p99 latency', value: '12ms' },
-        { label: 'uptime', value: '99.98%' },
+        { label: 'scope', value: 'org-wide' },
+        { label: 'templates', value: 'multi-stack' },
+        { label: 'releases', value: 'automated' },
       ],
     },
     {
       num: '02',
-      title: 'Distributed Config Service',
+      title: 'AI Developer Tooling',
       description:
-        'Open-source feature flag and remote config system with real-time propagation to 10k+ connected clients.',
-      tags: ['Go', 'gRPC', 'etcd'],
-      link: '#',
+        'AI-assisted tooling to improve discoverability of shared knowledge, documentation, and platform capabilities across InnerSource repositories. Built with OpenAI and MCP.',
+      tags: ['OpenAI', 'MCP', 'RAG', 'TypeScript', 'Node.js'],
+      link: 'https://github.com/enaukkarinen',
       linkLabel: 'GitHub',
     },
     {
       num: '03',
-      title: 'Design System @ Scale',
+      title: 'CRE Market Analytics Platform',
       description:
-        'Component library and design token system adopted across 4 product teams, shipping 80+ accessible components.',
-      tags: ['Angular', 'Material', 'Storybook'],
+        'Re-structured front-end for a commercial real estate analytics product. Data visualisation with Deck.gl, robust Google Maps integrations, and close collaboration with in-house designers.',
+      tags: ['Angular', 'Deck.gl', 'TypeScript', 'Node.js'],
       link: '#',
       linkLabel: 'View project',
     },
@@ -113,6 +134,6 @@ export class ResumeService {
 
   readonly socialLinks = signal([
     { label: 'GitHub', href: 'https://github.com/enaukkarinen' },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/enaukkarinen' },
+    { label: 'LinkedIn', href: 'https://linkedin.com/in/enaukkarinen' },
   ]);
 }

@@ -67,10 +67,11 @@
       height: 1px;
       background: var(--cyan);
       transform: scaleX(0);
-      transition: transform 0.2s ease;
+      transition: transform 0.3s ease;
       transform-origin: left;
     }
 
+    &--active,
     &:hover {
       color: var(--cyan);
 

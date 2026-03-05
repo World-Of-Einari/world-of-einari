@@ -67,6 +67,6 @@ export class CursorComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.cleanups.forEach((fn) => fn());
-    if (this.animFrame) cancelAnimationFrame(this.animFrame);
+    if (this.animFrame !== undefined) cancelAnimationFrame(this.animFrame);
   }
 }

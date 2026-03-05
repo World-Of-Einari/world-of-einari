@@ -1,26 +1,28 @@
-# Angular Zoneless Demo
+# World of Einari
 
-This project is a simple CRUD application designed to demonstrate the process of converting a traditional Angular application using NgRx and zone.js to a zoneless architecture utilizing Angular Signal Store.
+A personal portfolio and resume website built with Angular, featuring server-side rendering and a modern zoneless architecture.
 
 ## Purpose
 
-- **Migration Example:** Showcases how to migrate from a zone.js-based NgRx state management approach to a modern, zoneless Angular Signal Store pattern.
-- **Educational:** Serves as a reference for developers interested in adopting zoneless Angular best practices and leveraging the new Signal Store API.
+- **Portfolio Site:** A single-page application showcasing professional experience, projects, and contact information.
+- **Modern Angular:** Built with Angular's latest features including standalone components, SSR, and zoneless change detection.
 
 ## Features
 
-- Basic CRUD operations for a banking domain (accounts, transactions, etc.)
-- Modular structure with clear separation of concerns
-- Example of state management using both NgRx (legacy) and Signal Store (modern)
-- Unit tests and linting included
+- Hero section with personal introduction
+- About section with background information
+- Experience section with professional work history
+- Projects showcase with links
+- Contact section
+- Responsive navigation with active section tracking and smooth scrolling
+- Server-side rendering for improved performance and SEO
 
 ## Project Structure
 
-- `src/app/core/` — Core interfaces, and data services
-- `src/app/banking/` — Feature module for banking operations
-- `src/app/bankingcore/store/` — State management stores (Signal Store)
-- `src/app/shared/` — Shared components and validators
-
+- `src/app/core/` — Core models and data services (resume model & service)
+- `src/app/features/` — Page sections (hero, about, experience, projects, contact, home)
+- `src/app/layout/` — Site-wide layout components (nav, footer)
+- `src/app/shared/` — Shared components and directives (section header, cursor, reveal directive)
 
 ## Getting Started
 
@@ -40,11 +42,6 @@ This project is a simple CRUD application designed to demonstrate the process of
    ```bash
    npm run lint
    ```
-
-## Notes
-
-- This project is for demonstration and educational purposes.
-- The migration process is incremental; both NgRx and Signal Store patterns may coexist during the transition.
 
 ## License
 

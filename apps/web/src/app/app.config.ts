@@ -9,7 +9,7 @@ import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 import { routes } from './app.routes';
-import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
+// import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,6 +23,6 @@ export const appConfig: ApplicationConfig = {
       maxAge: 25,
       logOnly: false, // set true for prod
     }),
-    provideClientHydration(withEventReplay()),
+    // provideClientHydration(withEventReplay()),
   ],
 };

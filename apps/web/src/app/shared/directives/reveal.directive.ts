@@ -28,6 +28,7 @@ export class RevealDirective implements OnInit, OnDestroy {
   private readonly el = inject(ElementRef<HTMLElement>);
   private readonly platformId = inject(PLATFORM_ID);
   private observer?: IntersectionObserver;
+  private timeoutIds: ReturnType<typeof setTimeout>[] = [];
 
   ngOnInit() {
     if (!isPlatformBrowser(this.platformId)) {
@@ -39,7 +40,12 @@ export class RevealDirective implements OnInit, OnDestroy {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setTimeout(() => this.visible.set(true), this.delay());
+            if (this.delay() > 0) {
+              const id = setTimeout(() => this.visible.set(true), this.delay());
+              this.timeoutIds.push(id);
+            } else {
+              this.visible.set(true);
+            }
             this.observer?.unobserve(entry.target);
           }
         });
@@ -50,6 +56,7 @@ export class RevealDirective implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.timeoutIds.forEach(clearTimeout);
     this.observer?.disconnect();
   }
 }

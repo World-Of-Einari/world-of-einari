@@ -1,5 +1,6 @@
 import {
   ApplicationConfig,
+  isDevMode,
   provideZonelessChangeDetection,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
@@ -19,10 +20,9 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     provideStore(),
     provideEffects(),
-    provideStoreDevtools({
-      maxAge: 25,
-      logOnly: false, // set true for prod
-    }),
+    ...(isDevMode()
+      ? [provideStoreDevtools({ maxAge: 25, logOnly: false })]
+      : []),
     // provideClientHydration(withEventReplay()),
   ],
 };

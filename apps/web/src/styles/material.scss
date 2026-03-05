@@ -2,26 +2,6 @@
 
 @include mat.core();
 
-// --cyan: #00e5ff brand color
-$cyan-palette: (
-  0: #000000,
-  10: #001f26,
-  20: #003640,
-  25: #00424d,
-  30: #004f5c,
-  35: #005c6b,
-  40: #006978,
-  50: #008598,
-  60: #00a2b8,
-  70: #00bfda,
-  80: #00ddf8,
-  90: #8aeeff,
-  95: #c8f7ff,
-  98: #edfcff,
-  99: #f6feff,
-  100: #ffffff,
-);
-
 $dark-theme: mat.define-theme(
   (
     color: (

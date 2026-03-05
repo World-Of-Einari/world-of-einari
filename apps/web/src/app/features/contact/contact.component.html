@@ -7,16 +7,16 @@
       size="large"
       [centered]="true"></en-section-header>
 
-    <p class="contact__sub" appReveal [appRevealDelay]="100">
+    <p class="contact__sub" enReveal [enRevealDelay]="100">
       Open to senior / principal engineering roles, fractional CTO engagements, and the occasional
       interesting side project.
     </p>
 
-    <a class="contact__email" [href]="'mailto:' + email()" appReveal [appRevealDelay]="200">{{
+    <a class="contact__email" [href]="'mailto:' + email()" enReveal [enRevealDelay]="200">{{
       email()
     }}</a>
 
-    <div class="contact__social" appReveal [appRevealDelay]="300">
+    <div class="contact__social" enReveal [enRevealDelay]="300">
       @for (link of socialLinks(); track link.label) {
         <a class="contact__social-link" [href]="link.href" target="_blank" rel="noopener">
           {{ link.label }}

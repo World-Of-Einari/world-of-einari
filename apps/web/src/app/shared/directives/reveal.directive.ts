@@ -13,7 +13,7 @@ import { isPlatformBrowser } from '@angular/common';
 // Adds a scroll-triggered reveal animation to any host element via IntersectionObserver.
 // Animation styles live in global styles.scss under .reveal / .reveal--visible.
 @Directive({
-  selector: '[appReveal]',
+  selector: '[enReveal]',
   standalone: true,
   host: {
     '[class.reveal]': 'true',
@@ -21,7 +21,7 @@ import { isPlatformBrowser } from '@angular/common';
   },
 })
 export class RevealDirective implements OnInit, OnDestroy {
-  readonly delay = input<number>(0, { alias: 'appRevealDelay' });
+  readonly delay = input<number>(0, { alias: 'enRevealDelay' });
 
   protected readonly visible = signal(false);
 

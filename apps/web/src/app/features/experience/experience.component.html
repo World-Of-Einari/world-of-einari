@@ -3,7 +3,7 @@
 
   <div class="experience__timeline">
     @for (item of experience(); track item.company; let i = $index) {
-      <article class="experience__item" appReveal [appRevealDelay]="i * 100">
+      <article class="experience__item" enReveal [enRevealDelay]="i * 100">
         <div class="experience__meta">
           <p class="experience__date">{{ item.date }}</p>
           <p class="experience__company">{{ item.company }}</p>

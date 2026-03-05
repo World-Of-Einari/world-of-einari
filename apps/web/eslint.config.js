@@ -18,7 +18,7 @@ module.exports = tseslint.config(
         "error",
         {
           type: "attribute",
-          prefix: "app",
+          prefix: "en",
           style: "camelCase",
         },
       ],
@@ -26,10 +26,11 @@ module.exports = tseslint.config(
         "error",
         {
           type: "element",
-          prefix: "app",
+          prefix: "en",
           style: "kebab-case",
         },
       ],
+      "@typescript-eslint/array-type": "off"
     },
   },
   {

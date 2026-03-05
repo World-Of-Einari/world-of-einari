@@ -6,8 +6,8 @@
       <article
         class="projects__card"
         [class.projects__card--featured]="project.featured"
-        appReveal
-        [appRevealDelay]="i * 80">
+        enReveal
+        [enRevealDelay]="i * 80">
         @if (project.featured && project.visual) {
           <!-- Featured layout: text + visual side by side -->
           <div class="projects__card-body">

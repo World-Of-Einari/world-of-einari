@@ -1,45 +1,46 @@
-# einarinau.com — starter (Angular SSR + Material 3)
+# World of Einari
 
-This repo is structured to keep deployment flexible (AWS/Vercel/etc.).
+Personal portfolio website built with Angular and SSR (Server-Side Rendering).
 
-## What you get out of the box
-- Angular **SSR** app with **Material 3** custom theme (dark-first)
-- Modern routing skeleton: Home, Projects, Writing, AI Lab, About
-- Markdown content for Projects/Writing (file-based)
-- API service (Fastify) with `/health` and `/chat` stub
+## Prerequisites
 
-## Prereqs
-- Node 20+ recommended
-- pnpm 9+
+- [Node.js](https://nodejs.org/) (see `.nvmrc` for the required version)
+- [pnpm](https://pnpm.io/) 9.15.6+
 
-## 1) Scaffold the Angular SSR app
-From repo root:
+## Installation
 
 ```bash
 pnpm install
-pnpm setup:web
 ```
 
-This runs `@angular/cli` to create `apps/web`, then overlays the curated starter files.
+## Development
 
-## 2) Run locally
+Start the development server:
+
 ```bash
-pnpm --filter web dev
-pnpm --filter api dev
+pnpm dev
 ```
 
-- Web: http://localhost:4200
-- API: http://localhost:8787/health
+The app will be available at `http://localhost:4200`.
 
-## 3) Content
-Edit markdown:
-- `content/projects/*.md`
-- `content/writing/*.md`
+## Build
 
-Re-run the web dev server (or it should pick up changes depending on your watcher).
+Build all apps for production:
 
----
+```bash
+pnpm build
+```
 
-### Next milestones (optional)
-- Add Postgres + pgvector + RAG ingest pipeline in `apps/api` + `packages/*`
-- Wire `/ai` page to stream responses and show cited sources
+## Test
+
+Run all tests:
+
+```bash
+pnpm test
+```
+
+## Lint
+
+```bash
+pnpm lint
+```

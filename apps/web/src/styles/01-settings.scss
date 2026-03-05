@@ -1,0 +1,26 @@
+// Design tokens — single source of truth for all CSS custom properties.
+
+// TODO: See what is needed
+:root {
+  // Backgrounds
+  --black: #020408;
+  --surface: #080e18;
+  --card: #0c1522;
+  --border: #0e2040;
+
+  // Brand
+  --cyan: #00e5ff;
+  --cyan-dim: #00b8cc;
+  --cyan-glow: rgba(0, 229, 255, 0.15);
+  --cyan-glow-strong: rgba(0, 229, 255, 0.3);
+
+  // Text
+  --white: #f0f6ff;
+  --muted: #4a6080;
+  --text: #c8daf0;
+
+  // Typography
+  --font-display: 'Syne', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --font-body: 'Instrument Sans', sans-serif;
+}

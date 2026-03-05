@@ -1,0 +1,17 @@
+// Components — global shared component styles.
+
+// Note: Angular directives don't support styleUrl, so RevealDirective's
+// styles are defined here as the single source of truth.
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+
+  &--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

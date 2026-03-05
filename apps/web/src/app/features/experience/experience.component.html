@@ -1,0 +1,25 @@
+<section class="experience" id="experience">
+  <en-section-header label="Experience" title="Where I've" ghost="shipped" />
+
+  <div class="experience__timeline">
+    @for (item of experience(); track item.date; let i = $index) {
+      <!-- TODO: reveal animation not working -->
+      <article class="experience__item" enReveal [enRevealDelay]="i * 200">
+        <div class="experience__meta">
+          <p class="experience__date">{{ item.date }}</p>
+          <p class="experience__company">{{ item.company }}</p>
+        </div>
+
+        <div class="experience__body">
+          <h3 class="experience__role">{{ item.role }}</h3>
+          <p class="experience__desc">{{ item.description }}</p>
+          <div class="experience__tags">
+            @for (tag of item.tags; track tag) {
+              <span class="experience__tag">{{ tag }}</span>
+            }
+          </div>
+        </div>
+      </article>
+    }
+  </div>
+</section>

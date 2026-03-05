@@ -1,0 +1,11 @@
+<div
+  class="cursor"
+  [class.cursor--hovering]="hovering()"
+  [style.left.px]="mouseX()"
+  [style.top.px]="mouseY()"></div>
+
+<div
+  class="cursor__ring"
+  [class.cursor__ring--hovering]="hovering()"
+  [style.left.px]="ringX()"
+  [style.top.px]="ringY()"></div>

@@ -1,0 +1,26 @@
+<section class="about" id="about">
+  <div class="about__grid" enReveal>
+    <div class="about__text">
+      <en-section-header label="About" title="Bridging tech" ghost="and people" />
+
+      @for (para of paragraphs(); track $index) {
+        <p class="about__paragraph" [innerHTML]="para"></p>
+      }
+    </div>
+
+    <div class="about__skills">
+      @for (group of skills(); track group.group) {
+        <div class="about__skill-group">
+          <p class="about__skill-label">{{ group.group }}</p>
+          <div class="about__tags">
+            @for (tag of group.tags; track tag) {
+              <span class="about__tag" [class.about__tag--featured]="isFeatured(group, tag)">{{
+                tag
+              }}</span>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

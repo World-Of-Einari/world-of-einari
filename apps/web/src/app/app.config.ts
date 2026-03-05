@@ -1,21 +1,28 @@
-import { ApplicationConfig, provideZonelessChangeDetection } from '@angular/core';
-import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
-import { provideClientHydration } from '@angular/platform-browser';
+import {
+  ApplicationConfig,
+  isDevMode,
+  provideZonelessChangeDetection,
+} from '@angular/core';
+import { provideRouter } from '@angular/router';
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideEffects } from '@ngrx/effects';
+import { provideStore } from '@ngrx/store';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 import { routes } from './app.routes';
+// import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    // provideZoneChangeDetection({ eventCoalescing: true }),
     provideZonelessChangeDetection(),
-    provideRouter(
-      routes,
-      withComponentInputBinding(),
-      withInMemoryScrolling({ scrollPositionRestoration: 'enabled' }),
-    ),
-    provideClientHydration(),
+    provideRouter(routes),
     provideHttpClient(withFetch()),
-    provideAnimations(),
+    provideStore(),
+    provideEffects(),
+    ...(isDevMode()
+      ? [provideStoreDevtools({ maxAge: 25, logOnly: false })]
+      : []),
+    // provideClientHydration(withEventReplay()),
   ],
 };

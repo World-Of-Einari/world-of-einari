@@ -1,0 +1,255 @@
+@use 'sass:math';
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 60px 80px;
+  overflow: hidden;
+
+  &__glow {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+
+    &--primary {
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(0, 229, 255, 0.12) 0%, transparent 70%);
+      top: -100px;
+      right: -200px;
+      animation: hero-pulse 6s ease-in-out infinite;
+    }
+
+    &--secondary {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(0, 229, 255, 0.06) 0%, transparent 70%);
+      bottom: 0;
+      left: 200px;
+      animation: hero-pulse 8s ease-in-out infinite reverse;
+    }
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+  }
+
+  // Wraps the section header + pronunciation so hover is scoped to the name
+  &__name-group {
+    display: inline-block;
+    cursor: default;
+  }
+
+  &__pronunciation {
+    overflow: hidden;
+    height: 24px;
+    margin-top: -48px;
+    margin-bottom: 24px;
+  }
+
+  &__pronunciation-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    transform: translateY(28px);
+    opacity: 0;
+    transition:
+      transform 0.4s ease,
+      opacity 0.4s ease;
+  }
+
+  &__pronunciation-icon {
+    flex-shrink: 0;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+  }
+
+  &__pronunciation-slash {
+    color: rgba(0, 229, 255, 0.35);
+    font-weight: 300;
+  }
+
+  &__name-group:hover &__pronunciation-text {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  &__tagline {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 480px;
+    margin: 0 0 52px;
+    line-height: 1.7;
+    animation: fade-up 0.7s ease forwards 0.5s;
+    opacity: 0;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    animation: fade-up 0.7s ease forwards 0.65s;
+    opacity: 0;
+  }
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+
+    &--primary {
+      background: var(--cyan);
+      color: var(--black);
+      font-weight: 500;
+      padding: 16px 32px;
+      position: relative;
+      overflow: hidden;
+
+      &:hover {
+        background: var(--white);
+        transform: translateY(-2px);
+        box-shadow: 0 20px 40px rgba(0, 229, 255, 0.3);
+      }
+    }
+
+    &--ghost {
+      color: var(--text);
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+
+      &:hover {
+        color: var(--cyan);
+        border-color: var(--cyan);
+      }
+    }
+  }
+
+  &__stats {
+    position: absolute;
+    right: 60px;
+    bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    animation: fade-up 0.7s ease forwards 0.8s;
+    opacity: 0;
+  }
+
+  &__stat {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__stat-num {
+    font-family: var(--font-display);
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  &__stat-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  // Scroll indicator
+  &__scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 60px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: fade-up 0.7s ease forwards 1s;
+    opacity: 0;
+  }
+
+  &__scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--cyan), transparent);
+    animation: scroll-pulse 2s ease-in-out infinite;
+  }
+
+  &__scroll-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.7;
+  }
+}
+
+@keyframes scroll-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 100px 24px 80px;
+
+    &__stats {
+      display: none;
+    }
+
+    &__scroll {
+      left: 24px;
+    }
+
+    &__pronunciation {
+      display: none;
+    }
+  }
+}

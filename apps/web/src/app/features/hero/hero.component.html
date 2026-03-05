@@ -1,0 +1,62 @@
+<section class="hero" id="hero">
+  <div class="hero__glow hero__glow--primary" aria-hidden="true"></div>
+  <div class="hero__glow hero__glow--secondary" aria-hidden="true"></div>
+
+  <div class="hero__content">
+    <div class="hero__name-group">
+      <en-section-header
+        [label]="title()"
+        [title]="nameParts().first"
+        [ghost]="nameParts().last"
+        size="hero" />
+
+      <div class="hero__pronunciation" aria-label="Pronunciation guide">
+        <span class="hero__pronunciation-text">
+          <img
+            class="hero__pronunciation-icon"
+            src="/icons/speaker.svg"
+            alt=""
+            aria-hidden="true" />
+          <span class="hero__pronunciation-slash">/</span>{{ pronunciation()
+          }}<span class="hero__pronunciation-slash">/</span>
+        </span>
+      </div>
+    </div>
+
+    <p class="hero__tagline">{{ tagline() }}</p>
+
+    <div class="hero__actions">
+      <a
+        class="hero__btn hero__btn--primary"
+        href="#projects"
+        (click)="scrollTo($event, 'projects')">
+        View my work
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path
+            d="M3 8h10M9 4l4 4-4 4"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </a>
+      <a class="hero__btn hero__btn--ghost" href="#about" (click)="scrollTo($event, 'about')"
+        >About me →</a
+      >
+    </div>
+  </div>
+
+  <div class="hero__stats" aria-label="Key statistics">
+    @for (stat of stats(); track stat.label) {
+      <div class="hero__stat">
+        <span class="hero__stat-num" [innerHTML]="stat.num"></span>
+        <span class="hero__stat-label">{{ stat.label }}</span>
+      </div>
+    }
+  </div>
+
+  <div class="hero__scroll" aria-hidden="true">
+    <div class="hero__scroll-line"></div>
+    <span class="hero__scroll-label">Scroll</span>
+  </div>
+</section>

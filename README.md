@@ -1,5 +1,9 @@
 # World of Einari
 
+[![CI](https://github.com/enaukkarinen/world-of-einari/actions/workflows/ci.yml/badge.svg)](https://github.com/enaukkarinen/world-of-einari/actions/workflows/ci.yml)
+[![Deploy](https://github.com/enaukkarinen/world-of-einari/actions/workflows/deploy.yml/badge.svg)](https://github.com/enaukkarinen/world-of-einari/actions/workflows/deploy.yml)
+[![Secret Scanning](https://github.com/enaukkarinen/world-of-einari/actions/workflows/secret-scanning.yml/badge.svg)](https://github.com/enaukkarinen/world-of-einari/actions/workflows/secret-scanning.yml)
+
 Personal portfolio website built with Angular and SSR (Server-Side Rendering).
 
 ## Prerequisites

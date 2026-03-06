@@ -1,0 +1,159 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeroComponent should match snapshot 1`] = `
+<div
+  id="root1"
+>
+  <section
+    class="hero"
+    id="hero"
+  >
+    <div
+      aria-hidden="true"
+      class="hero__glow hero__glow--primary"
+    />
+    <div
+      aria-hidden="true"
+      class="hero__glow hero__glow--secondary"
+    />
+    <div
+      class="hero__content"
+    >
+      <div
+        class="hero__name-group"
+      >
+        <en-section-header
+          size="hero"
+        >
+          <p
+            class="section-header__label"
+          >
+             Principal Software Engineer
+
+          </p>
+          <h2
+            class="section-header__title section-header__title--hero"
+          >
+             Einari
+            <br />
+            <em
+              class="section-header__ghost"
+            >
+              Naukkarinen
+            </em>
+          </h2>
+        </en-section-header>
+        <div
+          aria-label="Pronunciation guide"
+          class="hero__pronunciation"
+        >
+          <span
+            class="hero__pronunciation-text"
+          >
+            <img
+              alt=""
+              aria-hidden="true"
+              class="hero__pronunciation-icon"
+              src="/icons/speaker.svg"
+            />
+            <span
+              class="hero__pronunciation-slash"
+            >
+              /
+            </span>
+            AY-nah-ree NOW-kah-ree-nen
+            <span
+              class="hero__pronunciation-slash"
+            >
+              /
+            </span>
+          </span>
+        </div>
+      </div>
+      <p
+        class="hero__tagline"
+      >
+        I architect & build high-scale systems.
+      </p>
+      <div
+        class="hero__actions"
+      >
+        <a
+          class="hero__btn hero__btn--primary"
+          href="#projects"
+        >
+           View my work 
+          <svg
+            aria-hidden="true"
+            fill="none"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+          >
+            <path
+              d="M3 8h10M9 4l4 4-4 4"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+          </svg>
+        </a>
+        <a
+          class="hero__btn hero__btn--ghost"
+          href="#about"
+        >
+          About me →
+        </a>
+      </div>
+    </div>
+    <div
+      aria-label="Key statistics"
+      class="hero__stats"
+    >
+      <div
+        class="hero__stat"
+      >
+        <span
+          class="hero__stat-num"
+        >
+          10+
+        </span>
+        <span
+          class="hero__stat-label"
+        >
+          Years experience
+        </span>
+      </div>
+      <div
+        class="hero__stat"
+      >
+        <span
+          class="hero__stat-num"
+        >
+          4+
+        </span>
+        <span
+          class="hero__stat-label"
+        >
+          Years as Principal
+        </span>
+      </div>
+      
+    </div>
+    <div
+      aria-hidden="true"
+      class="hero__scroll"
+    >
+      <div
+        class="hero__scroll-line"
+      />
+      <span
+        class="hero__scroll-label"
+      >
+        Scroll
+      </span>
+    </div>
+  </section>
+</div>
+`;

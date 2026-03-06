@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AboutComponent should match snapshot 1`] = `
+<div
+  id="root1"
+>
+  <section
+    class="about"
+    id="about"
+  >
+    <div
+      class="about__grid reveal"
+      enreveal=""
+    >
+      <div
+        class="about__text"
+      >
+        <en-section-header
+          ghost="and people"
+          label="About"
+          title="Bridging tech"
+        >
+          <p
+            class="section-header__label"
+          >
+             About
+
+          </p>
+          <h2
+            class="section-header__title"
+          >
+             Bridging tech
+            <br />
+            <em
+              class="section-header__ghost"
+            >
+              and people
+            </em>
+          </h2>
+        </en-section-header>
+        <p
+          class="about__paragraph"
+        >
+          First paragraph.
+        </p>
+        <p
+          class="about__paragraph"
+        >
+          Second paragraph.
+        </p>
+        
+      </div>
+      <div
+        class="about__skills"
+      >
+        <div
+          class="about__skill-group"
+        >
+          <p
+            class="about__skill-label"
+          >
+            Frontend
+          </p>
+          <div
+            class="about__tags"
+          >
+            <span
+              class="about__tag about__tag--featured"
+            >
+              TypeScript
+            </span>
+            <span
+              class="about__tag about__tag--featured"
+            >
+              Angular
+            </span>
+            <span
+              class="about__tag"
+            >
+              React
+            </span>
+            
+          </div>
+        </div>
+        <div
+          class="about__skill-group"
+        >
+          <p
+            class="about__skill-label"
+          >
+            Backend
+          </p>
+          <div
+            class="about__tags"
+          >
+            <span
+              class="about__tag"
+            >
+              Node.js
+            </span>
+            <span
+              class="about__tag"
+            >
+              AWS
+            </span>
+            
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+</div>
+`;

@@ -1,0 +1,166 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProjectsComponent should match snapshot 1`] = `
+<div
+  id="root1"
+>
+  <section
+    class="projects"
+    id="projects"
+  >
+    <en-section-header
+      ghost="work"
+      label="Projects"
+      title="Selected"
+    >
+      <p
+        class="section-header__label"
+      >
+         Projects
+
+      </p>
+      <h2
+        class="section-header__title"
+      >
+         Selected
+        <br />
+        <em
+          class="section-header__ghost"
+        >
+          work
+        </em>
+      </h2>
+    </en-section-header>
+    <div
+      class="projects__grid"
+    >
+      <article
+        class="projects__card projects__card--featured reveal"
+        enreveal=""
+      >
+        <div
+          class="projects__card-body"
+        >
+          <p
+            class="projects__card-num"
+          >
+            01 — Featured
+          </p>
+          <h3
+            class="projects__card-title"
+          >
+            Featured Project
+          </h3>
+          <p
+            class="projects__card-desc"
+          >
+            A featured project with a visual panel.
+          </p>
+          <div
+            class="projects__card-tags"
+          >
+            <span
+              class="projects__card-tag"
+            >
+              TypeScript
+            </span>
+            <span
+              class="projects__card-tag"
+            >
+              Angular
+            </span>
+            
+          </div>
+          <a
+            class="projects__card-link"
+            href="https://example.com"
+          >
+             View → 
+          </a>
+          
+        </div>
+        <div
+          aria-hidden="true"
+          class="projects__card-visual"
+        >
+          <p
+            class="projects__visual-comment"
+          >
+            // live stream
+          </p>
+          <p
+            class="projects__visual-line"
+          >
+            <span
+              class="projects__visual-key"
+            >
+              scope:
+            </span>
+            <span
+              class="projects__visual-val"
+            >
+              org-wide
+            </span>
+          </p>
+          <p
+            class="projects__visual-line"
+          >
+            <span
+              class="projects__visual-key"
+            >
+              status:
+            </span>
+            <span
+              class="projects__visual-val"
+            >
+              active
+            </span>
+          </p>
+          
+        </div>
+        
+        
+      </article>
+      <article
+        class="projects__card reveal"
+        enreveal=""
+      >
+        
+        <p
+          class="projects__card-num"
+        >
+          02
+        </p>
+        <h3
+          class="projects__card-title"
+        >
+          Standard Project
+        </h3>
+        <p
+          class="projects__card-desc"
+        >
+          A plain project card with no link.
+        </p>
+        <div
+          class="projects__card-tags"
+        >
+          <span
+            class="projects__card-tag"
+          >
+            React
+          </span>
+          <span
+            class="projects__card-tag"
+          >
+            Node.js
+          </span>
+          
+        </div>
+        
+        
+      </article>
+      
+    </div>
+  </section>
+</div>
+`;

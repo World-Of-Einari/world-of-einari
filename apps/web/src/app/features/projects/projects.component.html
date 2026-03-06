@@ -43,7 +43,9 @@
               <span class="projects__card-tag">{{ tag }}</span>
             }
           </div>
-          <a class="projects__card-link" [href]="project.link"> {{ project.linkLabel }} → </a>
+          @if (project.link) {
+            <a class="projects__card-link" [href]="project.link"> {{ project.linkLabel }} → </a>
+          }
         }
       </article>
     }

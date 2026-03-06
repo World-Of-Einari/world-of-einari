@@ -27,7 +27,11 @@
     padding: 40px 0 40px 40px;
     position: relative;
     border-bottom: 1px solid var(--border);
-    transition: background 0.3s ease;
+    // opacity and transform must be listed here to avoid overriding the global .reveal transitions
+    transition:
+      background 0.3s ease,
+      opacity 0.7s ease,
+      transform 0.7s ease;
 
     &:last-child {
       border-bottom: none;

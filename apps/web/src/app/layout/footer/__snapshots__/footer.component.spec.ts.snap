@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FooterComponent should match snapshot 1`] = `
+<div
+  id="root1"
+>
+  <footer
+    class="footer"
+  >
+    <span
+      class="footer__copy"
+    >
+       © 2026 Einari Naukkarinen 
+      <span
+        class="footer__dot"
+      >
+        ·
+      </span>
+       einarinau.com 
+    </span>
+    <span
+      class="footer__credit"
+    >
+       Designed & built with 
+      <span
+        class="footer__dot"
+      >
+        precision
+      </span>
+    </span>
+  </footer>
+</div>
+`;

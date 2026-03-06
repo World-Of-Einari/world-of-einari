@@ -1,7 +1,6 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  OnInit,
   OnDestroy,
   inject,
   signal,
@@ -17,7 +16,7 @@ import { ResumeService } from '@en/core/services/resume.service';
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.scss',
 })
-export class NavComponent implements OnInit, OnDestroy {
+export class NavComponent implements OnDestroy {
   private readonly document = inject(DOCUMENT);
   private readonly platformId = inject(PLATFORM_ID);
   private readonly resume = inject(ResumeService);
@@ -33,39 +32,32 @@ export class NavComponent implements OnInit, OnDestroy {
     { href: 'contact', label: 'Contact' },
   ];
 
-  private readonly onScroll = () => this.scrolled.set(window.scrollY > 40);
-  private observer?: IntersectionObserver;
+  private readonly sectionIds = ['hero', ...this.navLinks.map((l) => l.href)];
 
-  ngOnInit(): void {
+  private readonly onScroll = () => {
+    this.scrolled.set(window.scrollY > 40);
+    this.updateActiveSection();
+  };
+
+  constructor() {
     if (!isPlatformBrowser(this.platformId)) return;
-
     window.addEventListener('scroll', this.onScroll, { passive: true });
+  }
 
-    this.observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            this.activeSection.set(entry.target.id);
-          }
-        });
-      },
-      {
-        // fires when a section crosses the upper 20% of the viewport
-        rootMargin: '-20% 0px -70% 0px',
+  private updateActiveSection(): void {
+    const threshold = window.innerHeight * 0.35;
+    for (let i = this.sectionIds.length - 1; i >= 0; i--) {
+      const el = this.document.getElementById(this.sectionIds[i]);
+      if (el && el.getBoundingClientRect().top <= threshold) {
+        this.activeSection.set(this.sectionIds[i]);
+        return;
       }
-    );
-
-    const sectionIds = ['hero', ...this.navLinks.map((l) => l.href)];
-    sectionIds.forEach((id) => {
-      const el = this.document.getElementById(id);
-      if (el) this.observer!.observe(el);
-    });
+    }
   }
 
   ngOnDestroy(): void {
     if (!isPlatformBrowser(this.platformId)) return;
     window.removeEventListener('scroll', this.onScroll);
-    this.observer?.disconnect();
   }
 
   scrollTo(event: Event, id: string): void {

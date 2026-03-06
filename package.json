@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "dev": "pnpm -r dev",
+    "dev:fe": "pnpm --filter world-of-einari start",
     "build": "pnpm -r build",
     "lint": "pnpm -r lint",
     "test": "pnpm -r test",

@@ -2,6 +2,12 @@ import { setupZonelessTestEnv } from 'jest-preset-angular/setup-env/zoneless';
 
 setupZonelessTestEnv();
 
+global.IntersectionObserver = jest.fn(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+})) as unknown as typeof IntersectionObserver;
+
 const originalError = console.error;
 
 beforeAll(() => {

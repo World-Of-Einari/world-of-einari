@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CursorComponent should match snapshot 1`] = `
+<div
+  id="root1"
+>
+  <div
+    class="cursor"
+    style="left: 0px; top: 0px;"
+  />
+  <div
+    class="cursor__ring"
+    style="left: 0px; top: 0px;"
+  />
+</div>
+`;

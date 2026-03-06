@@ -19,7 +19,9 @@
     overflow: hidden;
     transition:
       border-color 0.3s ease,
-      transform 0.3s ease;
+      transform 0.3s ease,
+      opacity 0.7s ease,
+      transform 0.7s ease;
     display: flex;
     flex-direction: column;
     gap: 16px;

@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContactComponent should match snapshot 1`] = `
+<div
+  id="root1"
+>
+  <section
+    class="contact"
+    id="contact"
+  >
+    <div
+      class="contact__inner"
+    >
+      <en-section-header
+        ghost="something"
+        label="Contact"
+        size="large"
+        title="Let's build"
+      >
+        <p
+          class="section-header__label section-header__label--centered"
+        >
+           Contact
+
+        </p>
+        <h2
+          class="section-header__title section-header__title--large section-header__title--centered"
+        >
+           Let's build
+          <br />
+          <em
+            class="section-header__ghost"
+          >
+            something
+          </em>
+        </h2>
+      </en-section-header>
+      <p
+        class="contact__sub reveal"
+        enreveal=""
+      >
+         Open to senior / principal engineering roles, fractional CTO engagements, and the occasional interesting side project. 
+      </p>
+      <a
+        class="contact__email reveal"
+        enreveal=""
+        href="mailto:test@example.com"
+      >
+        test@example.com
+      </a>
+      <div
+        class="contact__social reveal"
+        enreveal=""
+      >
+        <a
+          class="contact__social-link"
+          href="https://github.com/enaukkarinen"
+          rel="noopener"
+          target="_blank"
+        >
+           GitHub 
+        </a>
+        <a
+          class="contact__social-link"
+          href="https://linkedin.com/in/enaukkarinen"
+          rel="noopener"
+          target="_blank"
+        >
+           LinkedIn 
+        </a>
+        
+      </div>
+    </div>
+  </section>
+</div>
+`;

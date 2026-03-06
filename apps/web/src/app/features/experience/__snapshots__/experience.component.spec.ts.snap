@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExperienceComponent should match snapshot 1`] = `
+<div
+  id="root1"
+>
+  <section
+    class="experience"
+    id="experience"
+  >
+    <en-section-header
+      ghost="shipped"
+      label="Experience"
+      title="Where I've"
+    >
+      <p
+        class="section-header__label"
+      >
+         Experience
+
+      </p>
+      <h2
+        class="section-header__title"
+      >
+         Where I've
+        <br />
+        <em
+          class="section-header__ghost"
+        >
+          shipped
+        </em>
+      </h2>
+    </en-section-header>
+    <div
+      class="experience__timeline"
+    >
+      <article
+        class="experience__item reveal"
+        enreveal=""
+      >
+        <div
+          class="experience__meta"
+        >
+          <p
+            class="experience__date"
+          >
+            Dec 2020 — Present
+          </p>
+          <p
+            class="experience__company"
+          >
+            Acme Corp
+          </p>
+        </div>
+        <div
+          class="experience__body"
+        >
+          <h3
+            class="experience__role"
+          >
+            Principal Engineer
+          </h3>
+          <p
+            class="experience__desc"
+          >
+            Led engineering initiatives.
+          </p>
+          <div
+            class="experience__tags"
+          >
+            <span
+              class="experience__tag"
+            >
+              TypeScript
+            </span>
+            <span
+              class="experience__tag"
+            >
+              AWS
+            </span>
+            
+          </div>
+        </div>
+      </article>
+      <article
+        class="experience__item reveal"
+        enreveal=""
+      >
+        <div
+          class="experience__meta"
+        >
+          <p
+            class="experience__date"
+          >
+            Jan 2018 — Dec 2020
+          </p>
+          <p
+            class="experience__company"
+          >
+            Beta Ltd
+          </p>
+        </div>
+        <div
+          class="experience__body"
+        >
+          <h3
+            class="experience__role"
+          >
+            Senior Engineer
+          </h3>
+          <p
+            class="experience__desc"
+          >
+            Built full-stack products.
+          </p>
+          <div
+            class="experience__tags"
+          >
+            <span
+              class="experience__tag"
+            >
+              Angular
+            </span>
+            <span
+              class="experience__tag"
+            >
+              Node.js
+            </span>
+            
+          </div>
+        </div>
+      </article>
+      
+    </div>
+  </section>
+</div>
+`;

@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SectionHeaderComponent should match snapshot with default inputs 1`] = `
+<div
+  id="root1"
+>
+  <p
+    class="section-header__label"
+  >
+     Projects
+
+  </p>
+  <h2
+    class="section-header__title"
+  >
+     Selected
+    <br />
+    <em
+      class="section-header__ghost"
+    >
+      work
+    </em>
+  </h2>
+</div>
+`;

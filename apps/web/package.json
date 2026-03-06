@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "world-of-einari",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -9,7 +9,7 @@
     "test": "jest",
     "lint": "ng lint",
     "clean-imports": "ng generate @angular/core:clean-imports",
-    "serve:ssr:angular-coding-test": "node dist/angular-coding-test/server/server.mjs"
+    "serve:ssr:world-of-einari": "node dist/world-of-einari/server/server.mjs"
   },
   "private": true,
   "packageManager": "pnpm@9.15.6",

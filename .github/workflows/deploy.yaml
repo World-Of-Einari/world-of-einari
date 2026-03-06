@@ -55,13 +55,14 @@ jobs:
 
       - name: Sync to S3
         run: |
-          aws s3 sync apps/web/dist/web/browser s3://${{ secrets.S3_BUCKET }} \
+          aws s3 sync apps/web/dist/world-of-einari/browser s3://${{ secrets.S3_BUCKET }} \
             --delete \
             --cache-control "public, max-age=31536000, immutable" \
             --exclude "*.html"
 
           # HTML files should not be cached aggressively
-          aws s3 sync apps/web/dist/web/browser s3://${{ secrets.S3_BUCKET }} \
+          aws s3 sync apps/web/dist/world-of-einari/browser s3://${{ secrets.S3_BUCKET }} \
+            --delete \
             --exclude "*" \
             --include "*.html" \
             --cache-control "public, max-age=0, must-revalidate"

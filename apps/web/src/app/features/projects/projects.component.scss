@@ -17,9 +17,9 @@
     border: 1px solid var(--border);
     padding: 44px;
     overflow: hidden;
+    // opacity and transform must be listed here to avoid overriding the global .reveal transitions
     transition:
       border-color 0.3s ease,
-      transform 0.3s ease,
       opacity 0.7s ease,
       transform 0.7s ease;
     display: flex;

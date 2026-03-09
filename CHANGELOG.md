@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/enaukkarinen/world-of-einari/compare/v1.0.0...v1.1.0) (2026-03-09)
+
+
+### Features
+
+* add meta tags for SEO and social media sharing ([4392886](https://github.com/enaukkarinen/world-of-einari/commit/43928865f0289a563c6ad5bfa5b6f16b67fa2ec0))
+
 ## 1.0.0 (2026-03-06)
 
 

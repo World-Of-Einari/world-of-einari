@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.1.0...v1.2.0) (2026-03-11)
+
+
+### Features
+
+* enable manual workflow dispatch for deployment ([08644d9](https://github.com/World-Of-Einari/world-of-einari/commit/08644d9b0b62a2ea3a376dd7b65cf261dece32b9))
+
 ## [1.1.0](https://github.com/enaukkarinen/world-of-einari/compare/v1.0.0...v1.1.0) (2026-03-09)
 
 

@@ -24,7 +24,7 @@ describe('HeroComponent', () => {
       pronunciation: signal('AY-nah-ree NOW-kah-ree-nen'),
       stats: signal([
         { num: '10+', label: 'Years experience' },
-        { num: '4+', label: 'Years as Principal' },
+        { num: '5+', label: 'Years as Principal' },
       ]),
     };
 

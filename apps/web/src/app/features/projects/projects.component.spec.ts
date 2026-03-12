@@ -9,7 +9,7 @@ import { ProjectsComponent } from './projects.component';
 const FEATURED_PROJECT: Project = {
   num: '01',
   title: 'Featured Project',
-  description: 'A featured project with a visual panel.',
+  description: ['A featured project with a visual panel.'],
   tags: ['TypeScript', 'Angular'],
   featured: true,
   visual: [
@@ -23,7 +23,7 @@ const FEATURED_PROJECT: Project = {
 const STANDARD_PROJECT: Project = {
   num: '02',
   title: 'Standard Project',
-  description: 'A plain project card with no link.',
+  description: ['A plain project card with no link.', 'At all'],
   tags: ['React', 'Node.js'],
 };
 

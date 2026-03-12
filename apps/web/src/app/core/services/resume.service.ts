@@ -15,7 +15,7 @@ export class ResumeService {
 
   readonly stats = signal<Stat[]>([
     { num: '10+', label: 'Years experience' },
-    { num: '4+', label: 'Years as Principal' },
+    { num: '5+', label: 'Years as Principal' },
     { num: '∞', label: 'Problems solved' },
   ]);
 

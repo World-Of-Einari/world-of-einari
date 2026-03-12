@@ -101,8 +101,10 @@ export class ResumeService {
     {
       num: '01',
       title: 'GitHub InnerSource Initiative',
-      description:
-        'Established internal open-source-style standards across a large engineering organisation. Created tech-agnostic starter templates, automated releases and versioning, and drove adoption across teams.',
+      description: [
+        'Established internal open-source-style standards across a large engineering organisation.',
+        'Created tech-agnostic starter templates, automated releases and versioning, and drove adoption across teams.',
+      ],
       tags: ['InnerSource', 'GitHub', 'TypeScript', 'Terraform'],
       // link: 'https://github.com/enaukkarinen',
       // linkLabel: 'GitHub',
@@ -115,36 +117,44 @@ export class ResumeService {
     },
     {
       num: '02',
-      title: 'EG Radius Data Exchange',
-      description:
-        "The UK's only contributory data platform for commercial real estate. Agents and surveyors contribute deals and transactions in exchange for market intelligence, enriched with multiple third-party datasets and visualised through a geospatial map interface. As Principal Engineer, led the full technical estate owned by my team across 4 years — driving architecture and delivery across the entire stack, introducing TypeScript and PostgreSQL on AWS RDS, building complex ETL pipelines, and solving large-scale geospatial challenges like visualising 27M land title boundaries as vector tiles on Google Maps.",
-      tags: ['Angular', 'TypeScript', 'Deck.gl', 'Elasticsearch', 'PostgreSQL', 'Node.js', 'AWS'],
-      // link: 'https://www.eg.co.uk/radius/',
-      // linkLabel: 'View product',
+      title: 'Vector Tile Engine',
+      description: [
+        `Designed and built the end-to-end solution for rendering 27M Land Registry title boundaries on Google Maps via Deck.gl.`,
+
+        `Pure GeoJSON was unviable at this scale — the architecture required a dedicated data consumer to remodel and index boundaries in Elasticsearch,
+        a pre-caching pipeline to encode them as MVT protobuf files uploaded to S3 following the Slippy map convention,
+        and a new API to serve tiles by X/Y/Z coordinates at runtime.`,
+
+        `Supported the team hands-on across all three services from architecture through to delivery.`,
+      ],
+      tags: ['Deck.gl', 'Angular', 'TypeScript', 'Elasticsearch', 'Node.js', 'AWS S3', 'MVT'],
       featured: true,
       visual: [
-        { label: 'market', value: 'UK CRE' },
-        { label: 'titles', value: '27M polygons' },
-        { label: 'model', value: 'contributory' },
+        { label: 'boundaries', value: '27M' },
+        { label: 'tile format', value: 'MVT / .pbf' },
+        { label: 'scope', value: 'end-to-end' },
       ],
     },
     {
       num: '03',
-      title: 'AI Developer Tooling',
-      description:
-        'AI-assisted tooling to improve discoverability of shared knowledge, documentation, and platform capabilities across InnerSource repositories. Built with OpenAI and MCP.',
-      tags: ['OpenAI', 'MCP', 'RAG', 'TypeScript', 'Node.js'],
-      // link: 'https://github.com/enaukkarinen',
-      // linkLabel: 'GitHub',
+      title: 'Market Analytics',
+      description: [
+        'Led the creation of a new Market Analytics platform aggregating millions of CRE records.',
+        'Letting deals, investment sales, planning applications, and socio-demographic data — all queryable by user-defined GeoJSON polygons.',
+        'Geospatial query performance at this scale demanded a move away from MongoDB — I introduced PostgreSQL on AWS RDS as a new addition to the stack, along with Kysely for end-to-end type-safety from data ingestion through to the front-end.',
+        'Also led the integration of a new Experian socio-demographics dataset, collaborating directly with Experian to design the data contract and annual update process.',
+      ],
+      tags: ['Angular', 'TypeScript', 'PostgreSQL', 'Kysely', 'Node.js', 'AWS RDS', 'Chart.js'],
     },
     {
       num: '04',
-      title: 'CRE Market Analytics Platform',
-      description:
-        'Re-structured front-end for a commercial real estate analytics product. Data visualisation with Deck.gl, robust Google Maps integrations, and close collaboration with in-house designers.',
-      tags: ['Angular', 'Deck.gl', 'TypeScript', 'Node.js'],
-      // link: '#',
-      // linkLabel: 'View project',
+      title: 'Front-end Modernisation',
+      description: [
+        'Six-month overhaul of EG Radius — a CRE data platform weighed down by years of accumulated technical debt.',
+        'Standardised a fragmented codebase, brought dependencies up to date, and introduced Cypress E2E testing.',
+        'The patterns I established were adopted organisation-wide.',
+      ],
+      tags: ['Angular', 'TypeScript', 'Cypress', 'Node.js'],
     },
   ]);
 

@@ -83,6 +83,14 @@
     color: var(--muted);
     line-height: 1.7;
     margin: 0;
+
+    > p {
+      margin: 0 0 12px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 
   &__card-tags {

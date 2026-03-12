@@ -13,7 +13,11 @@
           <div class="projects__card-body">
             <p class="projects__card-num">{{ project.num }} — Featured</p>
             <h3 class="projects__card-title">{{ project.title }}</h3>
-            <p class="projects__card-desc">{{ project.description }}</p>
+            <div class="projects__card-desc">
+              @for (line of project.description; track line) {
+                <p>{{ line }}</p>
+              }
+            </div>
             <div class="projects__card-tags">
               @for (tag of project.tags; track tag) {
                 <span class="projects__card-tag">{{ tag }}</span>
@@ -37,7 +41,11 @@
           <!-- Standard layout -->
           <p class="projects__card-num">{{ project.num }}</p>
           <h3 class="projects__card-title">{{ project.title }}</h3>
-          <p class="projects__card-desc">{{ project.description }}</p>
+          <div class="projects__card-desc">
+            @for (line of project.description; track line) {
+              <p>{{ line }}</p>
+            }
+          </div>
           <div class="projects__card-tags">
             @for (tag of project.tags; track tag) {
               <span class="projects__card-tag">{{ tag }}</span>

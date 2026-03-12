@@ -25,7 +25,7 @@ export interface ProjectVisualLine {
 export interface Project {
   num: string;
   title: string;
-  description: string;
+  description: string[];
   tags: string[];
   linkLabel?: string;
   link?: string;

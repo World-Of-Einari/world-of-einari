@@ -1,9 +1,13 @@
 name: Deploy
 
 on:
-  push:
+  workflow_run:
+    workflows:
+      - Secret Scanning
     branches:
       - main
+    types:
+      - completed
   workflow_dispatch:
 
 permissions:
@@ -13,7 +17,10 @@ permissions:
 jobs:
   deploy:
     name: Build & Deploy to S3
-    if: ${{ !startsWith(github.event.head_commit.message, 'chore(release):') }}
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+      !startsWith(github.event.workflow_run.head_commit.message, 'chore(release):'))
     runs-on: ubuntu-latest
     concurrency:
       group: deploy-${{ github.ref_name }}

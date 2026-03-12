@@ -150,9 +150,9 @@ export class ResumeService {
       num: '04',
       title: 'Front-end Modernisation',
       description: [
-        'Six-month overhaul of EG Radius — a CRE data platform weighed down by years of accumulated technical debt.',
-        'Standardised a fragmented codebase, brought dependencies up to date, and introduced Cypress E2E testing.',
-        'The patterns I established were adopted organisation-wide.',
+        'Six-month overhaul of EG Radius — a CRE analytics platform weighed down by years of accumulated technical debt and inconsistent conventions across multiple generations of developers.',
+        'Introduced a scalable folder architecture (core, features, shared) alongside BEM and ITCSS to bring structure to a fragmented codebase. Replaced Protractor with Cypress, including screenshot testing for UI regression coverage. Brought tooling up to date and established coding standards that were subsequently adopted across the wider tech estate.',
+        'Working closely with designers, established a consistent and pixel-perfect design language across the entire application.',
       ],
       tags: ['Angular', 'TypeScript', 'Cypress', 'Node.js'],
     },

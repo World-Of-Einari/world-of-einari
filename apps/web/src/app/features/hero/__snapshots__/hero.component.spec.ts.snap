@@ -131,7 +131,7 @@ exports[`HeroComponent should match snapshot 1`] = `
         <span
           class="hero__stat-num"
         >
-          4+
+          5+
         </span>
         <span
           class="hero__stat-label"

@@ -51,11 +51,14 @@ exports[`ProjectsComponent should match snapshot 1`] = `
           >
             Featured Project
           </h3>
-          <p
+          <div
             class="projects__card-desc"
           >
-            A featured project with a visual panel.
-          </p>
+            <p>
+              A featured project with a visual panel.
+            </p>
+            
+          </div>
           <div
             class="projects__card-tags"
           >
@@ -136,11 +139,17 @@ exports[`ProjectsComponent should match snapshot 1`] = `
         >
           Standard Project
         </h3>
-        <p
+        <div
           class="projects__card-desc"
         >
-          A plain project card with no link.
-        </p>
+          <p>
+            A plain project card with no link.
+          </p>
+          <p>
+            At all
+          </p>
+          
+        </div>
         <div
           class="projects__card-tags"
         >

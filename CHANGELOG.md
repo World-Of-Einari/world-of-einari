@@ -1,5 +1,28 @@
 # Changelog
 
+## [1.3.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.2.0...v1.3.0) (2026-03-12)
+
+
+### Features
+
+* add GitHub Actions workflow for running tests on pull requests and pushes ([11b0b89](https://github.com/World-Of-Einari/world-of-einari/commit/11b0b8943643bf87987847fb952074010335872d))
+* add proxy configuration for API and update experience years in resume service ([3b941a3](https://github.com/World-Of-Einari/world-of-einari/commit/3b941a32b700fd3988c9624105bee06b30e23342))
+* add workflows documentation for CI/CD pipeline overview and details ([6599fe1](https://github.com/World-Of-Einari/world-of-einari/commit/6599fe114fc02d808fa56aafb20fbabfe01334b8))
+* enhance project description in resume service with detailed achievements and methodologies ([d7d42d3](https://github.com/World-Of-Einari/world-of-einari/commit/d7d42d3d5c484d00bd8e5068295906fa897e6efc))
+* refactor GitHub Actions workflows for deployment and testing ([1874a3e](https://github.com/World-Of-Einari/world-of-einari/commit/1874a3e6d20dd54aa2d5e6e8c2495b0caac8f0a0))
+* refactor GitHub Actions workflows for deployment and testing ([c66ca2e](https://github.com/World-Of-Einari/world-of-einari/commit/c66ca2e38cc064801d686a1fadcd4403ae875e6b))
+* skip deployment on release merges ([9464c69](https://github.com/World-Of-Einari/world-of-einari/commit/9464c6910e4f396fcd58ee168d406c1d382fb002))
+* update deploy workflow condition to allow manual triggering ([292a967](https://github.com/World-Of-Einari/world-of-einari/commit/292a96733806bb8cf0a276e099e76e4f4e684195))
+* update project descriptions to support multiple lines and adjust styling ([e59f619](https://github.com/World-Of-Einari/world-of-einari/commit/e59f619e18fccf3eec152d6d960a9a28f328f496))
+* update project descriptions to use arrays for consistency and a… ([8ad9a77](https://github.com/World-Of-Einari/world-of-einari/commit/8ad9a779875c41b3eef41d21031b1c48d547d51e))
+* update project descriptions to use arrays for consistency and adjust snapshot tests ([bbb09ac](https://github.com/World-Of-Einari/world-of-einari/commit/bbb09ace15d6cbf1eee797efbac5a1d05c916291))
+* update README for clarity and consistency in project description and commands ([78722ee](https://github.com/World-Of-Einari/world-of-einari/commit/78722eefb8cd748761da6275ea2b3976966a1e2a))
+
+
+### Bug Fixes
+
+* update deployment triggers to include workflow_run and refine conditions ([7664eeb](https://github.com/World-Of-Einari/world-of-einari/commit/7664eeb2c2c4199e1f02d90cbe5eb44f00a13b46))
+
 ## [1.2.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.1.0...v1.2.0) (2026-03-11)
 
 

@@ -1,27 +1,29 @@
 name: Deploy
 
 on:
-  workflow_run:
-    workflows:
-      - Secret Scanning
-    branches:
-      - main
-    types:
-      - completed
+  push:
+    branches: [main]
   workflow_dispatch:
 
-permissions:
-  id-token: write # required for OIDC
-  contents: read
-
 jobs:
+  secret-scanning:
+    uses: ./.github/workflows/secret-scanning.yml
+    secrets: inherit
+
+  tests:
+    uses: ./.github/workflows/tests.yml
+    secrets: inherit
+
   deploy:
     name: Build & Deploy to S3
+    needs: [secret-scanning, tests]
     if: |
       github.event_name == 'workflow_dispatch' ||
-      (github.event.workflow_run.conclusion == 'success' &&
-      !startsWith(github.event.workflow_run.head_commit.message, 'chore(release):'))
+      !startsWith(github.event.head_commit.message, 'chore(release):')
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     concurrency:
       group: deploy-${{ github.ref_name }}
       cancel-in-progress: true
@@ -30,28 +32,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
           version: 9
-          run_install: false
 
-      - name: Get pnpm store path
-        id: pnpm-cache
-        run: echo "store=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-      - name: Cache pnpm store
-        uses: actions/cache@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          path: ${{ steps.pnpm-cache.outputs.store }}
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
+          node-version: 20
+          cache: pnpm
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile

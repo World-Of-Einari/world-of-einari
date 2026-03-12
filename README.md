@@ -1,10 +1,10 @@
 # World of Einari
 
-[![CI](https://github.com/enaukkarinen/world-of-einari/actions/workflows/ci.yml/badge.svg)](https://github.com/enaukkarinen/world-of-einari/actions/workflows/ci.yml)
+[![Tests](https://github.com/enaukkarinen/world-of-einari/actions/workflows/tests.yml/badge.svg)](https://github.com/enaukkarinen/world-of-einari/actions/workflows/tests.yml)
 [![Deploy](https://github.com/enaukkarinen/world-of-einari/actions/workflows/deploy.yml/badge.svg)](https://github.com/enaukkarinen/world-of-einari/actions/workflows/deploy.yml)
 [![Secret Scanning](https://github.com/enaukkarinen/world-of-einari/actions/workflows/secret-scanning.yml/badge.svg)](https://github.com/enaukkarinen/world-of-einari/actions/workflows/secret-scanning.yml)
 
-Personal portfolio website built with Angular and SSR (Server-Side Rendering).
+Personal portfolio website built with Angular, deployed to AWS S3 + CloudFront.
 
 ## Prerequisites
 
@@ -12,39 +12,36 @@ Personal portfolio website built with Angular and SSR (Server-Side Rendering).
 - [pnpm](https://pnpm.io/) 9.15.6+
 
 ## Installation
-
 ```bash
 pnpm install
 ```
 
 ## Development
 
-Start the development server:
-
+Start the Angular dev server:
 ```bash
+pnpm dev:fe
+```
+
+To also run the chat API locally:
+```bash
+cd apps/api && cp .env.example .env  # add your OPENAI_API_KEY
 pnpm dev
 ```
 
 The app will be available at `http://localhost:4200`.
 
 ## Build
-
-Build all apps for production:
-
 ```bash
 pnpm build
 ```
 
 ## Test
-
-Run all tests:
-
 ```bash
 pnpm test
 ```
 
 ## Lint
-
 ```bash
 pnpm lint
 ```

@@ -1,0 +1,10 @@
+{
+  "/api/chat": {
+    "target": "http://localhost:3001",
+    "pathRewrite": {
+      "^/api/chat": "/chat"
+    },
+    "secure": false,
+    "logLevel": "info"
+  }
+}

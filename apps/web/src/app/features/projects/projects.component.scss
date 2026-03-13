@@ -184,6 +184,14 @@
   .projects {
     padding: 80px 24px;
 
+    &__card {
+      padding: 1rem;
+    }
+
+    &__card-title {
+      font-size: 1.5rem;
+    }
+
     &__grid {
       grid-template-columns: 1fr;
     }

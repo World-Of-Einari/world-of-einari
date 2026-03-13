@@ -6,7 +6,7 @@
 
 import 'dotenv/config';
 import express, { Request, Response } from 'express';
-import { corsHeaders, handleChat, ChatRequestBody } from './handler';
+import { corsHeaders, handleChat, ChatRequestBody } from './handler.js';
 
 const app = express();
 const PORT = process.env['PORT'] ?? 3001;
@@ -39,6 +39,8 @@ app.post('/chat', async (req: Request, res: Response) => {
         res.status(400).end('Message is required');
       } else if (err instanceof Error && err.message === 'Forbidden') {
         res.status(403).end('Forbidden');
+      } else if (err instanceof Error && err.message === 'Rate limited') {
+        res.status(429).end('Too many requests');
       } else {
         res.status(500).end('Internal server error');
       }

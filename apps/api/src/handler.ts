@@ -61,6 +61,35 @@ If someone wants to get in touch, direct them to scroll to the Contact section o
 
 Tone: concise, direct, technically literate. Keep responses to 2-4 sentences unless more detail is clearly needed. Never invent specific dates, company names, or details not provided above.`;
 
+// ─── Rate limiting ───────────────────────────────────────────────────────────
+
+const RATE_LIMIT_MAX = 10; // max requests
+const RATE_LIMIT_WINDOW = 60_000; // per 60 seconds
+
+interface RateLimitEntry {
+  count: number;
+  windowStart: number;
+}
+
+const rateLimitStore = new Map<string, RateLimitEntry>();
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitStore.get(ip);
+
+  if (!entry || now - entry.windowStart > RATE_LIMIT_WINDOW) {
+    rateLimitStore.set(ip, { count: 1, windowStart: now });
+    return false;
+  }
+
+  if (entry.count >= RATE_LIMIT_MAX) {
+    return true;
+  }
+
+  entry.count++;
+  return false;
+}
+
 // ─── CORS headers ────────────────────────────────────────────────────────────
 
 const ALLOWED_ORIGIN = process.env['ALLOWED_ORIGIN'] ?? 'http://localhost:4200';
@@ -88,11 +117,18 @@ function verifyOriginSecret(headers: Record<string, string | undefined>): boolea
 export async function handleChat(
   body: ChatRequestBody,
   headers: Record<string, string | undefined>,
-  responseStream: NodeJS.WritableStream
+  responseStream: NodeJS.WritableStream,
 ): Promise<void> {
   if (!verifyOriginSecret(headers)) {
     responseStream.end();
     throw new Error('Forbidden');
+  }
+
+  // CloudFront forwards the real client IP in this header
+  const ip = headers['x-forwarded-for']?.split(',')[0].trim() ?? 'unknown';
+  if (isRateLimited(ip)) {
+    responseStream.end();
+    throw new Error('Rate limited');
   }
 
   const { message, history = [] } = body;

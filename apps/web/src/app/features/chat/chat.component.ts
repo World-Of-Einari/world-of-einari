@@ -80,7 +80,9 @@ export class ChatComponent implements OnDestroy {
         signal: this.abortController.signal,
       });
 
-      if (!response.ok || !response.body) throw new Error(`Request failed: ${response.status}`);
+      if (!response.ok || !response.body) {
+        throw new Error(`Request failed: ${response.status}`);
+      }
 
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
@@ -102,11 +104,14 @@ export class ChatComponent implements OnDestroy {
     } catch (err: unknown) {
       if (err instanceof Error && err.name === 'AbortError') return;
       console.error('[chat] error:', err);
+      const is429 = err instanceof Error && err.message.includes('429');
       this.messages.update((msgs) => {
         const updated = [...msgs];
         updated[updated.length - 1] = {
           role: 'assistant',
-          content: 'Something went wrong. Please try again.',
+          content: is429
+            ? 'Too many messages — please wait a moment before trying again.'
+            : 'Something went wrong. Please try again.',
         };
         return updated;
       });

@@ -13,9 +13,18 @@ permissions:
   contents: read
 
 jobs:
+  secret-scanning:
+    uses: ./.github/workflows/secret-scanning.yml
+    secrets: inherit
+  tests:
+    uses: ./.github/workflows/tests.yml
+    secrets: inherit
   deploy-api:
     name: Build & Deploy Lambda
-    if: ${{ !startsWith(github.event.head_commit.message, 'chore(release):') }}
+    needs: [secret-scanning, tests]
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      !startsWith(github.event.head_commit.message, 'chore(release):')
     runs-on: ubuntu-latest
     concurrency:
       group: deploy-api-${{ github.ref_name }}

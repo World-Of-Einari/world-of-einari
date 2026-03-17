@@ -30,10 +30,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npx \
-            --package semantic-release \
-            --package @semantic-release/changelog \
-            --package @semantic-release/git \
-            --package @semantic-release/github \
-            --package @semantic-release/commit-analyzer \
-            --package @semantic-release/release-notes-generator \
+            --package semantic-release@23.0.0 \
+            --package @semantic-release/changelog@6.0.3 \
+            --package @semantic-release/git@10.0.1 \
+            --package @semantic-release/github@9.0.3 \
+            --package @semantic-release/commit-analyzer@10.0.0 \
+            --package @semantic-release/release-notes-generator@11.0.3 \
             semantic-release

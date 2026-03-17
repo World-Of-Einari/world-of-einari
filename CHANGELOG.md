@@ -1,4 +1,60 @@
+# [1.4.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.3.0...v1.4.0) (2026-03-17)
+
+
+### Bug Fixes
+
+* add [skip ci] to release commit message for semantic-release ([b70bb57](https://github.com/World-Of-Einari/world-of-einari/commit/b70bb570ea5bc3fb5c9ffb8764d98cbb7b1bf65b))
+
+
+### Features
+
+* enhance release workflow with semantic-release packages ([d02b5f5](https://github.com/World-Of-Einari/world-of-einari/commit/d02b5f50823cbedb45d10abe2e3f812b9992f739))
+* update deployment workflows and add semantic release configuration ([833e253](https://github.com/World-Of-Einari/world-of-einari/commit/833e253b45c9ee4e5c8f6ae4a3629330fae6fadc))
+
 # Changelog
+
+## [1.3.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.2.0...v1.3.0) (2026-03-17)
+
+
+### Features
+
+* add GitHub Actions workflow for running tests on pull requests and pushes ([11b0b89](https://github.com/World-Of-Einari/world-of-einari/commit/11b0b8943643bf87987847fb952074010335872d))
+* add GitHub workflows for API and frontend deployment ([f7c8980](https://github.com/World-Of-Einari/world-of-einari/commit/f7c8980a531e42e5fd75e6f7b860f146ee312e84))
+* add Lambda function and SSM parameter for OpenAI API key management ([f84068f](https://github.com/World-Of-Einari/world-of-einari/commit/f84068fbfca65fb6c6dc081eb4a30b0c327de2ee))
+* add proxy configuration for API and update experience years in resume service ([3b941a3](https://github.com/World-Of-Einari/world-of-einari/commit/3b941a32b700fd3988c9624105bee06b30e23342))
+* add public access policy for Lambda Function URL and update com… ([2e1c9dd](https://github.com/World-Of-Einari/world-of-einari/commit/2e1c9dd75d5549408c511c288c9cfae953e8df00))
+* add public access policy for Lambda Function URL and update comments ([6e798be](https://github.com/World-Of-Einari/world-of-einari/commit/6e798be687a53b7c3c89a74ff9c1a90e014ae063))
+* add S3 backend configuration and define new variables for AWS account and CloudFront ([76d4c74](https://github.com/World-Of-Einari/world-of-einari/commit/76d4c74f93a1bb95c9a9a2f76ba8eefb63770dbf))
+* add workflows documentation for CI/CD pipeline overview and details ([6599fe1](https://github.com/World-Of-Einari/world-of-einari/commit/6599fe114fc02d808fa56aafb20fbabfe01334b8))
+* create a chat feature ([9763184](https://github.com/World-Of-Einari/world-of-einari/commit/97631842980c18246f21a71f586f433e66115409))
+* enhance project description in resume service with detailed achievements and methodologies ([d7d42d3](https://github.com/World-Of-Einari/world-of-einari/commit/d7d42d3d5c484d00bd8e5068295906fa897e6efc))
+* implement chat messages component and refactor chat structure ([ada7482](https://github.com/World-Of-Einari/world-of-einari/commit/ada7482260afff6b67660d18f64d817b421bba5c))
+* implement rate limiting for chat requests and enhance error handling in chat component ([3c92284](https://github.com/World-Of-Einari/world-of-einari/commit/3c922844243e82d1ae91fcd744f4bc223e633134))
+* refactor chat component structure and implement new chat input and FAB components ([a69bc6e](https://github.com/World-Of-Einari/world-of-einari/commit/a69bc6e1e2c7d409b0ac8e9ea809398887010560))
+* refactor GitHub Actions workflows for deployment and testing ([1874a3e](https://github.com/World-Of-Einari/world-of-einari/commit/1874a3e6d20dd54aa2d5e6e8c2495b0caac8f0a0))
+* refactor GitHub Actions workflows for deployment and testing ([c66ca2e](https://github.com/World-Of-Einari/world-of-einari/commit/c66ca2e38cc064801d686a1fadcd4403ae875e6b))
+* remove Angular Material dependencies and update styles for project components ([b0c9b4f](https://github.com/World-Of-Einari/world-of-einari/commit/b0c9b4fc39ed8af1818f1cda9b8dca8965d6849d))
+* skip deployment on release merges ([9464c69](https://github.com/World-Of-Einari/world-of-einari/commit/9464c6910e4f396fcd58ee168d406c1d382fb002))
+* update .gitignore to include terraform.tfvars and ensure backup files are ignored ([639e7e9](https://github.com/World-Of-Einari/world-of-einari/commit/639e7e9cf36d89f2d6f2f55fa764ee7056077b16))
+* update deploy workflow condition to allow manual triggering ([292a967](https://github.com/World-Of-Einari/world-of-einari/commit/292a96733806bb8cf0a276e099e76e4f4e684195))
+* update project descriptions to support multiple lines and adjust styling ([e59f619](https://github.com/World-Of-Einari/world-of-einari/commit/e59f619e18fccf3eec152d6d960a9a28f328f496))
+* update project descriptions to use arrays for consistency and a… ([8ad9a77](https://github.com/World-Of-Einari/world-of-einari/commit/8ad9a779875c41b3eef41d21031b1c48d547d51e))
+* update project descriptions to use arrays for consistency and adjust snapshot tests ([bbb09ac](https://github.com/World-Of-Einari/world-of-einari/commit/bbb09ace15d6cbf1eee797efbac5a1d05c916291))
+* update README for clarity and consistency in project description and commands ([78722ee](https://github.com/World-Of-Einari/world-of-einari/commit/78722eefb8cd748761da6275ea2b3976966a1e2a))
+
+
+### Bug Fixes
+
+* add build step before linting and testing in CI workflow ([690b419](https://github.com/World-Of-Einari/world-of-einari/commit/690b41974b8a4b6dfdfb0c7c48854e5741fda539))
+* add pruning logic to rate limit store for expired entries ([ab9fc03](https://github.com/World-Of-Einari/world-of-einari/commit/ab9fc03004b35c6f5ff1b327ecb93a444ff10332))
+* handle empty messages by ending response stream in handleChat function ([4875b9b](https://github.com/World-Of-Einari/world-of-einari/commit/4875b9b76b14f091a6db52041c92fb6f3512b40a))
+* lambda error handling improvement ([a8dd3c3](https://github.com/World-Of-Einari/world-of-einari/commit/a8dd3c3e5c621c91ff131437791c69e4d526286b))
+* rename toggle output to toggled for consistency in chat-fab component ([a777d74](https://github.com/World-Of-Einari/world-of-einari/commit/a777d74b12bf767c158fd79d69353096a533338b))
+* update deployment triggers to include workflow_run and refine conditions ([7664eeb](https://github.com/World-Of-Einari/world-of-einari/commit/7664eeb2c2c4199e1f02d90cbe5eb44f00a13b46))
+* update error handling for rate limiting and change filename in Lambda function ([ec8d2aa](https://github.com/World-Of-Einari/world-of-einari/commit/ec8d2aa795ecd4a6d4e26fed65b061081b3ca72c))
+* update footer padding for consistency across breakpoints ([4a0abd0](https://github.com/World-Of-Einari/world-of-einari/commit/4a0abd0c31161d2c35df752581f23e695cbf24b9))
+* update footer padding for consistency across breakpoints ([b139b01](https://github.com/World-Of-Einari/world-of-einari/commit/b139b0127f693ce20553030e2ddcfc7d22137487))
+* update innerHTML usage in about and hero components for better rendering ([d351f1b](https://github.com/World-Of-Einari/world-of-einari/commit/d351f1ba18c54edbf6ccb87e7c5c3c716e3a0f53))
 
 ## [1.2.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.1.0...v1.2.0) (2026-03-11)
 

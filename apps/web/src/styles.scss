@@ -1,15 +1,5 @@
-@use '@angular/material' as mat;
-@use 'styles/material' as app-theme;
-
-// ITCSS layers — ordered from least to most specific
 @use 'styles/01-settings' as *;
 @use 'styles/02-base' as *;
 @use 'styles/03-typography' as *;
 @use 'styles/04-utilities' as *;
-@use 'styles/05-vendor' as *;
 @use 'styles/06-components' as *;
-
-// Apply Material theme
-html {
-  @include mat.all-component-themes(app-theme.$theme);
-}

@@ -4,6 +4,7 @@
       <en-section-header label="About" title="Bridging tech" ghost="and people" />
 
       @for (para of paragraphs(); track $index) {
+        <!-- Using innerHTML in order to render bits in bold font -->
         <p class="about__paragraph" [innerHTML]="para"></p>
       }
     </div>

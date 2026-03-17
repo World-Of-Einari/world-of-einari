@@ -1,0 +1,130 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChatInputComponent snapshots should match snapshot when loading 1`] = `
+<div
+  id="root3"
+>
+  <div
+    class="chat-input"
+  >
+    <textarea
+      class="chat-input__field"
+      disabled=""
+      placeholder="Ask anything..."
+      rows="1"
+    />
+    <button
+      aria-label="Send message"
+      class="chat-input__send"
+      disabled=""
+    >
+      <svg
+        fill="none"
+        height="16"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <line
+          x1="22"
+          x2="11"
+          y1="2"
+          y2="13"
+        />
+        <polygon
+          points="22 2 15 22 11 13 2 9 22 2"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`ChatInputComponent snapshots should match snapshot with empty value and not loading 1`] = `
+<div
+  id="root1"
+>
+  <div
+    class="chat-input"
+  >
+    <textarea
+      class="chat-input__field"
+      placeholder="Ask anything..."
+      rows="1"
+    />
+    <button
+      aria-label="Send message"
+      class="chat-input__send"
+      disabled=""
+    >
+      <svg
+        fill="none"
+        height="16"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <line
+          x1="22"
+          x2="11"
+          y1="2"
+          y2="13"
+        />
+        <polygon
+          points="22 2 15 22 11 13 2 9 22 2"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`ChatInputComponent snapshots should match snapshot with value and not loading 1`] = `
+<div
+  id="root2"
+>
+  <div
+    class="chat-input"
+  >
+    <textarea
+      class="chat-input__field"
+      placeholder="Ask anything..."
+      rows="1"
+    />
+    <button
+      aria-label="Send message"
+      class="chat-input__send"
+    >
+      <svg
+        fill="none"
+        height="16"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <line
+          x1="22"
+          x2="11"
+          y1="2"
+          y2="13"
+        />
+        <polygon
+          points="22 2 15 22 11 13 2 9 22 2"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;

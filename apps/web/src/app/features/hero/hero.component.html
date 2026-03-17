@@ -49,7 +49,7 @@
   <div class="hero__stats" aria-label="Key statistics">
     @for (stat of stats(); track stat.label) {
       <div class="hero__stat">
-        <span class="hero__stat-num" [innerHTML]="stat.num"></span>
+        <span class="hero__stat-num">{{ stat.num }}</span>
         <span class="hero__stat-label">{{ stat.label }}</span>
       </div>
     }

@@ -1,0 +1,125 @@
+.chat-panel {
+  position: fixed;
+  bottom: 100px;
+  right: 1rem;
+  z-index: 199;
+  width: 380px;
+  max-height: 560px;
+
+  display: flex;
+  flex-direction: column;
+
+  en-chat-messages {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(0, 229, 255, 0.06);
+
+  opacity: 0;
+  transform: translateY(12px) scale(0.98);
+  pointer-events: none;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+
+  // Mobile
+  @media (max-width: 480px) {
+    right: 16px;
+    left: 16px;
+    width: auto;
+    bottom: 92px;
+  }
+
+  &--open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: all;
+    min-height: 367px;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  &__header-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__status-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--cyan);
+    flex-shrink: 0;
+    box-shadow: 0 0 6px var(--cyan);
+    animation: status-pulse 2.4s ease-in-out infinite;
+  }
+
+  &__name {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  &__subtitle {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    margin: 0;
+    letter-spacing: 0.06em;
+  }
+
+  &__close {
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.15s ease;
+
+    &:hover {
+      color: var(--white);
+    }
+  }
+}
+
+@keyframes status-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 6px var(--cyan);
+  }
+  50% {
+    opacity: 0.5;
+    box-shadow: 0 0 2px var(--cyan);
+  }
+}
+
+en-chat-fab {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+
+  @media (max-width: 480px) {
+    bottom: 24px;
+    right: 16px;
+  }
+}

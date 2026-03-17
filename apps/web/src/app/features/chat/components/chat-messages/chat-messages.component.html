@@ -1,0 +1,45 @@
+<div class="cm">
+  @if (messages().length === 0) {
+    <div class="cm__empty">
+      <p class="cm__empty-label">// CHAT_INIT</p>
+      <p class="cm__empty-title">Hi there.</p>
+      <p class="cm__empty-body">
+        Ask me about Einari's experience, skills, projects, or how to get in touch.
+      </p>
+      <div class="cm__suggestions">
+        <button class="cm__suggestion"
+          (click)="suggestionSelect.emit('What technologies does Einari work with?')">
+          Tech stack
+        </button>
+        <button class="cm__suggestion"
+          (click)="suggestionSelect.emit('Tell me about Einari\'s experience')">
+          Experience
+        </button>
+        <button class="cm__suggestion"
+          (click)="suggestionSelect.emit('How can I contact Einari?')">
+          Get in touch
+        </button>
+      </div>
+    </div>
+  }
+
+  @for (msg of messages(); track $index; let i = $index) {
+    <div
+      class="cm__message"
+      [class.cm__message--user]="msg.role === 'user'"
+      [class.cm__message--assistant]="msg.role === 'assistant'"
+      [style.animation-delay]="i * 0.04 + 's'">
+      <div class="cm__bubble">
+        @if (msg.role === 'assistant' && msg.content === '' && loading()) {
+          <span class="cm__typing">
+            <span></span><span></span><span></span>
+          </span>
+        } @else {
+          {{ msg.content }}
+        }
+      </div>
+    </div>
+  }
+
+  <div #messagesEnd></div>
+</div>

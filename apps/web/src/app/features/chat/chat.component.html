@@ -1,0 +1,45 @@
+<en-chat-fab [isOpen]="isOpen()" [hasUnread]="hasUnread()" (toggled)="toggle()" />
+
+<!-- Panel -->
+<div
+  class="chat-panel"
+  [class.chat-panel--open]="isOpen()"
+  role="dialog"
+  aria-label="Chat assistant">
+  <!-- Header -->
+  <div class="chat-panel__header">
+    <div class="chat-panel__header-info">
+      <span class="chat-panel__status-dot"></span>
+      <div>
+        <p class="chat-panel__name">Einari's Assistant</p>
+        <p class="chat-panel__subtitle">Ask me anything</p>
+      </div>
+    </div>
+    <button class="chat-panel__close" (click)="close()" aria-label="Close chat">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </button>
+  </div>
+
+  <en-chat-messages
+    [messages]="messages()"
+    [loading]="loading()"
+    (suggestionSelect)="inputValue.set($event)" />
+
+  <en-chat-input
+    [value]="inputValue()"
+    [loading]="loading()"
+    (valueChange)="inputValue.set($event)"
+    (send)="send()" />
+</div>

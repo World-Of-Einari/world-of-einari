@@ -91,7 +91,7 @@ data "archive_file" "placeholder" {
 
   source {
     content  = "exports.handler = async () => ({ statusCode: 200 })"
-    filename = "index.js"
+    filename = "lambda.js"
   }
 }
 

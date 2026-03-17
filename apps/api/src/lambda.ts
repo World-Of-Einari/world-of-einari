@@ -89,7 +89,11 @@ export const handler = awslambda.streamifyResponse(async (event, responseStream)
       if (errorStatus === 400 || /message is required/i.test(errorMessage)) {
         statusCode = 400;
         message = errorMessage || 'Bad Request';
-      } else if (errorStatus === 429 || errorCode === 'RATE_LIMITED' || /rate limit/i.test(errorMessage)) {
+      } else if (
+        errorStatus === 429 ||
+        errorCode === 'RATE_LIMITED' ||
+        /rate limit/i.test(errorMessage)
+      ) {
         statusCode = 429;
         message = errorMessage || 'Rate limited';
       } else if (typeof errorStatus === 'number' && errorStatus >= 400 && errorStatus <= 599) {

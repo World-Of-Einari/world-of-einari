@@ -1,20 +1,39 @@
-name: Release Please
+name: Release
 
 on:
-    push:
-        branches:
-            - main
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
 
 jobs:
-    release-please:
-        permissions:
-            contents: write
-            pull-requests: write
-            issues: write
-        runs-on: ubuntu-latest
-        steps:
-            - uses: googleapis/release-please-action@v4.2.0
-              with:
-                  release-type: simple
-                  token: ${{ secrets.GITHUB_TOKEN }}
-                    
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npx \
+            --package semantic-release@23.0.0 \
+            --package @semantic-release/changelog@6.0.3 \
+            --package @semantic-release/git@10.0.1 \
+            --package @semantic-release/github@9.0.3 \
+            --package @semantic-release/commit-analyzer@10.0.0 \
+            --package @semantic-release/release-notes-generator@11.0.3 \
+            semantic-release

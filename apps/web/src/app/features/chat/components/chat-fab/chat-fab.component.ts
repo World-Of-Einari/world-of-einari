@@ -10,5 +10,5 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
 export class ChatFabComponent {
   readonly isOpen = input.required<boolean>();
   readonly hasUnread = input.required<boolean>();
-  readonly toggle = output<void>();
+  readonly toggled = output<void>();
 }

@@ -1,7 +1,7 @@
 <button
   class="chat-fab"
   [class.chat-fab--open]="isOpen()"
-  (click)="toggle.emit()"
+  (click)="toggled.emit()"
   aria-label="Open chat assistant">
   @if (hasUnread() && !isOpen()) {
     <span class="chat-fab__unread"></span>

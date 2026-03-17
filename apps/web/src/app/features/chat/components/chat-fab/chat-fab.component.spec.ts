@@ -94,11 +94,11 @@ describe('ChatFabComponent', () => {
     });
   });
 
-  describe('toggle output', () => {
-    it('should emit toggle when button is clicked', () => {
+  describe('toggled output', () => {
+    it('should emit toggled when button is clicked', () => {
       const fixture = createComponent(false, false);
       let emitted = false;
-      fixture.componentInstance.toggle.subscribe(() => (emitted = true));
+      fixture.componentInstance.toggled.subscribe(() => (emitted = true));
 
       const btn = fixture.debugElement.query(By.css('.chat-fab'));
       btn.triggerEventHandler('click', null);
@@ -109,7 +109,7 @@ describe('ChatFabComponent', () => {
     it('should emit toggle when open state button is clicked', () => {
       const fixture = createComponent(true, false);
       let emitted = false;
-      fixture.componentInstance.toggle.subscribe(() => (emitted = true));
+      fixture.componentInstance.toggled.subscribe(() => (emitted = true));
 
       const btn = fixture.debugElement.query(By.css('.chat-fab'));
       btn.triggerEventHandler('click', null);

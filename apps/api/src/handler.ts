@@ -49,11 +49,20 @@ interface RateLimitEntry {
 
 const rateLimitStore = new Map<string, RateLimitEntry>();
 
+function pruneRateLimitStore(now: number): void {
+  for (const [ip, entry] of rateLimitStore) {
+    if (now - entry.windowStart > RATE_LIMIT_WINDOW) {
+      rateLimitStore.delete(ip);
+    }
+  }
+}
+
 function isRateLimited(ip: string): boolean {
   const now = Date.now();
   const entry = rateLimitStore.get(ip);
 
   if (!entry || now - entry.windowStart > RATE_LIMIT_WINDOW) {
+    pruneRateLimitStore(now);
     rateLimitStore.set(ip, { count: 1, windowStart: now });
     return false;
   }

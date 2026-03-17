@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 32px 60px;
+  padding: 2rem 5rem;
   border-top: 1px solid var(--border);
   background: var(--black);
 
@@ -25,7 +25,7 @@
   .footer {
     flex-direction: column;
     gap: 8px;
-    padding: 24px;
+    padding: 1.5rem 4.5rem;
     text-align: center;
   }
 }

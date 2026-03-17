@@ -1,3 +1,4 @@
+# ── SSM Parameter ────────────────────────────────────────────────────────────
 # The parameter is created with a placeholder value on first apply.
 # Set the real key out-of-band via AWS CLI — Terraform will not overwrite it on subsequent applies:
 #
@@ -6,6 +7,7 @@
 #     --value "sk-..." \
 #     --type SecureString \
 #     --overwrite
+
 resource "aws_ssm_parameter" "openai_api_key" {
   name        = "/world-of-einari/openai-api-key"
   type        = "SecureString"
@@ -124,13 +126,12 @@ resource "aws_lambda_function" "chat" {
   }
 }
 
-# Lambda Function URL 
+# Lambda Function URL
 
 resource "aws_lambda_function_url" "chat" {
   function_name      = aws_lambda_function.chat.function_name
   authorization_type = "NONE"
-
-  invoke_mode = "RESPONSE_STREAM"
+  invoke_mode        = "RESPONSE_STREAM"
 
   cors {
     allow_origins = ["https://einarinau.com"]
@@ -140,7 +141,18 @@ resource "aws_lambda_function_url" "chat" {
   }
 }
 
-# Outputs
+# Lambda Function URL public access policy 
+
+resource "aws_lambda_permission" "allow_public_invoke" {
+  statement_id           = "FunctionURLAllowPublicAccess"
+  action                 = "lambda:InvokeFunctionUrl"
+  function_name          = aws_lambda_function.chat.function_name
+  principal              = "*"
+  function_url_auth_type = "NONE"
+}
+
+# Outputs 
+
 output "chat_lambda_function_url" {
   description = "Lambda Function URL — used as the CloudFront origin"
   value       = aws_lambda_function_url.chat.function_url

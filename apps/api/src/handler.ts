@@ -1,7 +1,6 @@
 import OpenAI from 'openai';
 import { SSMClient, GetParameterCommand } from '@aws-sdk/client-ssm';
-
-// ─── Types ───────────────────────────────────────────────────────────────────
+import { SYSTEM_PROMPT } from './system-prompt';
 
 export interface Message {
   role: 'user' | 'assistant';
@@ -13,8 +12,7 @@ export interface ChatRequestBody {
   history?: Message[];
 }
 
-// ─── SSM cache ───────────────────────────────────────────────────────────────
-
+//  SSM cache
 let cachedApiKey: string | null = null;
 
 async function getOpenAiKey(): Promise<string> {
@@ -40,28 +38,6 @@ async function getOpenAiKey(): Promise<string> {
   cachedApiKey = value;
   return cachedApiKey;
 }
-
-// ─── System prompt ───────────────────────────────────────────────────────────
-
-const SYSTEM_PROMPT = `You are a helpful assistant embedded in Einari Naukkarinen's personal portfolio website (einarinau.com).
-Your role is to help visitors learn about Einari and facilitate contact.
-
-About Einari:
-- Principal Software Engineer based in London, UK
-- 10+ years of experience, 5+ years as Principal Engineer
-- Currently at LexisNexis Risk Solutions
-- Specialises in modern web technologies: Angular, React, TypeScript, Node.js
-- Strong background in cloud infrastructure: AWS (S3, CloudFront, Lambda, RDS, Route 53), Terraform, GitHub Actions CI/CD
-- Experienced in large-scale geospatial engineering: vector tiles, MVT/protobuf, Deck.gl, Google Maps, Elasticsearch
-- Led the GitHub InnerSource initiative at LexisNexis
-- Built AI developer tooling with OpenAI, RAG, and MCP
-- Previously at Business of Fashion, Tieto, and Basware
-
-If someone wants to get in touch, direct them to scroll to the Contact section on the site or reach out via LinkedIn (linkedin.com/in/enaukkarinen).
-
-Tone: concise, direct, technically literate. Keep responses to 2-4 sentences unless more detail is clearly needed. Never invent specific dates, company names, or details not provided above.`;
-
-// ─── Rate limiting ───────────────────────────────────────────────────────────
 
 const RATE_LIMIT_MAX = 10; // max requests
 const RATE_LIMIT_WINDOW = 60_000; // per 60 seconds
@@ -90,8 +66,6 @@ function isRateLimited(ip: string): boolean {
   return false;
 }
 
-// ─── CORS headers ────────────────────────────────────────────────────────────
-
 const ALLOWED_ORIGIN = process.env['ALLOWED_ORIGIN'] ?? 'http://localhost:4200';
 
 export const corsHeaders = {
@@ -100,7 +74,7 @@ export const corsHeaders = {
   'Access-Control-Allow-Headers': 'Content-Type, X-Origin-Verify',
 };
 
-// ─── Secret header verification ──────────────────────────────────────────────
+// Secret header verification
 
 function verifyOriginSecret(headers: Record<string, string | undefined>): boolean {
   const expectedSecret = process.env['ORIGIN_VERIFY_SECRET'];
@@ -111,8 +85,6 @@ function verifyOriginSecret(headers: Record<string, string | undefined>): boolea
   const incoming = headers['x-origin-verify'] ?? headers['X-Origin-Verify'];
   return incoming === expectedSecret;
 }
-
-// ─── Core handler ────────────────────────────────────────────────────────────
 
 export async function handleChat(
   body: ChatRequestBody,

@@ -1,0 +1,29 @@
+<div class="chat-input">
+  <textarea
+    class="chat-input__field"
+    [value]="value()"
+    (input)="valueChange.emit($any($event.target).value)"
+    (keydown)="onKeyDown($event)"
+    placeholder="Ask anything..."
+    rows="1"
+    [disabled]="loading()"></textarea>
+  <button
+    class="chat-input__send"
+    (click)="send.emit()"
+    [disabled]="loading() || !value().trim()"
+    aria-label="Send message">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round">
+      <line x1="22" y1="2" x2="11" y2="13" />
+      <polygon points="22 2 15 22 11 13 2 9 22 2" />
+    </svg>
+  </button>
+</div>

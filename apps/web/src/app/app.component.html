@@ -6,4 +6,6 @@
   <router-outlet />
 </main>
 <en-footer />
-<en-chat />
+@defer (on idle) {
+  <en-chat />
+}

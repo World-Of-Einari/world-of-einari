@@ -9,6 +9,8 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ChatFabComponent } from './components/chat-fab/chat-fab.component';
+import { ChatInputComponent } from './components/chat-input/chat-input.component';
 
 export interface ChatMessage {
   role: 'user' | 'assistant';
@@ -18,7 +20,7 @@ export interface ChatMessage {
 @Component({
   selector: 'en-chat',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ChatFabComponent, ChatInputComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss',

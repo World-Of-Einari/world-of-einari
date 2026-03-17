@@ -9,10 +9,16 @@ jobs:
   secret-scanning:
     uses: ./.github/workflows/secret-scanning.yml
     secrets: inherit
+    permissions:
+      contents: read
+      pull-requests: read
 
   tests:
     uses: ./.github/workflows/tests.yml
     secrets: inherit
+    permissions:
+      contents: read
+      pull-requests: read
 
   deploy:
     name: Build & Deploy to S3

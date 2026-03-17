@@ -5,6 +5,12 @@ terraform {
       version = "~> 5.0"
     }
   }
+
+  backend "s3" {
+    bucket = "world-of-einari-terraform-state"
+    key    = "terraform.tfstate"
+    region = "eu-west-1"
+  }
 }
 
 provider "aws" {
@@ -112,6 +118,15 @@ data "aws_iam_policy_document" "deploy_permissions" {
       "cloudfront:CreateInvalidation",
     ]
     resources = [var.cloudfront_distribution_arn]
+  }
+
+  # Lambda: deploy chat function
+  statement {
+    effect = "Allow"
+    actions = [
+      "lambda:UpdateFunctionCode",
+    ]
+    resources = ["arn:aws:lambda:${var.aws_region}:${var.aws_account_id}:function:world-of-einari-chat"]
   }
 }
 

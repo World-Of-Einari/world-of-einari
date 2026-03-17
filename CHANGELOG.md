@@ -1,3 +1,16 @@
+# [1.4.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.3.0...v1.4.0) (2026-03-17)
+
+
+### Bug Fixes
+
+* add [skip ci] to release commit message for semantic-release ([b70bb57](https://github.com/World-Of-Einari/world-of-einari/commit/b70bb570ea5bc3fb5c9ffb8764d98cbb7b1bf65b))
+
+
+### Features
+
+* enhance release workflow with semantic-release packages ([d02b5f5](https://github.com/World-Of-Einari/world-of-einari/commit/d02b5f50823cbedb45d10abe2e3f812b9992f739))
+* update deployment workflows and add semantic release configuration ([833e253](https://github.com/World-Of-Einari/world-of-einari/commit/833e253b45c9ee4e5c8f6ae4a3629330fae6fadc))
+
 # Changelog
 
 ## [1.3.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.2.0...v1.3.0) (2026-03-17)

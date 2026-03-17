@@ -2,11 +2,8 @@ import { ChangeDetectionStrategy, Component, OnDestroy, signal, viewChild } from
 import { ChatMessagesComponent } from './components/chat-messages/chat-messages.component';
 import { ChatFabComponent } from './components/chat-fab/chat-fab.component';
 import { ChatInputComponent } from './components/chat-input/chat-input.component';
+import { ChatMessage } from './types/chat-message.interface';
 
-export interface ChatMessage {
-  role: 'user' | 'assistant';
-  content: string;
-}
 
 @Component({
   selector: 'en-chat',

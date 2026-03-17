@@ -106,6 +106,7 @@ export async function handleChat(
   const { message, history = [] } = body;
 
   if (!message?.trim()) {
+    responseStream.end();
     throw new Error('Message is required');
   }
 

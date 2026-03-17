@@ -9,7 +9,6 @@ on:
   workflow_dispatch:
 
 permissions:
-  id-token: write
   contents: read
 
 jobs:
@@ -26,6 +25,9 @@ jobs:
       github.event_name == 'workflow_dispatch' ||
       !startsWith(github.event.head_commit.message, 'chore(release):')
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     concurrency:
       group: deploy-api-${{ github.ref_name }}
       cancel-in-progress: true

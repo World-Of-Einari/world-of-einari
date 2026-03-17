@@ -1,8 +1,9 @@
 # World of Einari
 
-[![Tests](https://github.com/enaukkarinen/world-of-einari/actions/workflows/tests.yml/badge.svg)](https://github.com/enaukkarinen/world-of-einari/actions/workflows/tests.yml)
-[![Deploy](https://github.com/enaukkarinen/world-of-einari/actions/workflows/deploy.yml/badge.svg)](https://github.com/enaukkarinen/world-of-einari/actions/workflows/deploy.yml)
-[![Secret Scanning](https://github.com/enaukkarinen/world-of-einari/actions/workflows/secret-scanning.yml/badge.svg)](https://github.com/enaukkarinen/world-of-einari/actions/workflows/secret-scanning.yml)
+[![Tests](https://github.com/World-Of-Einari/world-of-einari/actions/workflows/tests.yml/badge.svg)](https://github.com/World-Of-Einari/world-of-einari/actions/workflows/tests.yml)
+[![Deploy Frontend](https://github.com/World-Of-Einari/world-of-einari/actions/workflows/deploy-fe.yml/badge.svg)](https://github.com/World-Of-Einari/world-of-einari/actions/workflows/deploy-fe.yml)
+[![Deploy API](https://github.com/World-Of-Einari/world-of-einari/actions/workflows/deploy-api.yml/badge.svg)](https://github.com/World-Of-Einari/world-of-einari/actions/workflows/deploy-api.yml)
+[![Secret Scanning](https://github.com/World-Of-Einari/world-of-einari/actions/workflows/secret-scanning.yml/badge.svg)](https://github.com/World-Of-Einari/world-of-einari/actions/workflows/secret-scanning.yml)
 
 Personal portfolio website built with Angular, deployed to AWS S3 + CloudFront.
 

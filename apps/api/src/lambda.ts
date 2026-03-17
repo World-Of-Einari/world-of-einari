@@ -51,17 +51,6 @@ export const handler = awslambda.streamifyResponse(async (event, responseStream)
 
   const headers = event.headers as Record<string, string | undefined>;
 
-  // Check origin secret — reject if wrong
-  const expectedSecret = process.env['ORIGIN_VERIFY_SECRET'];
-  if (expectedSecret && headers['x-origin-verify'] !== expectedSecret) {
-    const stream = awslambda.HttpResponseStream.from(responseStream, {
-      statusCode: 403,
-      headers: corsHeaders,
-    });
-    stream.end('Forbidden');
-    return;
-  }
-
   const tokenStream = awslambda.HttpResponseStream.from(responseStream, {
     statusCode: 200,
     headers: {

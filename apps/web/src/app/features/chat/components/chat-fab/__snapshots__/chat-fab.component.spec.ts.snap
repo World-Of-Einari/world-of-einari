@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChatFabComponent snapshots should match snapshot when closed with unread 1`] = `
+<div
+  id="root2"
+>
+  <button
+    aria-label="Open chat assistant"
+    class="chat-fab"
+  >
+    <span
+      class="chat-fab__unread"
+    />
+    
+    <svg
+      fill="none"
+      height="22"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="1.75"
+      viewBox="0 0 24 24"
+      width="22"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+      />
+    </svg>
+    
+    
+  </button>
+</div>
+`;
+
+exports[`ChatFabComponent snapshots should match snapshot when closed without unread 1`] = `
+<div
+  id="root1"
+>
+  <button
+    aria-label="Open chat assistant"
+    class="chat-fab"
+  >
+    
+    <svg
+      fill="none"
+      height="22"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="1.75"
+      viewBox="0 0 24 24"
+      width="22"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+      />
+    </svg>
+    
+    
+  </button>
+</div>
+`;
+
+exports[`ChatFabComponent snapshots should match snapshot when open 1`] = `
+<div
+  id="root3"
+>
+  <button
+    aria-label="Open chat assistant"
+    class="chat-fab chat-fab--open"
+  >
+    
+    
+    <svg
+      fill="none"
+      height="20"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <line
+        x1="18"
+        x2="6"
+        y1="6"
+        y2="18"
+      />
+      <line
+        x1="6"
+        x2="18"
+        y1="6"
+        y2="18"
+      />
+    </svg>
+    
+  </button>
+</div>
+`;

@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/World-Of-Einari/world-of-einari/compare/v1.4.0...v1.4.1) (2026-03-17)
+
+
+### Bug Fixes
+
+* add permissions for secret-scanning and tests jobs in deployment workflows ([78a2d1c](https://github.com/World-Of-Einari/world-of-einari/commit/78a2d1ce82c23402264f8784b60efaee7e81c29c))
+
 # [1.4.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.3.0...v1.4.0) (2026-03-17)
 
 

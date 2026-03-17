@@ -15,7 +15,7 @@ variable "origin_verify_secret" {
 }
 
 variable "openai_api_key" {
-  description = "OpenAI API key — stored in SSM, not in state. Set to a placeholder here and update manually via AWS CLI."
+  description = "Initial placeholder value for the SSM parameter. Set the real key out-of-band via AWS CLI — Terraform will ignore subsequent value changes due to lifecycle ignore_changes."
   type        = string
   default     = "PLACEHOLDER"
   sensitive   = true

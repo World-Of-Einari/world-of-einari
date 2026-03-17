@@ -1,13 +1,11 @@
-# ── SSM Parameter ────────────────────────────────────────────────────────────
-# Terraform creates the parameter as a placeholder.
-# Set the real value manually — it will never appear in state:
+# The parameter is created with a placeholder value on first apply.
+# Set the real key out-of-band via AWS CLI — Terraform will not overwrite it on subsequent applies:
 #
 #   aws ssm put-parameter \
 #     --name "/world-of-einari/openai-api-key" \
 #     --value "sk-..." \
 #     --type SecureString \
 #     --overwrite
-
 resource "aws_ssm_parameter" "openai_api_key" {
   name        = "/world-of-einari/openai-api-key"
   type        = "SecureString"
@@ -24,7 +22,7 @@ resource "aws_ssm_parameter" "openai_api_key" {
   }
 }
 
-# ── IAM Role for Lambda ───────────────────────────────────────────────────────
+# IAM Role for Lambda
 
 data "aws_iam_policy_document" "lambda_assume_role" {
   statement {
@@ -85,7 +83,7 @@ resource "aws_iam_role_policy_attachment" "chat_lambda_permissions" {
   policy_arn = aws_iam_policy.chat_lambda_permissions.arn
 }
 
-# ── Lambda Function ───────────────────────────────────────────────────────────
+# Lambda Function
 
 data "archive_file" "placeholder" {
   type        = "zip"
@@ -126,7 +124,7 @@ resource "aws_lambda_function" "chat" {
   }
 }
 
-# ── Lambda Function URL ───────────────────────────────────────────────────────
+# Lambda Function URL 
 
 resource "aws_lambda_function_url" "chat" {
   function_name      = aws_lambda_function.chat.function_name
@@ -142,8 +140,7 @@ resource "aws_lambda_function_url" "chat" {
   }
 }
 
-# ── Outputs ───────────────────────────────────────────────────────────────────
-
+# Outputs
 output "chat_lambda_function_url" {
   description = "Lambda Function URL — used as the CloudFront origin"
   value       = aws_lambda_function_url.chat.function_url

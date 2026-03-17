@@ -56,7 +56,7 @@ resource "aws_iam_openid_connect_provider" "github_actions" {
   thumbprint_list = ["6938fd4d98bab03faadb97b34396831e3780aea1"]
 }
 
-# ── IAM Role ─────────────────────────────────────────────────────────────────
+# IAM Role
 
 data "aws_iam_policy_document" "github_actions_assume_role" {
   statement {
@@ -93,7 +93,7 @@ resource "aws_iam_role" "github_actions_deploy" {
   }
 }
 
-# ── IAM Policy ───────────────────────────────────────────────────────────────
+# IAM Policy
 
 data "aws_iam_policy_document" "deploy_permissions" {
   # S3: sync (list + get + put + delete)
@@ -140,7 +140,7 @@ resource "aws_iam_role_policy_attachment" "deploy_permissions" {
   policy_arn = aws_iam_policy.deploy_permissions.arn
 }
 
-# ── Outputs ──────────────────────────────────────────────────────────────────
+# Outputs
 
 output "role_arn" {
   description = "Add this as the AWS_ROLE_ARN secret in your GitHub repo"

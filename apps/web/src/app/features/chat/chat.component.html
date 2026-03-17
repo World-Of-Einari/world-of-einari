@@ -32,51 +32,10 @@
     </button>
   </div>
 
-  <!-- Messages -->
-  <div class="chat-panel__messages">
-    @if (isEmpty()) {
-      <div class="chat-panel__empty">
-        <p class="chat-panel__empty-label">// CHAT_INIT</p>
-        <p class="chat-panel__empty-title">Hi there.</p>
-        <p class="chat-panel__empty-body">
-          Ask me about Einari's experience, skills, projects, or how to get in touch.
-        </p>
-        <div class="chat-panel__suggestions">
-          <button
-            class="chat-panel__suggestion"
-            (click)="setInput('What technologies does Einari work with?')">
-            Tech stack
-          </button>
-          <button
-            class="chat-panel__suggestion"
-            (click)="setInput('Tell me about Einari\'s experience')">
-            Experience
-          </button>
-          <button class="chat-panel__suggestion" (click)="setInput('How can I contact Einari?')">
-            Get in touch
-          </button>
-        </div>
-      </div>
-    }
-
-    @for (msg of messages(); track $index; let i = $index) {
-      <div
-        class="chat-panel__message"
-        [class.chat-panel__message--user]="msg.role === 'user'"
-        [class.chat-panel__message--assistant]="msg.role === 'assistant'"
-        [style.animation-delay]="i * 0.04 + 's'">
-        <div class="chat-panel__bubble">
-          @if (msg.role === 'assistant' && msg.content === '' && loading()) {
-            <span class="chat-panel__typing"> <span></span><span></span><span></span> </span>
-          } @else {
-            {{ msg.content }}
-          }
-        </div>
-      </div>
-    }
-
-    <div #messagesEnd></div>
-  </div>
+  <en-chat-messages
+    [messages]="messages()"
+    [loading]="loading()"
+    (suggestionSelect)="inputValue.set($event)" />
 
   <en-chat-input
     [value]="inputValue()"

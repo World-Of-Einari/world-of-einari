@@ -1,14 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  OnDestroy,
-  signal,
-  computed,
-  viewChild,
-} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, OnDestroy, signal, viewChild } from '@angular/core';
+import { ChatMessagesComponent } from './components/chat-messages/chat-messages.component';
 import { ChatFabComponent } from './components/chat-fab/chat-fab.component';
 import { ChatInputComponent } from './components/chat-input/chat-input.component';
 
@@ -20,7 +11,7 @@ export interface ChatMessage {
 @Component({
   selector: 'en-chat',
   standalone: true,
-  imports: [CommonModule, FormsModule, ChatFabComponent, ChatInputComponent],
+  imports: [ChatFabComponent, ChatMessagesComponent, ChatInputComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss',
@@ -32,9 +23,7 @@ export class ChatComponent implements OnDestroy {
   readonly loading = signal(false);
   readonly hasUnread = signal(false);
 
-  readonly isEmpty = computed(() => this.messages().length === 0);
-
-  private readonly messagesEnd = viewChild<ElementRef<HTMLDivElement>>('messagesEnd');
+  private readonly chatMessages = viewChild(ChatMessagesComponent);
   private abortController: AbortController | null = null;
 
   toggle(): void {
@@ -48,17 +37,6 @@ export class ChatComponent implements OnDestroy {
     this.isOpen.set(false);
   }
 
-  setInput(value: string): void {
-    this.inputValue.set(value);
-  }
-
-  onKeyDown(event: KeyboardEvent): void {
-    if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault();
-      void this.send();
-    }
-  }
-
   async send(): Promise<void> {
     const message = this.inputValue().trim();
     if (!message || this.loading()) return;
@@ -70,7 +48,7 @@ export class ChatComponent implements OnDestroy {
     this.loading.set(true);
 
     this.messages.update((msgs) => [...msgs, { role: 'assistant', content: '' }]);
-    this.scrollToBottom();
+    this.chatMessages()?.scrollToBottom();
 
     this.abortController = new AbortController();
 
@@ -101,7 +79,7 @@ export class ChatComponent implements OnDestroy {
           };
           return updated;
         });
-        this.scrollToBottom();
+        this.chatMessages()?.scrollToBottom();
       }
     } catch (err: unknown) {
       if (err instanceof Error && err.name === 'AbortError') return;
@@ -120,14 +98,7 @@ export class ChatComponent implements OnDestroy {
     } finally {
       this.loading.set(false);
       if (!this.isOpen()) this.hasUnread.set(true);
-      this.scrollToBottom();
-    }
-  }
-
-  private scrollToBottom(): void {
-    const el = this.messagesEnd()?.nativeElement;
-    if (el) {
-      setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 0);
+      this.chatMessages()?.scrollToBottom();
     }
   }
 

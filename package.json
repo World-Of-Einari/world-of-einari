@@ -16,5 +16,10 @@
   },
   "dependencies": {
     "@types/node": "^20.17.19"
+  },
+  "pnpm": {
+    "overrides": {
+      "express-rate-limit": ">=8.2.2"
+    }
   }
 }

@@ -1,3 +1,10 @@
+## [1.5.3](https://github.com/World-Of-Einari/world-of-einari/compare/v1.5.2...v1.5.3) (2026-03-19)
+
+
+### Bug Fixes
+
+* add lifecycle rule to ignore changes in CloudFront function code ([7cafe79](https://github.com/World-Of-Einari/world-of-einari/commit/7cafe79c810c075b953d9afb681f380fcc331e40))
+
 ## [1.5.2](https://github.com/World-Of-Einari/world-of-einari/compare/v1.5.1...v1.5.2) (2026-03-19)
 
 

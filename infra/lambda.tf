@@ -128,7 +128,7 @@ resource "aws_lambda_function" "chat" {
 
 # ── Lambda Alias ──────────────────────────────────────────────────────────────
 # Terraform creates the alias pointing at $LATEST on first apply.
-# GitHub Actions manages the function_version pointer on every deploy — 
+# GitHub Actions manages the function_version pointer on every deploy —
 # Terraform will not overwrite it on subsequent applies.
 
 resource "aws_lambda_alias" "live" {
@@ -142,14 +142,10 @@ resource "aws_lambda_alias" "live" {
 }
 
 # ── Lambda Function URL ───────────────────────────────────────────────────────
-# Scoped to the live alias — the URL is stable across deployments.
-# NOTE: adding qualifier will cause Terraform to recreate this resource and the
-# permission below on first apply. The function URL will change — update your
-# CloudFront origin accordingly after apply.
+# Scoped to $LATEST — the alias is used for deployment tracking only.
 
 resource "aws_lambda_function_url" "chat" {
   function_name      = aws_lambda_function.chat.function_name
-  qualifier          = aws_lambda_alias.live.name
   authorization_type = "NONE"
   invoke_mode        = "RESPONSE_STREAM"
 
@@ -167,7 +163,6 @@ resource "aws_lambda_permission" "allow_public_invoke" {
   statement_id           = "FunctionURLAllowPublicAccess"
   action                 = "lambda:InvokeFunctionUrl"
   function_name          = aws_lambda_function.chat.function_name
-  qualifier              = aws_lambda_alias.live.name
   principal              = "*"
   function_url_auth_type = "NONE"
 }

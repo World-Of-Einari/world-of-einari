@@ -1,5 +1,4 @@
 name: Deploy API
-
 on:
   push:
     branches:
@@ -7,7 +6,6 @@ on:
     paths:
       - 'apps/api/**'
   workflow_dispatch:
-
 jobs:
   secret-scanning:
     uses: ./.github/workflows/secret-scanning.yml
@@ -15,14 +13,12 @@ jobs:
     permissions:
       contents: read
       pull-requests: read
-
   tests:
     uses: ./.github/workflows/tests.yml
     secrets: inherit
     permissions:
       contents: read
       pull-requests: read
-
   deploy-api:
     name: Build & Deploy Lambda
     needs: [secret-scanning, tests]
@@ -36,7 +32,6 @@ jobs:
     concurrency:
       group: deploy-api-${{ github.ref_name }}
       cancel-in-progress: true
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -89,21 +84,3 @@ jobs:
         run: |
           aws lambda wait function-updated \
             --function-name ${{ secrets.CHAT_LAMBDA_ARN }}
-
-      - name: Publish version
-        id: publish
-        run: |
-          VERSION=$(aws lambda publish-version \
-            --function-name ${{ secrets.CHAT_LAMBDA_ARN }} \
-            --query 'Version' \
-            --output text)
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "Published version $VERSION"
-
-      - name: Update live alias
-        run: |
-          aws lambda update-alias \
-            --function-name ${{ secrets.CHAT_LAMBDA_ARN }} \
-            --name live \
-            --function-version ${{ steps.publish.outputs.version }}
-          echo "Live alias now points to version ${{ steps.publish.outputs.version }}"

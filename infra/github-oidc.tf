@@ -75,6 +75,18 @@ data "aws_iam_policy_document" "deploy_permissions" {
     resources = [var.cloudfront_distribution_arn]
   }
 
+  # CloudFront Function: update and publish on deploy
+  statement {
+    effect = "Allow"
+    actions = [
+      "cloudfront:DescribeFunction",
+      "cloudfront:GetFunction",
+      "cloudfront:UpdateFunction",
+      "cloudfront:PublishFunction",
+    ]
+    resources = ["arn:aws:cloudfront::${var.aws_account_id}:function/world-of-einari-rewrite"]
+  }
+
   # Lambda: deploy, version, and alias management
   # The unqualified ARN covers UpdateFunctionCode and PublishVersion.
   # The wildcard ARN (ending :*) covers version/alias operations which

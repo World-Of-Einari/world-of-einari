@@ -7,6 +7,9 @@ resource "aws_cloudfront_function" "rewrite" {
   runtime = "cloudfront-js-2.0"
   comment = "Rewrites requests to the current live release prefix"
   publish = true
+  lifecycle {
+    ignore_changes = [code]
+  }
 
   code = <<-EOT
     var LIVE_SHA = "PLACEHOLDER";

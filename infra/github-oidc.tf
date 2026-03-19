@@ -98,8 +98,8 @@ data "aws_iam_policy_document" "deploy_permissions" {
       "lambda:PublishVersion",
       "lambda:UpdateAlias",
       "lambda:GetFunction",
+      "lambda:GetFunctionConfiguration",
       "lambda:GetAlias",
-      "lambda:WaitForFunctionUpdated",
     ]
     resources = [
       "arn:aws:lambda:${var.aws_region}:${var.aws_account_id}:function:world-of-einari-chat",

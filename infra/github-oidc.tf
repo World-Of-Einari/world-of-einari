@@ -1,48 +1,3 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
-  }
-
-  backend "s3" {
-    bucket = "world-of-einari-terraform-state"
-    key    = "terraform.tfstate"
-    region = "eu-west-1"
-  }
-}
-
-provider "aws" {
-  region = var.aws_region
-}
-
-variable "aws_region" {
-  description = "AWS region to deploy into"
-  type        = string
-  default     = "eu-west-1"
-}
-
-variable "github_org" {
-  description = "Your GitHub username or organisation"
-  type        = string
-}
-
-variable "github_repo" {
-  description = "Your repository name (without the org prefix)"
-  type        = string
-}
-
-variable "s3_bucket_arn" {
-  description = "ARN of the S3 bucket to deploy to"
-  type        = string
-}
-
-variable "cloudfront_distribution_arn" {
-  description = "ARN of the CloudFront distribution"
-  type        = string
-}
-
 # ── OIDC Provider ────────────────────────────────────────────────────────────
 # Only one of these can exist per AWS account — import it if it already exists:
 # terraform import aws_iam_openid_connect_provider.github_actions <arn>
@@ -56,7 +11,7 @@ resource "aws_iam_openid_connect_provider" "github_actions" {
   thumbprint_list = ["6938fd4d98bab03faadb97b34396831e3780aea1"]
 }
 
-# IAM Role
+# ── IAM Role ──────────────────────────────────────────────────────────────────
 
 data "aws_iam_policy_document" "github_actions_assume_role" {
   statement {
@@ -93,7 +48,7 @@ resource "aws_iam_role" "github_actions_deploy" {
   }
 }
 
-# IAM Policy
+# ── IAM Policy ────────────────────────────────────────────────────────────────
 
 data "aws_iam_policy_document" "deploy_permissions" {
   # S3: sync (list + get + put + delete)
@@ -120,13 +75,24 @@ data "aws_iam_policy_document" "deploy_permissions" {
     resources = [var.cloudfront_distribution_arn]
   }
 
-  # Lambda: deploy chat function
+  # Lambda: deploy, version, and alias management
+  # The unqualified ARN covers UpdateFunctionCode and PublishVersion.
+  # The wildcard ARN (ending :*) covers version/alias operations which
+  # require a qualified ARN.
   statement {
     effect = "Allow"
     actions = [
       "lambda:UpdateFunctionCode",
+      "lambda:PublishVersion",
+      "lambda:UpdateAlias",
+      "lambda:GetFunction",
+      "lambda:GetAlias",
+      "lambda:WaitForFunctionUpdated",
     ]
-    resources = ["arn:aws:lambda:${var.aws_region}:${var.aws_account_id}:function:world-of-einari-chat"]
+    resources = [
+      "arn:aws:lambda:${var.aws_region}:${var.aws_account_id}:function:world-of-einari-chat",
+      "arn:aws:lambda:${var.aws_region}:${var.aws_account_id}:function:world-of-einari-chat:*",
+    ]
   }
 }
 
@@ -140,7 +106,7 @@ resource "aws_iam_role_policy_attachment" "deploy_permissions" {
   policy_arn = aws_iam_policy.deploy_permissions.arn
 }
 
-# Outputs
+# ── Outputs ───────────────────────────────────────────────────────────────────
 
 output "role_arn" {
   description = "Add this as the AWS_ROLE_ARN secret in your GitHub repo"

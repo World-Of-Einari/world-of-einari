@@ -1,0 +1,82 @@
+name: Rollback Frontend
+
+on:
+  workflow_dispatch:
+    inputs:
+      sha:
+        description: 'Git SHA to roll back to (must exist in s3://einarinau.com/releases/)'
+        required: true
+        type: string
+
+jobs:
+  rollback:
+    name: Rollback Frontend to ${{ inputs.sha }}
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Validate SHA input
+        run: |
+          if ! [[ "${{ inputs.sha }}" =~ ^[0-9a-f]{7,40}$ ]]; then
+            echo "Invalid SHA: ${{ inputs.sha }}. Expected 7-40 lowercase hex characters."
+            exit 1
+          fi
+
+      - name: Verify release exists in S3
+        run: |
+          aws s3 ls "s3://${{ secrets.S3_BUCKET }}/releases/${{ inputs.sha }}/index.html"
+          echo "Release ${{ inputs.sha }} verified in S3"
+
+      - name: Update CloudFront Function
+        run: |
+          # Fetch current function code
+          aws cloudfront get-function \
+            --name world-of-einari-rewrite \
+            --query 'FunctionCode' \
+            --output text > rewrite.js
+
+          # Validate and set the target SHA
+          SHA="${{ inputs.sha }}"
+          if ! [[ "$SHA" =~ ^[0-9a-fA-F]{7,40}$ ]]; then
+            echo "Error: Invalid SHA format: $SHA"
+            exit 1
+          fi
+
+          # Replace the LIVE_SHA value with the validated SHA
+          sed -i "s/var LIVE_SHA = \"[^\"]*\"/var LIVE_SHA = \"$SHA\"/" rewrite.js
+          # Get current ETag
+          ETAG=$(aws cloudfront describe-function \
+            --name world-of-einari-rewrite \
+            --query 'ETag' \
+            --output text)
+
+          # Update and publish
+          aws cloudfront update-function \
+            --name world-of-einari-rewrite \
+            --function-config Comment="Rewrites requests to the current live release prefix",Runtime=cloudfront-js-2.0 \
+            --function-code fileb://rewrite.js \
+            --if-match $ETAG
+
+          ETAG=$(aws cloudfront describe-function \
+            --name world-of-einari-rewrite \
+            --query 'ETag' \
+            --output text)
+
+          aws cloudfront publish-function \
+            --name world-of-einari-rewrite \
+            --if-match $ETAG
+
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*"
+          echo "Frontend rolled back to ${{ inputs.sha }}"

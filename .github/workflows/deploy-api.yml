@@ -15,22 +15,24 @@ jobs:
     permissions:
       contents: read
       pull-requests: read
+
   tests:
     uses: ./.github/workflows/tests.yml
     secrets: inherit
     permissions:
       contents: read
       pull-requests: read
+
   deploy-api:
     name: Build & Deploy Lambda
     needs: [secret-scanning, tests]
-    permissions:
-      id-token: write
-      contents: read
     if: |
       github.event_name == 'workflow_dispatch' ||
       !startsWith(github.event.head_commit.message, 'chore(release):')
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     concurrency:
       group: deploy-api-${{ github.ref_name }}
       cancel-in-progress: true
@@ -42,7 +44,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
@@ -82,3 +84,26 @@ jobs:
           aws lambda update-function-code \
             --function-name ${{ secrets.CHAT_LAMBDA_ARN }} \
             --zip-file fileb://lambda.zip
+
+      - name: Wait for update to complete
+        run: |
+          aws lambda wait function-updated \
+            --function-name ${{ secrets.CHAT_LAMBDA_ARN }}
+
+      - name: Publish version
+        id: publish
+        run: |
+          VERSION=$(aws lambda publish-version \
+            --function-name ${{ secrets.CHAT_LAMBDA_ARN }} \
+            --query 'Version' \
+            --output text)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Published version $VERSION"
+
+      - name: Update live alias
+        run: |
+          aws lambda update-alias \
+            --function-name ${{ secrets.CHAT_LAMBDA_ARN }} \
+            --name live \
+            --function-version ${{ steps.publish.outputs.version }}
+          echo "Live alias now points to version ${{ steps.publish.outputs.version }}"

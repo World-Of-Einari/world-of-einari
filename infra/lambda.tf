@@ -24,7 +24,7 @@ resource "aws_ssm_parameter" "openai_api_key" {
   }
 }
 
-# IAM Role for Lambda
+# ── IAM Role for Lambda ───────────────────────────────────────────────────────
 
 data "aws_iam_policy_document" "lambda_assume_role" {
   statement {
@@ -85,7 +85,7 @@ resource "aws_iam_role_policy_attachment" "chat_lambda_permissions" {
   policy_arn = aws_iam_policy.chat_lambda_permissions.arn
 }
 
-# Lambda Function
+# ── Lambda Function ───────────────────────────────────────────────────────────
 
 data "archive_file" "placeholder" {
   type        = "zip"
@@ -100,7 +100,7 @@ data "archive_file" "placeholder" {
 resource "aws_lambda_function" "chat" {
   function_name = "world-of-einari-chat"
   role          = aws_iam_role.chat_lambda.arn
-  runtime       = "nodejs20.x"
+  runtime       = "nodejs22.x"
   handler       = "lambda.handler"
   timeout       = 60
   memory_size   = 256
@@ -126,10 +126,30 @@ resource "aws_lambda_function" "chat" {
   }
 }
 
-# Lambda Function URL
+# ── Lambda Alias ──────────────────────────────────────────────────────────────
+# Terraform creates the alias pointing at $LATEST on first apply.
+# GitHub Actions manages the function_version pointer on every deploy — 
+# Terraform will not overwrite it on subsequent applies.
+
+resource "aws_lambda_alias" "live" {
+  name             = "live"
+  function_name    = aws_lambda_function.chat.function_name
+  function_version = "$LATEST"
+
+  lifecycle {
+    ignore_changes = [function_version]
+  }
+}
+
+# ── Lambda Function URL ───────────────────────────────────────────────────────
+# Scoped to the live alias — the URL is stable across deployments.
+# NOTE: adding qualifier will cause Terraform to recreate this resource and the
+# permission below on first apply. The function URL will change — update your
+# CloudFront origin accordingly after apply.
 
 resource "aws_lambda_function_url" "chat" {
   function_name      = aws_lambda_function.chat.function_name
+  qualifier          = aws_lambda_alias.live.name
   authorization_type = "NONE"
   invoke_mode        = "RESPONSE_STREAM"
 
@@ -141,17 +161,18 @@ resource "aws_lambda_function_url" "chat" {
   }
 }
 
-# Lambda Function URL public access policy 
+# ── Lambda Function URL public access policy ──────────────────────────────────
 
 resource "aws_lambda_permission" "allow_public_invoke" {
   statement_id           = "FunctionURLAllowPublicAccess"
   action                 = "lambda:InvokeFunctionUrl"
   function_name          = aws_lambda_function.chat.function_name
+  qualifier              = aws_lambda_alias.live.name
   principal              = "*"
   function_url_auth_type = "NONE"
 }
 
-# Outputs 
+# ── Outputs ───────────────────────────────────────────────────────────────────
 
 output "chat_lambda_function_url" {
   description = "Lambda Function URL — used as the CloudFront origin"

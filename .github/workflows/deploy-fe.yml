@@ -96,8 +96,7 @@ jobs:
           # Fetch current function code
           aws cloudfront get-function \
             --name world-of-einari-rewrite \
-            --query 'FunctionCode' \
-            --output text > rewrite.js
+            --output-file rewrite.js
 
           # Replace the LIVE_SHA value
           sed -i 's/var LIVE_SHA = "[^"]*"/var LIVE_SHA = "${{ github.sha }}"/' rewrite.js

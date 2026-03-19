@@ -80,26 +80,27 @@ jobs:
         run: |
           # Sync assets (immutable cache)
           aws s3 sync apps/web/dist/world-of-einari/browser \
-            s3://${{ secrets.S3_BUCKET }}/releases/${{ github.sha }} \
+            "s3://${{ secrets.S3_BUCKET }}/releases/${{ github.sha }}" \
             --cache-control "public, max-age=31536000, immutable" \
             --exclude "*.html"
 
           # Sync HTML (no cache)
           aws s3 sync apps/web/dist/world-of-einari/browser \
-            s3://${{ secrets.S3_BUCKET }}/releases/${{ github.sha }} \
+            "s3://${{ secrets.S3_BUCKET }}/releases/${{ github.sha }}" \
             --exclude "*" \
             --include "*.html" \
             --cache-control "public, max-age=0, must-revalidate"
 
       - name: Update CloudFront Function
         run: |
-          # Fetch current function code
+          # Fetch current live function code
           aws cloudfront get-function \
             --name world-of-einari-rewrite \
-            --output-file rewrite.js
+            --stage LIVE \
+            rewrite.js
 
           # Replace the LIVE_SHA value
-          sed -i 's/var LIVE_SHA = "[^"]*"/var LIVE_SHA = "${{ github.sha }}"/' rewrite.js
+          sed -i "s/var LIVE_SHA = \"[^\"]*\"/var LIVE_SHA = \"${{ github.sha }}\"/" rewrite.js
 
           # Get current ETag
           ETAG=$(aws cloudfront describe-function \
@@ -107,24 +108,26 @@ jobs:
             --query 'ETag' \
             --output text)
 
-          # Update and publish
+          # Update function
           aws cloudfront update-function \
             --name world-of-einari-rewrite \
             --function-config Comment="Rewrites requests to the current live release prefix",Runtime=cloudfront-js-2.0 \
             --function-code fileb://rewrite.js \
-            --if-match $ETAG
+            --if-match "$ETAG"
 
+          # Get new ETag after update
           ETAG=$(aws cloudfront describe-function \
             --name world-of-einari-rewrite \
             --query 'ETag' \
             --output text)
 
+          # Publish to LIVE stage
           aws cloudfront publish-function \
             --name world-of-einari-rewrite \
-            --if-match $ETAG
+            --if-match "$ETAG"
 
       - name: Invalidate CloudFront cache
         run: |
           aws cloudfront create-invalidation \
-            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --distribution-id "${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}" \
             --paths "/*"

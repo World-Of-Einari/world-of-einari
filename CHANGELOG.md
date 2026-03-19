@@ -1,3 +1,22 @@
+# [1.5.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.4.1...v1.5.0) (2026-03-19)
+
+
+### Bug Fixes
+
+* improve version validation and formatting in rollback workflow ([06fd1ca](https://github.com/World-Of-Einari/world-of-einari/commit/06fd1caa1b8705bc20b92c9094ce6518d24861f2))
+* use GetFunctionConfiguration ([0b9e052](https://github.com/World-Of-Einari/world-of-einari/commit/0b9e05280f5f05274bf206f166698c04c6c4e987))
+
+
+### Features
+
+* add CloudFront Function and update IAM permissions for deployment ([2397d50](https://github.com/World-Of-Einari/world-of-einari/commit/2397d502e7fee9017d04b8230028664c2ac2493d))
+* add rollback workflow for frontend deployment ([a0b67f8](https://github.com/World-Of-Einari/world-of-einari/commit/a0b67f81ab03f7639e874c43e2916ef66a827e37))
+* add rollback workflow for Lambda function ([71722bf](https://github.com/World-Of-Einari/world-of-einari/commit/71722bfd4f26215053d34da561d748cb481789b9))
+* remove public invoke permission for Lambda function ([eaab1dd](https://github.com/World-Of-Einari/world-of-einari/commit/eaab1dd17e3655e868371e18147ce93a6991b79d))
+* upgrade Node.js version to 22 across workflows and Lambda function ([ac0d056](https://github.com/World-Of-Einari/world-of-einari/commit/ac0d056bef215530ca4eaee66685fd5d6b55eaea))
+* validate sha input ([e877c3b](https://github.com/World-Of-Einari/world-of-einari/commit/e877c3b00dc720d6c07d92d1391d61a16159e3e7))
+* validate sha input for fe ([d1a50b8](https://github.com/World-Of-Einari/world-of-einari/commit/d1a50b8d3e5d140fda7764841686026acccebb97))
+
 ## [1.4.1](https://github.com/World-Of-Einari/world-of-einari/compare/v1.4.0...v1.4.1) (2026-03-17)
 
 

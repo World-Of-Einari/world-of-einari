@@ -1,3 +1,10 @@
+## [1.5.6](https://github.com/World-Of-Einari/world-of-einari/compare/v1.5.5...v1.5.6) (2026-03-19)
+
+
+### Bug Fixes
+
+* clean up deploy workflow and remove unused Lambda version publishing steps ([4acc651](https://github.com/World-Of-Einari/world-of-einari/commit/4acc651d5c8de1ef3ab88670d19a28467c1d3d9d))
+
 ## [1.5.5](https://github.com/World-Of-Einari/world-of-einari/compare/v1.5.4...v1.5.5) (2026-03-19)
 
 

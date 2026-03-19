@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/World-Of-Einari/world-of-einari/compare/v1.5.0...v1.5.1) (2026-03-19)
+
+
+### Bug Fixes
+
+* update CloudFront function retrieval command to use output-file option ([5d405ba](https://github.com/World-Of-Einari/world-of-einari/commit/5d405ba9132022c1cf5ef5fba9867b9f7618d3de))
+
 # [1.5.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.4.1...v1.5.0) (2026-03-19)
 
 

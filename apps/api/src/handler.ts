@@ -87,14 +87,11 @@ export const corsHeaders = {
 
 function verifyOriginSecret(headers: Record<string, string | undefined>): boolean {
   const expectedSecret = process.env['ORIGIN_VERIFY_SECRET'];
-  console.log('[verifyOriginSecret] expected:', expectedSecret);
-  console.log('[verifyOriginSecret] all header keys:', Object.keys(headers));
-  console.log('[verifyOriginSecret] x-origin-verify:', headers['x-origin-verify']);
-  console.log('[verifyOriginSecret] X-Origin-Verify:', headers['X-Origin-Verify']);
+
+  // Skip verification in local dev (no secret configured)
   if (!expectedSecret) return true;
+
   const incoming = headers['x-origin-verify'] ?? headers['X-Origin-Verify'];
-  console.log('[verifyOriginSecret] incoming:', incoming);
-  console.log('[verifyOriginSecret] match:', incoming === expectedSecret);
   return incoming === expectedSecret;
 }
 

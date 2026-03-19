@@ -137,21 +137,6 @@ resource "aws_cloudfront_distribution" "main" {
   }
 }
 
-# ── IAM: allow GitHub Actions to update the CloudFront Function ───────────────
-
-# Add to the existing deploy_permissions policy in github-oidc.tf:
-#
-#   statement {
-#     effect = "Allow"
-#     actions = [
-#       "cloudfront:DescribeFunction",
-#       "cloudfront:GetFunction",
-#       "cloudfront:UpdateFunction",
-#       "cloudfront:PublishFunction",
-#     ]
-#     resources = ["arn:aws:cloudfront::${var.aws_account_id}:function/world-of-einari-rewrite"]
-#   }
-
 # ── Outputs ───────────────────────────────────────────────────────────────────
 
 output "cloudfront_function_arn" {

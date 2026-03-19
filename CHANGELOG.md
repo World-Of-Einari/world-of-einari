@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/World-Of-Einari/world-of-einari/compare/v1.5.1...v1.5.2) (2026-03-19)
+
+
+### Bug Fixes
+
+* improve CloudFront function update and rollback validation ([033eb8f](https://github.com/World-Of-Einari/world-of-einari/commit/033eb8fe9d34504642a85aaac141fa5c7036b0f9))
+
 ## [1.5.1](https://github.com/World-Of-Einari/world-of-einari/compare/v1.5.0...v1.5.1) (2026-03-19)
 
 

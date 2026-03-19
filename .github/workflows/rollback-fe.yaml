@@ -43,9 +43,15 @@ jobs:
             --query 'FunctionCode' \
             --output text > rewrite.js
 
-          # Replace the LIVE_SHA value
-          sed -i 's/var LIVE_SHA = "[^"]*"/var LIVE_SHA = "${{ inputs.sha }}"/' rewrite.js
+          # Validate and set the target SHA
+          SHA="${{ inputs.sha }}"
+          if ! [[ "$SHA" =~ ^[0-9a-fA-F]{7,40}$ ]]; then
+            echo "Error: Invalid SHA format: $SHA"
+            exit 1
+          fi
 
+          # Replace the LIVE_SHA value with the validated SHA
+          sed -i "s/var LIVE_SHA = \"[^\"]*\"/var LIVE_SHA = \"$SHA\"/" rewrite.js
           # Get current ETag
           ETAG=$(aws cloudfront describe-function \
             --name world-of-einari-rewrite \

@@ -108,7 +108,7 @@ data "archive_file" "placeholder" {
 resource "aws_lambda_function" "chat" {
   function_name = "world-of-einari-chat"
   role          = aws_iam_role.chat_lambda.arn
-  runtime       = "nodejs20.x"
+  runtime       = "nodejs22.x"
   handler       = "lambda.handler"
   timeout       = 60
   memory_size   = 256

@@ -25,16 +25,22 @@ jobs:
 
       - name: Verify version exists
         run: |
+          # Validate version format to prevent command injection
+          if ! echo "${{ inputs.version }}" | grep -qE '^[0-9]+$'; then
+          echo "Invalid version format: ${{ inputs.version }}"
+          exit 1
+          fi
+
           aws lambda get-function \
-            --function-name ${{ secrets.CHAT_LAMBDA_ARN }} \
-            --qualifier ${{ inputs.version }} \
-            --query 'Configuration.Version' \
-            --output text
+          --function-name "${{ secrets.CHAT_LAMBDA_ARN }}" \
+          --qualifier "${{ inputs.version }}" \
+          --query 'Configuration.Version' \
+          --output text
 
       - name: Update live alias
         run: |
           aws lambda update-alias \
-            --function-name ${{ secrets.CHAT_LAMBDA_ARN }} \
-            --name live \
-            --function-version ${{ inputs.version }}
+          --function-name "${{ secrets.CHAT_LAMBDA_ARN }}" \
+          --name live \
+          --function-version "${{ inputs.version }}"
           echo "Live alias rolled back to version ${{ inputs.version }}"

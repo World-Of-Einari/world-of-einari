@@ -1,3 +1,10 @@
+## [1.5.5](https://github.com/World-Of-Einari/world-of-einari/compare/v1.5.4...v1.5.5) (2026-03-19)
+
+
+### Bug Fixes
+
+* simplify origin secret verification by removing debug logs ([5a23b95](https://github.com/World-Of-Einari/world-of-einari/commit/5a23b95eefc75aefa8c56fecc70a379338df25fe))
+
 ## [1.5.4](https://github.com/World-Of-Einari/world-of-einari/compare/v1.5.3...v1.5.4) (2026-03-19)
 
 

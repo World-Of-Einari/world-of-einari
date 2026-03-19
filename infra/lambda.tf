@@ -85,14 +85,6 @@ resource "aws_iam_role_policy_attachment" "chat_lambda_permissions" {
   policy_arn = aws_iam_policy.chat_lambda_permissions.arn
 }
 
-resource "aws_lambda_permission" "allow_public_invoke_function" {
-  statement_id  = "AllowPublicInvoke"
-  action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.chat.function_name
-  qualifier     = aws_lambda_alias.live.name
-  principal     = "*"
-}
-
 # ── Lambda Function ───────────────────────────────────────────────────────────
 
 data "archive_file" "placeholder" {

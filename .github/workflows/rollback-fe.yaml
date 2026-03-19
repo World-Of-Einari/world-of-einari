@@ -23,9 +23,16 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: ${{ secrets.AWS_REGION }}
 
+      - name: Validate SHA input
+        run: |
+          if ! [[ "${{ inputs.sha }}" =~ ^[0-9a-f]{7,40}$ ]]; then
+            echo "Invalid SHA: ${{ inputs.sha }}. Expected 7-40 lowercase hex characters."
+            exit 1
+          fi
+
       - name: Verify release exists in S3
         run: |
-          aws s3 ls s3://${{ secrets.S3_BUCKET }}/releases/${{ inputs.sha }}/index.html
+          aws s3 ls "s3://${{ secrets.S3_BUCKET }}/releases/${{ inputs.sha }}/index.html"
           echo "Release ${{ inputs.sha }} verified in S3"
 
       - name: Update CloudFront Function

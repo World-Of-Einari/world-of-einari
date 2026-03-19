@@ -2,7 +2,10 @@ name: Deploy Frontend
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+    paths:
+      - 'apps/web/**'
   workflow_dispatch:
 
 jobs:
@@ -20,8 +23,8 @@ jobs:
       contents: read
       pull-requests: read
 
-  deploy:
-    name: Build & Deploy to S3
+  deploy-fe:
+    name: Build & Deploy Frontend
     needs: [secret-scanning, tests]
     if: |
       github.event_name == 'workflow_dispatch' ||
@@ -31,23 +34,35 @@ jobs:
       id-token: write
       contents: read
     concurrency:
-      group: deploy-${{ github.ref_name }}
+      group: deploy-fe-${{ github.ref_name }}
       cancel-in-progress: true
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 9
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: pnpm
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+          run_install: false
+
+      - name: Get pnpm store path
+        id: pnpm-cache
+        run: echo "store=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.store }}
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -63,17 +78,51 @@ jobs:
 
       - name: Sync to S3
         run: |
-          aws s3 sync apps/web/dist/world-of-einari/browser s3://${{ secrets.S3_BUCKET }} \
-            --delete \
+          # Sync assets (immutable cache)
+          aws s3 sync apps/web/dist/world-of-einari/browser \
+            s3://${{ secrets.S3_BUCKET }}/releases/${{ github.sha }} \
             --cache-control "public, max-age=31536000, immutable" \
             --exclude "*.html"
 
-          # HTML files should not be cached aggressively
-          aws s3 sync apps/web/dist/world-of-einari/browser s3://${{ secrets.S3_BUCKET }} \
-            --delete \
+          # Sync HTML (no cache)
+          aws s3 sync apps/web/dist/world-of-einari/browser \
+            s3://${{ secrets.S3_BUCKET }}/releases/${{ github.sha }} \
             --exclude "*" \
             --include "*.html" \
             --cache-control "public, max-age=0, must-revalidate"
+
+      - name: Update CloudFront Function
+        run: |
+          # Fetch current function code
+          aws cloudfront get-function \
+            --name world-of-einari-rewrite \
+            --query 'FunctionCode' \
+            --output text > rewrite.js
+
+          # Replace the LIVE_SHA value
+          sed -i 's/var LIVE_SHA = "[^"]*"/var LIVE_SHA = "${{ github.sha }}"/' rewrite.js
+
+          # Get current ETag
+          ETAG=$(aws cloudfront describe-function \
+            --name world-of-einari-rewrite \
+            --query 'ETag' \
+            --output text)
+
+          # Update and publish
+          aws cloudfront update-function \
+            --name world-of-einari-rewrite \
+            --function-config Comment="Rewrites requests to the current live release prefix",Runtime=cloudfront-js-2.0 \
+            --function-code fileb://rewrite.js \
+            --if-match $ETAG
+
+          ETAG=$(aws cloudfront describe-function \
+            --name world-of-einari-rewrite \
+            --query 'ETag' \
+            --output text)
+
+          aws cloudfront publish-function \
+            --name world-of-einari-rewrite \
+            --if-match $ETAG
 
       - name: Invalidate CloudFront cache
         run: |

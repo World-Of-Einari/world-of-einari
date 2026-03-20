@@ -185,8 +185,8 @@ traffic routing. To roll back to a previous version:
    git push origin main
 ```
 
-2. The Deploy API workflow will trigger automatically and deploy the reverted code to `$LATEST`.
-3. Or manually trigger the Deploy API workflow via `workflow_dispatch` if you need to redeploy without a new commit.
+2. If the revert touches files under `apps/api/**`, the Deploy API workflow will trigger automatically and deploy the reverted code to `$LATEST`.
+3. If the revert does not touch `apps/api/**`, or if you need to redeploy without a new commit, manually trigger the Deploy API workflow via `workflow_dispatch`.
 
 ## If This Happens Again
 

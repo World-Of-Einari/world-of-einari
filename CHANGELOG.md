@@ -1,3 +1,10 @@
+## [1.5.7](https://github.com/World-Of-Einari/world-of-einari/compare/v1.5.6...v1.5.7) (2026-03-20)
+
+
+### Bug Fixes
+
+* remove rollback workflow and update runbook for Chat Lambda 403 incident ([218bd93](https://github.com/World-Of-Einari/world-of-einari/commit/218bd9352ef6393d9ce5e7ccc1ce1f4064fb658b))
+
 ## [1.5.6](https://github.com/World-Of-Einari/world-of-einari/compare/v1.5.5...v1.5.6) (2026-03-19)
 
 

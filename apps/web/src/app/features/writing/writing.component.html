@@ -4,10 +4,16 @@
   <div class="writing__grid">
     @for (article of articles.value(); track article.url; let i = $index) {
       <article class="writing__card" enReveal [enRevealDelay]="i * 80">
-<!--         <span class="writing__card-date">// {{ article.publishedAt | date: 'yyyy-MM-dd' }}</span> -->
+        <!--         <span class="writing__card-date">// {{ article.publishedAt | date: 'yyyy-MM-dd' }}</span> -->
         <div class="writing__card-header">
           @if (article.thumbnail) {
-            <img class="writing__card-thumb" [src]="article.thumbnail" [alt]="article.title" />
+            <img
+              class="writing__card-thumb"
+              [src]="article.thumbnail"
+              [alt]="article.title"
+              loading="lazy"
+              width="120"
+              height="80" />
           }
           <h3 class="writing__card-title">{{ article.title }}</h3>
         </div>

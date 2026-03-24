@@ -1,3 +1,15 @@
+# [1.7.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.6.0...v1.7.0) (2026-03-24)
+
+
+### Bug Fixes
+
+* **article:** update getThumbnail method to use specific item type for better type safety ([f400904](https://github.com/World-Of-Einari/world-of-einari/commit/f4009042cb6a587d11f7737ff4f542d80f2ba034))
+
+
+### Features
+
+* **writing:** enhance article display with improved thumbnail handling and lazy loading ([56ee226](https://github.com/World-Of-Einari/world-of-einari/commit/56ee22622ee0a8f1cc04d22728b8ba3e0673353f))
+
 # [1.6.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.5.7...v1.6.0) (2026-03-24)
 
 

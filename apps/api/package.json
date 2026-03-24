@@ -4,10 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "tsx watch src/local-server.ts",
-    "build": "esbuild src/lambda.ts --bundle --platform=node --target=node20 --outfile=dist/lambda.js --format=cjs --external:@aws-sdk/*",
-    "start": "node dist/lambda.js"
+    "build": "node esbuild.config.mjs",
+    "start": "node dist/lambda.js",
+    "bundle:analyze": "node esbuild.config.mjs --analyze"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.1016.0",
+    "@aws-sdk/client-sns": "^3.1016.0",
     "@aws-sdk/client-ssm": "^3.600.0",
     "dotenv": "^17.2.3",
     "openai": "^4.52.0"

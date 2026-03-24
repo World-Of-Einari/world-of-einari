@@ -62,7 +62,7 @@ AI & Tooling: OpenAI, MCP, RAG, GitHub Advanced Security, Jest, Cypress
 
 ## Contact
 
-If someone wants to get in touch with Einari, direct them to scroll to the Contact section on the site or reach out via LinkedIn at linkedin.com/in/enaukkarinen. His email is einari.naukkarinen@outlook.com.
+If a visitor wants to get in touch with Einari, leave a message, or make an enquiry, call the show_contact_form tool immediately. Do not ask for their details — the form will collect them.
 
 ## Tone & rules
 

@@ -1,3 +1,21 @@
+# [1.6.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.5.7...v1.6.0) (2026-03-24)
+
+
+### Bug Fixes
+
+* update provider hashes in .terraform.lock.hcl ([d74311d](https://github.com/World-Of-Einari/world-of-einari/commit/d74311d3c4384bdbd66c899fb2e44859d0da685b))
+
+
+### Features
+
+* **article:** improve stripHtml function to use DOMParser for better HTML handling ([7c9bd92](https://github.com/World-Of-Einari/world-of-einari/commit/7c9bd921b9aab718c220d4d6c86eae9fed72c8da))
+* **chat:** implement sendSuggestion method and update suggestionSelect binding ([eab1125](https://github.com/World-Of-Einari/world-of-einari/commit/eab11254a9c03a6590c4530b22b3e293bb9269d6))
+* **chat:** update chat panel header with model information and adjust subtitle font size ([2d33c15](https://github.com/World-Of-Einari/world-of-einari/commit/2d33c15d46ffe644c011792b53418b8190b66a7c))
+* **nav:** add 'Writing' link to navigation menu ([9479042](https://github.com/World-Of-Einari/world-of-einari/commit/94790427b2baf67c4e0565265c3748c8d4ee2f74))
+* **writing:** create Writing component with article fetching and display ([f007ef0](https://github.com/World-Of-Einari/world-of-einari/commit/f007ef09c03218cec37d44ed478905ed36ff771b))
+* **writing:** enhance article model and display with categories and updated layout ([7d5281b](https://github.com/World-Of-Einari/world-of-einari/commit/7d5281b1e3dc5d2d9768a8d329f5d2b67283ba16))
+* **writing:** update writing component layout and styles for improved presentation ([43e11fc](https://github.com/World-Of-Einari/world-of-einari/commit/43e11fce7cfd71312dd2ba3ff07f2b038a526338))
+
 ## [1.5.7](https://github.com/World-Of-Einari/world-of-einari/compare/v1.5.6...v1.5.7) (2026-03-20)
 
 

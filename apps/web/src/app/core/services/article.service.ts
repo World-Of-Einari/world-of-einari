@@ -48,7 +48,7 @@ export class ArticleService {
     return doc.body?.textContent ?? '';
   }
 
-  private getThumbnail(item: any): string | null {
+  private getThumbnail(item: MediumResponse['items'][0]): string | null {
     const url = item.thumbnail || item.description?.match(/<img[^>]+src="([^">]+)"/)?.[1] || null;
     return this.resizeMediumImage(url, 200);
   }

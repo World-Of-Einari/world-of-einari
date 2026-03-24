@@ -46,3 +46,8 @@ variable "openai_api_key" {
   default     = "PLACEHOLDER"
   sensitive   = true
 }
+
+variable "contact_notification_email" {
+  description = "Email address to receive contact request notifications"
+  type        = string
+}

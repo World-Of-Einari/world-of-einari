@@ -4,4 +4,5 @@ export interface Article {
   url: string;
   publishedAt: Date;
   thumbnail: string | null;
+  categories?: string[];
 }

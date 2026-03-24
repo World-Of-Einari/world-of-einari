@@ -17,7 +17,8 @@ interface MediumResponse {
     description: string;
     link: string;
     pubDate: string;
-    thumbnail?: string;
+    thumbnail: '';
+    categories?: string[];
   }[];
 }
 
@@ -37,6 +38,7 @@ export class ArticleService {
             item.thumbnail ||
             item.description.toString().match(/<img[^>]+src="([^">]+)"/)?.[1] ||
             null,
+          categories: item.categories,
         })
       );
     },

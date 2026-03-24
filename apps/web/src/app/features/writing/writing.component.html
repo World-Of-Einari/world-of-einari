@@ -1,5 +1,5 @@
 <section class="writing" id="writing">
-  <en-section-header label="writing" title="Medium" ghost="blog" />
+  <en-section-header label="writing" title="Industry" ghost="perspectives" />
 
   <div class="writing__grid">
     @for (article of articles.value(); track article.url; let i = $index) {
@@ -7,8 +7,14 @@
         <h3 class="writing__card-title">{{ article.title }}</h3>
         <p class="writing__card-subtitle">{{ article.subtitle }}</p>
         <img class="writing__card-image" [src]="article.thumbnail" [alt]="article.title" />
-        <a class="writing__card-link" [href]="article.url" target="_blank" rel="noopener"> Read more → </a>
-
+        <a class="writing__card-link" [href]="article.url" target="_blank" rel="noopener">
+          Read more →
+        </a>
+        <div class="writing__card-tags">
+          @for (tag of article.categories || []; track tag) {
+            <span class="writing__card-tag">{{ tag }}</span>
+          }
+        </div>
       </article>
     }
   </div>

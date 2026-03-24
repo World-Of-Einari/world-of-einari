@@ -45,12 +45,6 @@
     }
   }
 
-  &__card-body {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
   &__card-title {
     font-family: var(--font-display);
     font-weight: 800;
@@ -74,21 +68,7 @@
     object-fit: cover;
     border-radius: 4px;
     background: var(--border);
-  }
-
-  &__card-desc {
-    font-size: 15px;
-    color: var(--muted);
-    line-height: 1.7;
-    margin: 0;
-
-    > p {
-      margin: 0 0 12px;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
+    filter: grayscale(0.6);
   }
 
   &__card-tags {

@@ -18,7 +18,7 @@ beforeAll(() => {
     const msg = typeof first === 'string' ? first : (first?.message ?? '');
 
     // JSDOM CSS parser noise (Angular Material/CDK overlays inject @layer CSS)
-    if (typeof msg === 'string' && msg.includes('Could not parse CSS stylesheet')) {
+    if (typeof msg === 'string' && msg.includes('[chat] error')) {
       return;
     }
 

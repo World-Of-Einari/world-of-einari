@@ -35,7 +35,7 @@
   <en-chat-messages
     [messages]="messages()"
     [loading]="loading()"
-    (suggestionSelect)="inputValue.set($event)" />
+    (suggestionSelect)="sendSuggestion($event)" />
 
   <en-chat-input
     [value]="inputValue()"

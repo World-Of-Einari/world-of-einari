@@ -4,7 +4,6 @@ import { ChatFabComponent } from './components/chat-fab/chat-fab.component';
 import { ChatInputComponent } from './components/chat-input/chat-input.component';
 import { ChatMessage } from './types/chat-message.interface';
 
-
 @Component({
   selector: 'en-chat',
   standalone: true,
@@ -23,18 +22,18 @@ export class ChatComponent implements OnDestroy {
   private readonly chatMessages = viewChild(ChatMessagesComponent);
   private abortController: AbortController | null = null;
 
-  toggle(): void {
+  toggle() {
     this.isOpen.update((v) => !v);
     if (this.isOpen()) {
       this.hasUnread.set(false);
     }
   }
 
-  close(): void {
+  close() {
     this.isOpen.set(false);
   }
 
-  async send(): Promise<void> {
+  async send() {
     const message = this.inputValue().trim();
     if (!message || this.loading()) return;
 
@@ -99,7 +98,12 @@ export class ChatComponent implements OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
+  sendSuggestion(suggestion: string) {
+    this.inputValue.set(suggestion);
+    this.send();
+  }
+
+  ngOnDestroy() {
     this.abortController?.abort();
   }
 }

@@ -45,6 +45,9 @@ export class ArticleService {
   });
 }
 
+// DOMParser is browser-only — safe here as WritingService is client-side
 function stripHtml(html: string): string {
-  return html.replace(/<[^>]*>/g, '');
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+  return doc.body?.textContent ?? '';
 }

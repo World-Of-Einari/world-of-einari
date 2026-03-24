@@ -31,23 +31,35 @@ export class ArticleService {
       return json.items.map(
         (item): Article => ({
           title: item.title,
-          subtitle: stripHtml(item.description),
+          subtitle: this.stripHtml(item.description),
           url: item.link,
           publishedAt: new Date(item.pubDate),
-          thumbnail:
-            item.thumbnail ||
-            item.description.toString().match(/<img[^>]+src="([^">]+)"/)?.[1] ||
-            null,
+          thumbnail: this.getThumbnail(item),
           categories: item.categories,
         })
       );
     },
   });
-}
 
-// DOMParser is browser-only — safe here as WritingService is client-side
-function stripHtml(html: string): string {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(html, 'text/html');
-  return doc.body?.textContent ?? '';
+  // DOMParser is browser-only — safe here as WritingService is client-side
+  private stripHtml(html: string): string {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    return doc.body?.textContent ?? '';
+  }
+
+  private getThumbnail(item: any): string | null {
+    const url = item.thumbnail || item.description?.match(/<img[^>]+src="([^">]+)"/)?.[1] || null;
+    return this.resizeMediumImage(url, 200);
+  }
+
+  private resizeMediumImage(url: string | null, size: number): string | null {
+    if (!url) return null;
+    // Handle old format: /max/1024/filename
+    if (url.includes('/max/')) {
+      return url.replace(/\/max\/\d+\//, `/v2/resize:fit:${size}/`);
+    }
+    // Handle new format: /v2/resize:fit:1024/filename
+    return url.replace(/resize:fit:\d+/, `resize:fit:${size}`);
+  }
 }

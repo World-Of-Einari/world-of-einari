@@ -55,6 +55,16 @@ exports[`NavComponent should match snapshot 1`] = `
       >
         <a
           class="nav__link"
+          href="#writing"
+        >
+          Writing
+        </a>
+      </li>
+      <li
+        class="nav__item"
+      >
+        <a
+          class="nav__link"
           href="#contact"
         >
           Contact

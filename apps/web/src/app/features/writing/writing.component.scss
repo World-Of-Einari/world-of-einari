@@ -2,7 +2,7 @@
   position: relative;
   z-index: 1;
   padding: 120px 60px;
-  background: var(--surface);
+  background: var(--black);
   border-top: 1px solid var(--border);
 
   &__grid {
@@ -45,6 +45,36 @@
     }
   }
 
+  &__card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__card-header-right {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+  }
+
+  &__card-date {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+  }
+
+  &__card-thumb {
+    width: 120px;
+    min-height: 80px;
+    height: 100%;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+    filter: grayscale(0.6);
+  }
+
   &__card-title {
     font-family: var(--font-display);
     font-weight: 800;
@@ -60,15 +90,11 @@
     color: var(--muted);
     line-height: 1.5;
     margin: 0;
-  }
-
-  &__card-image {
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 4px;
-    background: var(--border);
-    filter: grayscale(0.6);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-clamp: 3;
+    overflow: hidden;
   }
 
   &__card-tags {
@@ -104,80 +130,29 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     text-decoration: none;
-    margin-top: 4px;
+    margin-top: auto;
     transition: gap 0.2s ease;
 
     &:hover {
       gap: 14px;
     }
   }
-
-  &__card-visual {
-    background: linear-gradient(135deg, var(--border) 0%, var(--surface) 100%);
-    padding: 32px;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    min-height: 160px;
-    justify-content: center;
-
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, var(--cyan-glow) 0%, transparent 70%);
-    }
-  }
-
-  &__visual-comment {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    color: rgba(0, 229, 255, 0.3);
-    margin: 0 0 8px;
-    position: relative;
-  }
-
-  &__visual-line {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    color: rgba(0, 229, 255, 0.6);
-    margin: 0;
-    display: flex;
-    gap: 8px;
-    position: relative;
-  }
-
-  &__visual-key {
-    color: rgba(0, 229, 255, 0.5);
-  }
-
-  &__visual-val {
-    color: var(--cyan);
-  }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .writing {
     padding: 80px 24px;
 
     &__card {
-      padding: 1rem;
+      padding: 1.25rem;
     }
 
     &__card-title {
-      font-size: 1.5rem;
+      font-size: 1rem;
     }
 
     &__grid {
       grid-template-columns: 1fr;
-    }
-
-    &__card--featured {
-      grid-column: span 1;
-      grid-template-columns: 1fr;
-      gap: 32px;
     }
   }
 }

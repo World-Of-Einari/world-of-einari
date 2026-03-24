@@ -31,7 +31,7 @@ export class ArticleService {
       return json.items.map(
         (item): Article => ({
           title: item.title,
-          subtitle: stripHtml(item.description).slice(0, 160).trim() + '...',
+          subtitle: stripHtml(item.description),
           url: item.link,
           publishedAt: new Date(item.pubDate),
           thumbnail:

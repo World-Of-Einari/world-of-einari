@@ -1,20 +1,25 @@
 <section class="writing" id="writing">
-  <en-section-header label="writing" title="Industry" ghost="perspectives" />
+  <en-section-header label="writing" title="Field" ghost="notes" />
 
   <div class="writing__grid">
     @for (article of articles.value(); track article.url; let i = $index) {
       <article class="writing__card" enReveal [enRevealDelay]="i * 80">
-        <h3 class="writing__card-title">{{ article.title }}</h3>
+<!--         <span class="writing__card-date">// {{ article.publishedAt | date: 'yyyy-MM-dd' }}</span> -->
+        <div class="writing__card-header">
+          @if (article.thumbnail) {
+            <img class="writing__card-thumb" [src]="article.thumbnail" [alt]="article.title" />
+          }
+          <h3 class="writing__card-title">{{ article.title }}</h3>
+        </div>
         <p class="writing__card-subtitle">{{ article.subtitle }}</p>
-        <img class="writing__card-image" [src]="article.thumbnail" [alt]="article.title" />
-        <a class="writing__card-link" [href]="article.url" target="_blank" rel="noopener">
-          Read more →
-        </a>
         <div class="writing__card-tags">
           @for (tag of article.categories || []; track tag) {
             <span class="writing__card-tag">{{ tag }}</span>
           }
         </div>
+        <a class="writing__card-link" [href]="article.url" target="_blank" rel="noopener">
+          Read more →
+        </a>
       </article>
     }
   </div>

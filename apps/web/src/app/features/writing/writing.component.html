@@ -1,0 +1,15 @@
+<section class="writing" id="writing">
+  <en-section-header label="writing" title="Medium" ghost="blog" />
+
+  <div class="writing__grid">
+    @for (article of articles.value(); track article.url; let i = $index) {
+      <article class="writing__card" enReveal [enRevealDelay]="i * 80">
+        <h3 class="writing__card-title">{{ article.title }}</h3>
+        <p class="writing__card-subtitle">{{ article.subtitle }}</p>
+        <img class="writing__card-image" [src]="article.thumbnail" [alt]="article.title" />
+        <a class="writing__card-link" [href]="article.url" target="_blank" rel="noopener"> Read more → </a>
+
+      </article>
+    }
+  </div>
+</section>

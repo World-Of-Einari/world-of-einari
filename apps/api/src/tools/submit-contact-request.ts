@@ -17,7 +17,7 @@ export async function submitContactRequest(args: ContactRequest): Promise<void> 
   const id = randomUUID();
   const createdAt = new Date().toISOString();
 
-  if (process.env['OPENAI_API_KEY']) {
+  if (process.env['NODE_ENV'] !== 'production') {
     console.log('[contact] local dev — skipping DynamoDB/SNS');
     console.log(`[contact] id: ${id}`);
     console.log(`[contact] name: ${args.name}`);

@@ -3,6 +3,7 @@ import { Writable } from 'stream';
 import { handleChat, ChatRequestBody } from './core/handle-chat';
 import { corsHeaders } from './core/cors';
 import { resolveHttpError } from './core/errors';
+import { logger } from './core/logger';
 
 declare const awslambda: {
   streamifyResponse: (
@@ -61,7 +62,7 @@ export const handler = awslambda.streamifyResponse(async (event, responseStream)
       }),
     );
   } catch (err) {
-    console.error('[lambda] error:', err);
+    logger.error('[lambda] error:', err);
     const { statusCode, message } = resolveHttpError(err);
     awslambda.HttpResponseStream.from(responseStream, {
       statusCode,

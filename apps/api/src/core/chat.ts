@@ -3,6 +3,7 @@ import { tools } from '../tools/definitions';
 import { submitContactRequest } from '../tools/submit-contact-request';
 import { getShowContactFormHeader } from '../tools/show-contact-form';
 import { SYSTEM_PROMPT } from './system-prompt';
+import { logger } from './logger';
 
 /**
  * Builds the message array for an OpenAI request.
@@ -119,6 +120,7 @@ export async function runChat(
 
   if (toolResult) {
     const { toolCall, assistantMessage } = toolResult;
+    logger.info('tool_call', { tool: toolResult.toolCall.function.name });
 
     if (toolCall.function.name === 'show_contact_form') {
       const stream = getStream(getShowContactFormHeader());

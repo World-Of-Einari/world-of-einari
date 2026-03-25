@@ -3,6 +3,7 @@ import { getOpenAiKey } from './ssm';
 import { isRateLimited } from './rate-limit';
 import { verifyOriginSecret } from './cors';
 import { runChat } from './chat';
+import { logger } from './logger';
 
 export interface Message {
   role: 'user' | 'assistant';
@@ -26,11 +27,14 @@ export async function handleChat(
   getStream: (extraHeaders: Record<string, string>) => NodeJS.WritableStream,
 ): Promise<void> {
   if (!verifyOriginSecret(headers)) {
+    logger.warn('forbidden_request', { ip: headers['x-forwarded-for'] });
     throw new Error('Forbidden');
   }
 
   const ip = headers['x-forwarded-for']?.split(',')[0].trim() ?? 'unknown';
+
   if (isRateLimited(ip)) {
+    logger.warn('rate_limited', { ip });
     throw new Error('Rate limited');
   }
 
@@ -39,6 +43,8 @@ export async function handleChat(
   if (!message?.trim()) {
     throw new Error('Message is required');
   }
+
+  logger.info('chat_request', { ip, historyLength: history.length });
 
   const apiKey = await getOpenAiKey();
   const openai = new OpenAI({ apiKey });

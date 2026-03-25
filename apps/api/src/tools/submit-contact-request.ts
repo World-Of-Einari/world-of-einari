@@ -1,6 +1,7 @@
 import { DynamoDBClient, PutItemCommand } from '@aws-sdk/client-dynamodb';
 import { SNSClient, PublishCommand } from '@aws-sdk/client-sns';
 import { randomUUID } from 'crypto';
+import { logger } from '../core/logger';
 
 export interface ContactRequest {
   name: string;
@@ -18,12 +19,12 @@ export async function submitContactRequest(args: ContactRequest): Promise<void> 
   const createdAt = new Date().toISOString();
 
   if (process.env['NODE_ENV'] !== 'production') {
-    console.log('[contact] local dev — skipping DynamoDB/SNS');
-    console.log(`[contact] id: ${id}`);
-    console.log(`[contact] name: ${args.name}`);
-    console.log(`[contact] email: ${args.email}`);
-    console.log(`[contact] message: ${args.message}`);
-    console.log(`[contact] createdAt: ${createdAt}`);
+    logger.info('[submitContactRequest] local dev — skipping DynamoDB/SNS');
+    logger.info(`[submitContactRequest] id: ${id}`);
+    logger.info(`[submitContactRequest] name: ${args.name}`);
+    logger.info(`[submitContactRequest] email: ${args.email}`);
+    logger.info(`[submitContactRequest] message: ${args.message}`);
+    logger.info(`[submitContactRequest] createdAt: ${createdAt}`);
     return;
   }
 
@@ -55,4 +56,6 @@ export async function submitContactRequest(args: ContactRequest): Promise<void> 
       ].join('\n'),
     }),
   );
+
+  logger.info('contact_submitted', { id });
 }

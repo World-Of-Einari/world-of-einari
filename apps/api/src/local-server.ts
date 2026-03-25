@@ -9,6 +9,7 @@ import express, { Request, Response } from 'express';
 import { handleChat, ChatRequestBody } from './core/handle-chat';
 import { corsHeaders } from './core/cors.js';
 import { resolveHttpError } from './core/errors.js';
+import { logger } from './core/logger';
 
 const app = express();
 const PORT = process.env['PORT'] ?? 3001;
@@ -36,7 +37,7 @@ app.post('/chat', async (req: Request, res: Response) => {
       return res;
     });
   } catch (err: unknown) {
-    console.error('[local] error:', err);
+    logger.error('[local-server] error:', err);
     if (!res.writableEnded) {
       const { statusCode, message } = resolveHttpError(err);
       res.status(statusCode).end(message);
@@ -47,8 +48,10 @@ app.post('/chat', async (req: Request, res: Response) => {
 app.get('/health', (_, res) => res.json({ status: 'ok' }));
 
 app.listen(PORT, () => {
-  console.log(`[api] local dev server running at http://localhost:${PORT}`);
+  console.log(`\n[local-server] local dev server ready`);
+  console.log(`[local-server] http://localhost:${PORT}`);
   console.log(
-    `[api] OpenAI key: ${process.env['OPENAI_API_KEY'] ? '✓ found in env' : '✗ missing — add to .env'}`,
+    `[local-server] OpenAI key: ${process.env['OPENAI_API_KEY'] ? '✓' : '✗ missing — add to .env'}`,
   );
+  console.log(`[local-server] NODE_ENV: ${process.env['NODE_ENV'] ?? 'development'}\n`);
 });

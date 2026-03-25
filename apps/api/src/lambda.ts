@@ -2,7 +2,6 @@ import { APIGatewayProxyEventV2 } from 'aws-lambda';
 import { corsHeaders, handleChat, ChatRequestBody } from './handler';
 import { Writable } from 'stream';
 
-// awslambda.streamifyResponse is injected by the Lambda runtime
 declare const awslambda: {
   streamifyResponse: (
     handler: (event: APIGatewayProxyEventV2, responseStream: Writable) => Promise<void>,
@@ -18,7 +17,6 @@ declare const awslambda: {
 export const handler = awslambda.streamifyResponse(async (event, responseStream) => {
   const method = event.requestContext.http.method.toUpperCase();
 
-  // Handle CORS preflight
   if (method === 'OPTIONS') {
     const stream = awslambda.HttpResponseStream.from(responseStream, {
       statusCode: 200,
@@ -51,21 +49,24 @@ export const handler = awslambda.streamifyResponse(async (event, responseStream)
 
   const headers = event.headers as Record<string, string | undefined>;
 
+  // responseHeaders is populated by handleChat before streaming begins
+  const responseHeaders: Record<string, string> = {};
+
   const tokenStream = awslambda.HttpResponseStream.from(responseStream, {
     statusCode: 200,
     headers: {
       ...corsHeaders,
+      ...responseHeaders,
       'Content-Type': 'text/plain; charset=utf-8',
       'X-Accel-Buffering': 'no',
     },
   });
 
   try {
-    await handleChat(body, headers, tokenStream);
+    await handleChat(body, headers, tokenStream, responseHeaders);
   } catch (err) {
     console.error('[lambda] handler error:', err);
 
-    // If no data has been written yet, we can still change the status code
     if (!tokenStream.writableEnded && (tokenStream as any).writableLength === 0) {
       const e = err as any;
       let statusCode = 500;
@@ -98,7 +99,6 @@ export const handler = awslambda.streamifyResponse(async (event, responseStream)
       return;
     }
 
-    // If some data was already written, just ensure the stream is closed
     if (!tokenStream.writableEnded) tokenStream.end();
   }
 });

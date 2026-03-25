@@ -1,6 +1,9 @@
 import { APIGatewayProxyEventV2 } from 'aws-lambda';
 import { Writable } from 'stream';
-import { handleChat, ChatRequestBody } from './core/handle-chat';
+
+import { ChatRequestBody } from '@einarinau/chat-types';
+
+import { handleChat } from './core/handle-chat';
 import { corsHeaders } from './core/cors';
 import { resolveHttpError } from './core/errors';
 import { logger } from './core/logger';

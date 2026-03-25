@@ -16,13 +16,16 @@ importers:
     dependencies:
       '@aws-sdk/client-dynamodb':
         specifier: ^3.1016.0
-        version: 3.1016.0
+        version: 3.1017.0
       '@aws-sdk/client-sns':
         specifier: ^3.1016.0
-        version: 3.1016.0
+        version: 3.1017.0
       '@aws-sdk/client-ssm':
         specifier: ^3.600.0
-        version: 3.1016.0
+        version: 3.1017.0
+      '@einarinau/chat-types':
+        specifier: workspace:^
+        version: link:../../packages/chat-types
       dotenv:
         specifier: ^17.2.3
         version: 17.3.1
@@ -81,6 +84,9 @@ importers:
       '@angular/router':
         specifier: ^20.2.14
         version: 20.3.18(@angular/common@20.3.18(@angular/core@20.3.18(@angular/compiler@20.3.18)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.3.18(@angular/compiler@20.3.18)(rxjs@7.8.2))(@angular/platform-browser@20.3.18(@angular/common@20.3.18(@angular/core@20.3.18(@angular/compiler@20.3.18)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.3.18(@angular/compiler@20.3.18)(rxjs@7.8.2)))(rxjs@7.8.2)
+      '@einarinau/chat-types':
+        specifier: workspace:^
+        version: link:../../packages/chat-types
       '@ngrx/effects':
         specifier: ^20.0.0
         version: 20.1.0(@angular/core@20.3.18(@angular/compiler@20.3.18)(rxjs@7.8.2))(@ngrx/store@20.1.0(@angular/core@20.3.18(@angular/compiler@20.3.18)(rxjs@7.8.2))(rxjs@7.8.2))(rxjs@7.8.2)
@@ -172,6 +178,8 @@ importers:
       typescript-eslint:
         specifier: 8.56.0
         version: 8.56.0(eslint@9.39.4)(typescript@5.9.3)
+
+  packages/chat-types: {}
 
 packages:
 
@@ -447,16 +455,16 @@ packages:
   '@aws-crypto/util@5.2.0':
     resolution: {integrity: sha512-4RkU9EsI6ZpBve5fseQlGNUWKMa1RLPQ1dnjnQoe07ldfIzcsGb5hC5W0Dm7u423KWzawlrpbjXBrXCEv9zazQ==}
 
-  '@aws-sdk/client-dynamodb@3.1016.0':
-    resolution: {integrity: sha512-Owy1wQEJuLQ1WAc7QUQQ+3vSPWY6/JWBsPEDn9GM2F3+vDAtPL/HrZlfpY2BMeo6lxhm3/PfTg9wGy/TmK6buw==}
+  '@aws-sdk/client-dynamodb@3.1017.0':
+    resolution: {integrity: sha512-qHP8f3MKTZTW13EknRzQZ9K14FLziSOWgymJNRyBLyzerBqeJN9xJII+dHmphQ9+yEo9zISZEzGyI2LbE4Smnw==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/client-sns@3.1016.0':
-    resolution: {integrity: sha512-c3JbvZuabXXZBVmx5ItUKoQ73zBGVTdHjuj7HQFXilA3zYl0QFEmUPZfpppXYYNun7wbHoWielJ0KvBSh/o/Ag==}
+  '@aws-sdk/client-sns@3.1017.0':
+    resolution: {integrity: sha512-TmVvpqmm0uTEUYoavgYgkW4N7EQlAIl9noeSe+gjHwAubcKyt1NBPk3PBspzX9NHkUql1WHDPRxz7gYkN60J5w==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/client-ssm@3.1016.0':
-    resolution: {integrity: sha512-9qb58Utss0lJGAcQxftSQ1OY5Dm2aKtn/aBdV2ProFRkyQuxOWJsKMmAAqOpMYnQBEgs6k/ArvBZjQIESrsxfg==}
+  '@aws-sdk/client-ssm@3.1017.0':
+    resolution: {integrity: sha512-aKIhGfyRiGoSCIHPJQS18pF9xQLygkhA0alJCfy9b5+uy7ird37qW9S5vSVP5sMbW47J/WTf7DK9FGPu/i2LSA==}
     engines: {node: '>=20.0.0'}
 
   '@aws-sdk/core@3.973.24':
@@ -2953,8 +2961,8 @@ packages:
   ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
-  electron-to-chromium@1.5.322:
-    resolution: {integrity: sha512-vFU34OcrvMcH66T+dYC3G4nURmgfDVewMIu6Q2urXpumAPSMmzvcn04KVVV8Opikq8Vs5nUbO/8laNhNRqSzYw==}
+  electron-to-chromium@1.5.325:
+    resolution: {integrity: sha512-PwfIw7WQSt3xX7yOf5OE/unLzsK9CaN2f/FvV3WjPR1Knoc1T9vePRVV4W1EM301JzzysK51K7FNKcusCr0zYA==}
 
   emittery@0.13.1:
     resolution: {integrity: sha512-DeWwawk6r5yR9jFgnDKYt4sLS0LmHJJi3ZOnb5/JdbYwj3nW+FxQnHIjhBKz8YLC7oRNPVM9NQ47I3CVx34eqQ==}
@@ -4006,9 +4014,9 @@ packages:
     resolution: {integrity: sha512-2d0q2a8eCi2IRg/IGubCNRJoYbA1+YPXAzQVRFmB45gdGZafyivnZ5YSEfo3JikbjGxOdntGFvBQGqaSMXlAFQ==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
-  minipass-flush@1.0.5:
-    resolution: {integrity: sha512-JmQSYYpPUqX5Jyn1mXaRwOda1uQ8HP5KAT/oDSLCzt1BYRhQU0/hDtsB1ufZfEEzMZ9aAVmsBw8+FWsIXlClWw==}
-    engines: {node: '>= 8'}
+  minipass-flush@1.0.6:
+    resolution: {integrity: sha512-7Uf5gMJZ2kTkFisE3toGxT991s+cg+vMh42nbZGM2bNxfYVpkpqRudf1QrcOy72a3PwcL4JYqL+4NY7t0Hdd0A==}
+    engines: {node: '>=16 || 14 >=14.17'}
 
   minipass-pipeline@1.2.4:
     resolution: {integrity: sha512-xuIq7cIOt09RPRJ19gdi4b+RiNvDFYe5JH+ggNvBqGqpQXcru3PcRmOZuHBKWK1Txf9+cQ+HMVN4d6z46LZP7A==}
@@ -5486,7 +5494,7 @@ snapshots:
       '@smithy/util-utf8': 2.3.0
       tslib: 2.8.1
 
-  '@aws-sdk/client-dynamodb@3.1016.0':
+  '@aws-sdk/client-dynamodb@3.1017.0':
     dependencies:
       '@aws-crypto/sha256-browser': 5.2.0
       '@aws-crypto/sha256-js': 5.2.0
@@ -5533,7 +5541,7 @@ snapshots:
     transitivePeerDependencies:
       - aws-crt
 
-  '@aws-sdk/client-sns@3.1016.0':
+  '@aws-sdk/client-sns@3.1017.0':
     dependencies:
       '@aws-crypto/sha256-browser': 5.2.0
       '@aws-crypto/sha256-js': 5.2.0
@@ -5577,7 +5585,7 @@ snapshots:
     transitivePeerDependencies:
       - aws-crt
 
-  '@aws-sdk/client-ssm@3.1016.0':
+  '@aws-sdk/client-ssm@3.1017.0':
     dependencies:
       '@aws-crypto/sha256-browser': 5.2.0
       '@aws-crypto/sha256-js': 5.2.0
@@ -8042,7 +8050,7 @@ snapshots:
     dependencies:
       baseline-browser-mapping: 2.10.10
       caniuse-lite: 1.0.30001781
-      electron-to-chromium: 1.5.322
+      electron-to-chromium: 1.5.325
       node-releases: 2.0.36
       update-browserslist-db: 1.2.3(browserslist@4.28.1)
 
@@ -8066,7 +8074,7 @@ snapshots:
       lru-cache: 11.2.7
       minipass: 7.1.3
       minipass-collect: 2.0.1
-      minipass-flush: 1.0.5
+      minipass-flush: 1.0.6
       minipass-pipeline: 1.2.4
       p-map: 7.0.4
       ssri: 13.0.1
@@ -8326,7 +8334,7 @@ snapshots:
 
   ee-first@1.1.1: {}
 
-  electron-to-chromium@1.5.322: {}
+  electron-to-chromium@1.5.325: {}
 
   emittery@0.13.1: {}
 
@@ -9700,7 +9708,7 @@ snapshots:
       http-cache-semantics: 4.2.0
       minipass: 7.1.3
       minipass-fetch: 5.0.2
-      minipass-flush: 1.0.5
+      minipass-flush: 1.0.6
       minipass-pipeline: 1.2.4
       negotiator: 1.0.0
       proc-log: 6.1.0
@@ -9777,9 +9785,9 @@ snapshots:
     optionalDependencies:
       iconv-lite: 0.7.2
 
-  minipass-flush@1.0.5:
+  minipass-flush@1.0.6:
     dependencies:
-      minipass: 3.3.6
+      minipass: 7.1.3
 
   minipass-pipeline@1.2.4:
     dependencies:

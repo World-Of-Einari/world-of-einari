@@ -1,26 +1,57 @@
 import OpenAI from 'openai';
-import { tools } from './tools';
-import { submitContactRequest } from './contact';
+import { tools } from '../tools/definitions';
+import { submitContactRequest } from '../tools/submit-contact-request';
+import { getShowContactFormHeader } from '../tools/show-contact-form';
+import { SYSTEM_PROMPT } from './system-prompt';
 
 /**
- * Builds the base message array for an OpenAI request
- * from the system prompt, conversation history, and current message.
+ * Builds the message array for an OpenAI request.
  */
 function buildMessages(
-  systemPrompt: string,
   history: OpenAI.Chat.Completions.ChatCompletionMessageParam[],
   message: string,
 ): OpenAI.Chat.Completions.ChatCompletionMessageParam[] {
   return [
-    { role: 'system', content: systemPrompt },
+    { role: 'system', content: SYSTEM_PROMPT },
     ...history.slice(-10),
     { role: 'user', content: message },
   ];
 }
 
 /**
- * Streams a follow-up OpenAI response after a tool call has been handled.
- * Sends the tool result back to the model so it can generate a confirmation.
+ * Makes a non-streaming OpenAI request to detect whether the model
+ * wants to invoke a tool before the response stream is opened.
+ */
+async function detectToolCall(
+  openai: OpenAI,
+  messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[],
+): Promise<{
+  toolCall: OpenAI.Chat.Completions.ChatCompletionMessageToolCall;
+  assistantMessage: OpenAI.Chat.Completions.ChatCompletionMessage;
+} | null> {
+  const response = await openai.chat.completions.create({
+    model: 'gpt-4o',
+    max_tokens: 512,
+    stream: false,
+    messages,
+    tools,
+    tool_choice: 'auto',
+  });
+
+  const choice = response.choices[0];
+
+  if (choice.finish_reason === 'tool_calls' && choice.message.tool_calls?.length) {
+    return {
+      toolCall: choice.message.tool_calls[0],
+      assistantMessage: choice.message,
+    };
+  }
+
+  return null;
+}
+
+/**
+ * Streams a follow-up response after a tool call has been handled.
  */
 async function streamToolFollowUp(
   openai: OpenAI,
@@ -48,54 +79,9 @@ async function streamToolFollowUp(
 }
 
 /**
- * Handles a tool call returned by the model.
- * - show_contact_form: signals the client via response headers, streams acknowledgement
- * - submit_contact_request: persists the contact request, streams confirmation
- *
- * @returns the tool action name if a UI action should be triggered, null otherwise
+ * Streams a normal conversational response.
  */
-export async function handleToolCall(
-  openai: OpenAI,
-  toolCall: OpenAI.Chat.Completions.ChatCompletionMessageToolCall,
-  assistantMessage: OpenAI.Chat.Completions.ChatCompletionMessage,
-  messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[],
-  responseStream: NodeJS.WritableStream,
-): Promise<string | null> {
-  const { name, arguments: rawArgs } = toolCall.function;
-
-  if (name === 'show_contact_form') {
-    await streamToolFollowUp(
-      openai,
-      messages,
-      assistantMessage,
-      toolCall.id,
-      'Contact form displayed to user',
-      responseStream,
-    );
-    return 'show_contact_form';
-  }
-
-  if (name === 'submit_contact_request') {
-    const args = JSON.parse(rawArgs);
-    await submitContactRequest(args);
-    await streamToolFollowUp(
-      openai,
-      messages,
-      assistantMessage,
-      toolCall.id,
-      'Contact request submitted successfully',
-      responseStream,
-    );
-    return null;
-  }
-
-  return null;
-}
-
-/**
- * Streams a normal conversational response from the model.
- */
-export async function streamResponse(
+async function streamResponse(
   openai: OpenAI,
   messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[],
   responseStream: NodeJS.WritableStream,
@@ -116,38 +102,56 @@ export async function streamResponse(
 }
 
 /**
- * Orchestrates a single chat turn.
- * First makes a non-streaming request to detect tool calls,
- * then either handles the tool or falls through to streaming.
+ * Runs a single chat turn.
  *
- * @returns the tool action name if a UI action should be triggered, null otherwise
+ * Detects tool calls before opening the response stream so all
+ * response headers are known upfront. The getStream factory is
+ * called with any extra headers once tool detection is complete.
  */
 export async function runChat(
   openai: OpenAI,
-  systemPrompt: string,
   history: OpenAI.Chat.Completions.ChatCompletionMessageParam[],
   message: string,
-  responseStream: NodeJS.WritableStream,
-): Promise<string | null> {
-  const messages = buildMessages(systemPrompt, history, message);
+  getStream: (extraHeaders: Record<string, string>) => NodeJS.WritableStream,
+): Promise<void> {
+  const messages = buildMessages(history, message);
+  const toolResult = await detectToolCall(openai, messages);
 
-  const response = await openai.chat.completions.create({
-    model: 'gpt-4o',
-    max_tokens: 512,
-    stream: false,
-    messages,
-    tools,
-    tool_choice: 'auto',
-  });
+  if (toolResult) {
+    const { toolCall, assistantMessage } = toolResult;
 
-  const choice = response.choices[0];
+    if (toolCall.function.name === 'show_contact_form') {
+      const stream = getStream(getShowContactFormHeader());
+      await streamToolFollowUp(
+        openai,
+        messages,
+        assistantMessage,
+        toolCall.id,
+        'Contact form displayed to user',
+        stream,
+      );
+      stream.end();
+      return;
+    }
 
-  if (choice.finish_reason === 'tool_calls' && choice.message.tool_calls?.length) {
-    const toolCall = choice.message.tool_calls[0];
-    return handleToolCall(openai, toolCall, choice.message, messages, responseStream);
+    if (toolCall.function.name === 'submit_contact_request') {
+      const args = JSON.parse(toolCall.function.arguments);
+      await submitContactRequest(args);
+      const stream = getStream({});
+      await streamToolFollowUp(
+        openai,
+        messages,
+        assistantMessage,
+        toolCall.id,
+        'Contact request submitted successfully',
+        stream,
+      );
+      stream.end();
+      return;
+    }
   }
 
-  // No tool call — stream a normal response
-  await streamResponse(openai, messages, responseStream);
-  return null;
+  const stream = getStream({});
+  await streamResponse(openai, messages, stream);
+  stream.end();
 }

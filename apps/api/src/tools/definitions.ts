@@ -2,7 +2,7 @@ import OpenAI from 'openai';
 
 /**
  * Tool definitions passed to the OpenAI API on every request.
- * - show_contact_form: client-side UI trigger, no server execution
+ * - show_contact_form: client-side UI trigger
  * - submit_contact_request: writes to DynamoDB and publishes to SNS
  */
 export const tools: OpenAI.Chat.Completions.ChatCompletionTool[] = [

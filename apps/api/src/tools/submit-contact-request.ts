@@ -11,13 +11,24 @@ export interface ContactRequest {
 /**
  * Persists a contact request to DynamoDB and publishes
  * an SNS notification to the configured topic.
+ * In local development, logs to console instead of hitting AWS.
  */
 export async function submitContactRequest(args: ContactRequest): Promise<void> {
-  const dynamo = new DynamoDBClient({});
-  const sns = new SNSClient({});
-
   const id = randomUUID();
   const createdAt = new Date().toISOString();
+
+  if (process.env['OPENAI_API_KEY']) {
+    console.log('[contact] local dev — skipping DynamoDB/SNS');
+    console.log(`[contact] id: ${id}`);
+    console.log(`[contact] name: ${args.name}`);
+    console.log(`[contact] email: ${args.email}`);
+    console.log(`[contact] message: ${args.message}`);
+    console.log(`[contact] createdAt: ${createdAt}`);
+    return;
+  }
+
+  const dynamo = new DynamoDBClient({});
+  const sns = new SNSClient({});
 
   await dynamo.send(
     new PutItemCommand({

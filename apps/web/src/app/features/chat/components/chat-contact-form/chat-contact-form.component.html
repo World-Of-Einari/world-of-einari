@@ -1,0 +1,36 @@
+@if (formOpen()) {
+  <div class="ccf__confirmed">
+    <p class="ccf__confirmed__label">// MESSAGE_SENT</p>
+  </div>
+} @else {
+  <form class="ccf" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <p class="ccf__label">// CONTACT_FORM</p>
+    <div class="ccf__field">
+      <label class="ccf__field-label">Name</label>
+      <input
+        class="ccf__input"
+        type="text"
+        formControlName="name"
+        placeholder="Your name"
+        autocomplete="name" />
+    </div>
+    <div class="ccf__field">
+      <label class="ccf__field-label">Email</label>
+      <input
+        class="ccf__input"
+        type="email"
+        formControlName="email"
+        placeholder="your@email.com"
+        autocomplete="email" />
+    </div>
+    <div class="ccf__field">
+      <label class="ccf__field-label">Message</label>
+      <textarea
+        class="ccf__input ccf__input--textarea"
+        formControlName="message"
+        placeholder="What's on your mind?"
+        rows="3"></textarea>
+    </div>
+    <button class="ccf__submit" type="submit" [disabled]="form.invalid">Send →</button>
+  </form>
+}

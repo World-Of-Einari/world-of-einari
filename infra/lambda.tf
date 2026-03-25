@@ -21,6 +21,7 @@ resource "aws_lambda_function" "chat" {
 
   environment {
     variables = {
+      NODE_ENV              = "production"
       SSM_PARAMETER_NAME    = aws_ssm_parameter.openai_api_key.name
       ALLOWED_ORIGIN        = "https://einarinau.com"
       ORIGIN_VERIFY_SECRET  = var.origin_verify_secret

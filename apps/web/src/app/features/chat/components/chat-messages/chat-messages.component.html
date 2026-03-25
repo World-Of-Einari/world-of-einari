@@ -23,23 +23,24 @@
     </div>
   }
 
-  @for (msg of messages(); track $index; let i = $index) {
-    <div
-      class="cm__message"
-      [class.cm__message--user]="msg.role === 'user'"
-      [class.cm__message--assistant]="msg.role === 'assistant'"
-      [style.animation-delay]="i * 0.04 + 's'">
-      <div class="cm__bubble">
-        @if (msg.role === 'assistant' && msg.content === '' && loading()) {
-          <span class="cm__typing">
-            <span></span><span></span><span></span>
-          </span>
-        } @else {
-          {{ msg.content }}
-        }
-      </div>
+ @for (msg of messages(); track $index; let i = $index) {
+  <div
+    class="cm__message"
+    [class.cm__message--user]="msg.role === 'user'"
+    [class.cm__message--assistant]="msg.role === 'assistant' || msg.role === 'contact_form'"
+    [style.animation-delay]="i * 0.04 + 's'">
+    <div class="cm__bubble" [class.cm__bubble--form]="msg.role === 'contact_form'">
+      @if (msg.role === 'assistant' && msg.content === '' && loading()) {
+        <span class="cm__typing">
+          <span></span><span></span><span></span>
+        </span>
+      } @else if (msg.role === 'contact_form') {
+        <en-chat-contact-form (formSubmit)="contactSubmit.emit($event)" />
+      } @else {
+        {{ msg.content }}
+      }
     </div>
-  }
-
+  </div>
+}
   <div #messagesEnd></div>
 </div>

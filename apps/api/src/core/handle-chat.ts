@@ -4,16 +4,7 @@ import { isRateLimited } from './rate-limit';
 import { verifyOriginSecret } from './cors';
 import { runChat } from './chat';
 import { logger } from './logger';
-
-export interface Message {
-  role: 'user' | 'assistant';
-  content: string;
-}
-
-export interface ChatRequestBody {
-  message: string;
-  history?: Message[];
-}
+import { ChatRequestBody } from '@einarinau/chat-types';
 
 /**
  * Validates the incoming request and delegates to runChat.

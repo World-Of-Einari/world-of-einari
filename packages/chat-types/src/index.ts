@@ -6,9 +6,4 @@ export interface Message {
 export interface ChatRequestBody {
   message?: string;
   history?: Message[];
-  contactForm?: {
-    name: string;
-    email: string;
-    message: string;
-  };
 }

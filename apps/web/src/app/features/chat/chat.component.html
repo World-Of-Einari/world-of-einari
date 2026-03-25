@@ -35,7 +35,8 @@
   <en-chat-messages
     [messages]="messages()"
     [loading]="loading()"
-    (suggestionSelect)="sendSuggestion($event)" />
+    (suggestionSelect)="sendSuggestion($event)"
+    (contactSubmit)="submitContact($event)" />
 
   <en-chat-input
     [value]="inputValue()"

@@ -89,7 +89,8 @@
   },
   "cli": {
     "schematicCollections": ["angular-eslint"],
-    "packageManager": "pnpm"
+    "packageManager": "pnpm",
+    "analytics": false
   },
   "schematics": {
     "@schematics/angular:component": {

@@ -1,5 +1,5 @@
 {
-  "name": "einarinau",
+  "name": "@einarinau/web",
   "private": true,
   "packageManager": "pnpm@9.15.6",
   "workspaces": [
@@ -8,7 +8,8 @@
   ],
   "scripts": {
     "dev": "pnpm -r dev",
-    "dev:fe": "pnpm --filter world-of-einari start",
+    "dev:fe": "pnpm --filter @einarinau/web dev",
+    "dev:api": "pnpm --filter @einarinau/api dev",
     "build": "pnpm -r build",
     "lint": "pnpm -r lint",
     "test": "pnpm -r test",

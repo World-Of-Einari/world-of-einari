@@ -109,6 +109,50 @@ describe('ChatInputComponent', () => {
     });
   });
 
+  describe('character counter', () => {
+    it('should not show counter when value is short', () => {
+      const fixture = createComponent('hello', false);
+      const counter = fixture.debugElement.query(By.css('.chat-input__counter'));
+      expect(counter).toBeNull();
+    });
+
+    it('should not show counter at exactly 800 characters', () => {
+      const fixture = createComponent('a'.repeat(800), false);
+      const counter = fixture.debugElement.query(By.css('.chat-input__counter'));
+      expect(counter).toBeNull();
+    });
+
+    it('should show counter when value exceeds 800 characters', () => {
+      const fixture = createComponent('a'.repeat(801), false);
+      const counter = fixture.debugElement.query(By.css('.chat-input__counter'));
+      expect(counter).not.toBeNull();
+    });
+
+    it('should display remaining characters', () => {
+      const fixture = createComponent('a'.repeat(950), false);
+      const counter = fixture.debugElement.query(By.css('.chat-input__counter'));
+      expect(counter.nativeElement.textContent.trim()).toBe('50');
+    });
+
+    it('should not have warning class below 900 characters', () => {
+      const fixture = createComponent('a'.repeat(850), false);
+      const counter = fixture.debugElement.query(By.css('.chat-input__counter'));
+      expect(counter.nativeElement.classList).not.toContain('chat-input__counter--warning');
+    });
+
+    it('should have warning class when value exceeds 900 characters', () => {
+      const fixture = createComponent('a'.repeat(901), false);
+      const counter = fixture.debugElement.query(By.css('.chat-input__counter'));
+      expect(counter.nativeElement.classList).toContain('chat-input__counter--warning');
+    });
+
+    it('should show 0 remaining at max length', () => {
+      const fixture = createComponent('a'.repeat(1000), false);
+      const counter = fixture.debugElement.query(By.css('.chat-input__counter'));
+      expect(counter.nativeElement.textContent.trim()).toBe('0');
+    });
+  });
+
   describe('onKeyDown()', () => {
     it('should emit send and prevent default on Enter without Shift', () => {
       const fixture = createComponent('hello', false);

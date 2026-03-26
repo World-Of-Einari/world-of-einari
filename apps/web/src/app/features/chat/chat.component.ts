@@ -3,6 +3,7 @@ import { ChatMessagesComponent } from './components/chat-messages/chat-messages.
 import { ChatFabComponent } from './components/chat-fab/chat-fab.component';
 import { ChatInputComponent } from './components/chat-input/chat-input.component';
 import { ChatMessage } from './types/chat-message.interface';
+import { ContactFormData } from './components/chat-contact-form/chat-contact-form.component';
 
 @Component({
   selector: 'en-chat',
@@ -33,14 +34,22 @@ export class ChatComponent implements OnDestroy {
     this.isOpen.set(false);
   }
 
-  async send() {
-    const message = this.inputValue().trim();
+  async send(overrideMessage?: string, options: { hidden?: boolean } = {}) {
+    const message = (overrideMessage ?? this.inputValue()).trim();
     if (!message || this.loading()) return;
 
-    const history = this.messages().map(({ role, content }) => ({ role, content }));
+    const history = this.messages()
+      .filter((m) => m.role !== 'contact_form')
+      .map(({ role, content }) => ({ role: role as 'user' | 'assistant', content }));
 
-    this.messages.update((msgs) => [...msgs, { role: 'user', content: message }]);
-    this.inputValue.set('');
+    if (!options.hidden) {
+      this.messages.update((msgs) => [...msgs, { role: 'user', content: message }]);
+    }
+
+    if (!overrideMessage) {
+      this.inputValue.set('');
+    }
+
     this.loading.set(true);
 
     this.messages.update((msgs) => [...msgs, { role: 'assistant', content: '' }]);
@@ -77,6 +86,17 @@ export class ChatComponent implements OnDestroy {
         });
         this.chatMessages()?.scrollToBottom();
       }
+
+      // Check for tool action after stream completes
+      const toolAction = response.headers.get('X-Tool-Action');
+      if (toolAction === 'show_contact_form') {
+        this.messages.update((msgs) => [
+          ...msgs.slice(0, -1),
+          { role: 'assistant', content: msgs[msgs.length - 1].content },
+          { role: 'contact_form', content: '' },
+        ]);
+        this.chatMessages()?.scrollToBottom();
+      }
     } catch (err: unknown) {
       if (err instanceof Error && err.name === 'AbortError') return;
       console.error('[chat] error:', err);
@@ -99,8 +119,16 @@ export class ChatComponent implements OnDestroy {
   }
 
   sendSuggestion(suggestion: string) {
+    if (suggestion === 'get_in_touch') {
+      this.messages.update((msgs) => [...msgs, { role: 'contact_form', content: '' }]);
+      return;
+    }
     this.inputValue.set(suggestion);
     this.send();
+  }
+
+  async submitContact(data: ContactFormData) {
+    await this.send(JSON.stringify(data), { hidden: true });
   }
 
   ngOnDestroy() {

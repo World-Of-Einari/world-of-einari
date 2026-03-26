@@ -110,6 +110,13 @@
     font-size: 13px;
     line-height: 1.65;
     white-space: pre-wrap;
+
+    &--form {
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 1rem;
+      box-sizing: border-box;
+    }
   }
 
   &__typing {

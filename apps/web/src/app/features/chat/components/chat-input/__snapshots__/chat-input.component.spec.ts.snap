@@ -10,9 +10,11 @@ exports[`ChatInputComponent snapshots should match snapshot when loading 1`] = `
     <textarea
       class="chat-input__field"
       disabled=""
+      maxlength="1000"
       placeholder="Ask anything..."
       rows="1"
     />
+    
     <button
       aria-label="Send message"
       class="chat-input__send"
@@ -53,9 +55,11 @@ exports[`ChatInputComponent snapshots should match snapshot with empty value and
   >
     <textarea
       class="chat-input__field"
+      maxlength="1000"
       placeholder="Ask anything..."
       rows="1"
     />
+    
     <button
       aria-label="Send message"
       class="chat-input__send"
@@ -96,9 +100,11 @@ exports[`ChatInputComponent snapshots should match snapshot with value and not l
   >
     <textarea
       class="chat-input__field"
+      maxlength="1000"
       placeholder="Ask anything..."
       rows="1"
     />
+    
     <button
       aria-label="Send message"
       class="chat-input__send"

@@ -8,6 +8,7 @@ import { runChat } from './chat';
 import { logger } from './logger';
 import { verifyOriginSecret } from '../utilities/verify-secret-origin';
 import { config } from '../config';
+import { AppError } from '../utilities/resolve-http-error';
 /**
  * Validates the incoming request and delegates to runChat.
  *
@@ -21,24 +22,24 @@ export async function handleChat(
 ): Promise<void> {
   if (!verifyOriginSecret(headers)) {
     logger.warn('forbidden_request', { ip: headers['x-forwarded-for'] });
-    throw new Error('Forbidden');
+    throw new AppError(403, 'Forbidden');
   }
 
   const ip = headers['x-forwarded-for']?.split(',')[0].trim() ?? 'unknown';
 
   if (isRateLimited(ip)) {
     logger.warn('rate_limited', { ip });
-    throw new Error('Rate limited');
+    throw new AppError(429, 'Rate limited');
   }
 
   const { message, history = [] } = body;
 
   if (!message?.trim()) {
-    throw new Error('Message is required');
+    throw new AppError(400, 'Message is required');
   }
 
   if (message.length > config.message.maxLength) {
-    throw new Error('Message too long');
+    throw new AppError(400, 'Message too long');
   }
 
   logger.info('chat_request', { ip, historyLength: history.length });

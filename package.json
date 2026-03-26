@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "pnpm -r dev",
     "dev:fe": "pnpm --filter @einarinau/web dev",
+    "dev:fe:prod-api": "pnpm --filter @einarinau/web dev:prod-api",
     "dev:api": "pnpm --filter @einarinau/api dev",
     "build": "pnpm -r build",
     "lint": "pnpm -r lint",

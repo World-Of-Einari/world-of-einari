@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "dev": "ng serve",
+    "dev:prod-api": "ng serve --proxy-config proxy.prod.conf.json",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "jest",

@@ -1,3 +1,10 @@
+# [1.16.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.15.1...v1.16.0) (2026-03-26)
+
+
+### Features
+
+* set app.component to full height ([d6bcca5](https://github.com/World-Of-Einari/world-of-einari/commit/d6bcca5f6ff40a749081c407607ae345c202a936))
+
 ## [1.15.1](https://github.com/World-Of-Einari/world-of-einari/compare/v1.15.0...v1.15.1) (2026-03-26)
 
 

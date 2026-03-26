@@ -5,7 +5,10 @@
 <main class="app__main">
   <router-outlet />
 </main>
-<en-footer />
 @defer (on idle) {
   <en-chat />
+}
+
+@defer (on idle) {
+  <en-footer />
 }

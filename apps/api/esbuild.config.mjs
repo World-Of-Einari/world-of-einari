@@ -11,7 +11,6 @@ const result = await build({
   format: 'cjs',
   external: [
     '@aws-sdk/*',
-    'node-fetch',
     'whatwg-url',
     'tr46',
     'webidl-conversions',

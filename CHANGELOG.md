@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.13.0...v1.14.0) (2026-03-26)
+
+
+### Features
+
+* extend error handling ([cc46544](https://github.com/World-Of-Einari/world-of-einari/commit/cc465447145e5e14b54d3d4dabc3aa018f4cb23d))
+
 # [1.13.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.12.0...v1.13.0) (2026-03-26)
 
 

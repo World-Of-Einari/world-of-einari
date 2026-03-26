@@ -1,3 +1,10 @@
+## [1.15.1](https://github.com/World-Of-Einari/world-of-einari/compare/v1.15.0...v1.15.1) (2026-03-26)
+
+
+### Bug Fixes
+
+* address footer CLS and remove unused fonts ([56d1a45](https://github.com/World-Of-Einari/world-of-einari/commit/56d1a45023a16a744dcc335c3df02a3716964e7c))
+
 # [1.15.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.14.0...v1.15.0) (2026-03-26)
 
 

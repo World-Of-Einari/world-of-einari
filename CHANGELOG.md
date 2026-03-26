@@ -1,3 +1,44 @@
+# [1.8.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.7.0...v1.8.0) (2026-03-26)
+
+
+### Bug Fixes
+
+* **angular:** add analytics configuration to CLI settings ([8731ec8](https://github.com/World-Of-Einari/world-of-einari/commit/8731ec83af84a082b615b1c3edfa072b160776f7))
+* update secret scanning ([059b4f1](https://github.com/World-Of-Einari/world-of-einari/commit/059b4f1a755a95b953c90a81ff21178e172df0be))
+* use inject function ([e5c66f4](https://github.com/World-Of-Einari/world-of-einari/commit/e5c66f421f814386d590e7c6e1ceb4d05fb78b64))
+
+
+### Features
+
+* **build:** add esbuild configuration for building and analyzing lambda function ([82b729b](https://github.com/World-Of-Einari/world-of-einari/commit/82b729b3a3453bdbbdce3d8e16bf631ed0cf2db3))
+* **chat:** add character counter tests for chat input component ([b4b6ee4](https://github.com/World-Of-Einari/world-of-einari/commit/b4b6ee454bc1524db225b84b08d569cddb5f5def))
+* **chat:** add character counter to chat input with warning styling ([86e58ae](https://github.com/World-Of-Einari/world-of-einari/commit/86e58ae7672500f133894d7409860abb630e521d))
+* **chat:** add chat-types package and update imports in API and local server ([515be07](https://github.com/World-Of-Einari/world-of-einari/commit/515be075bd5e1b6efd48fe6c7c78f60316de1998))
+* **chat:** add consent checkbox to contact form with validation ([e42183a](https://github.com/World-Of-Einari/world-of-einari/commit/e42183ab477246fb3253fb8fc6adf4ed4f854bfa))
+* **chat:** enforce message length limit in chat input handling ([467b4d7](https://github.com/World-Of-Einari/world-of-einari/commit/467b4d7472384d67901e8cce7233d11962ab84da))
+* **chat:** enhance contact form interaction with user-friendly prompts and submission handling ([e52e454](https://github.com/World-Of-Einari/world-of-einari/commit/e52e4541ff10a34777469a89137053a3984681d3))
+* **chat:** enhance contact form with validation and error handling ([56c3eb2](https://github.com/World-Of-Einari/world-of-einari/commit/56c3eb27fb479797d081ff1c4006aa470c25f44b))
+* **chat:** enhance message handling in chat component with contact form integration and filtering ([8c963af](https://github.com/World-Of-Einari/world-of-einari/commit/8c963af991ad2bb449264c39f34e6c8b63b8232a))
+* **chat:** implement chat contact form with validation and submission handling ([e93fe77](https://github.com/World-Of-Einari/world-of-einari/commit/e93fe776b24114f030017cbd2add3db6f6aff439))
+* **chat:** implement chat handling with tool call support and response streaming ([edefd44](https://github.com/World-Of-Einari/world-of-einari/commit/edefd44a1918408cf32ab3b505a52e3ebc7e2a95))
+* **chat:** increase max-height of chat panel for better visibility ([776d3e3](https://github.com/World-Of-Einari/world-of-einari/commit/776d3e3bcafb10c169bec56cd20493802b45bb4b))
+* **chat:** integrate contact form into chat component and update message handling ([cc04d0e](https://github.com/World-Of-Einari/world-of-einari/commit/cc04d0e43c7004bc0fad2f0f92c1a3b4c8807428))
+* **chat:** refactor ChatMessage type to include contact_form role ([935727a](https://github.com/World-Of-Einari/world-of-einari/commit/935727a69cc533e72232bd21ff8b28a6c6176c17))
+* **chat:** update off-topic response for a more natural tone ([1a4d69a](https://github.com/World-Of-Einari/world-of-einari/commit/1a4d69ac41ff48981b54b420ce38ef647bf85201))
+* combine gitleaks and trufflehog ([e3ad138](https://github.com/World-Of-Einari/world-of-einari/commit/e3ad13869fe32cea5c249a9c975807720cc264e1))
+* **contact:** add validation for contact request fields and integrate into submission process ([9b0c23b](https://github.com/World-Of-Einari/world-of-einari/commit/9b0c23b57a9670c66db6b475455bee1ed29b6a53))
+* **contact:** update contact instructions for visitors to use the contact form ([5ec2e19](https://github.com/World-Of-Einari/world-of-einari/commit/5ec2e190b0a79110065555dfe7387a1a15f548ff))
+* **dependencies:** add AWS SDK clients for DynamoDB and SNS ([b3f4b31](https://github.com/World-Of-Einari/world-of-einari/commit/b3f4b311fa7838576dfec1acbc4160659f8457fb))
+* **infra:** add AWS resources for contact requests and notifications ([5263e70](https://github.com/World-Of-Einari/world-of-einari/commit/5263e70363194873f628c4d41ff2bad06cc71a66))
+* **infra:** add TTL configuration for contact_requests DynamoDB table ([3893fd6](https://github.com/World-Of-Einari/world-of-einari/commit/3893fd6a5179da8f2ebba108906b1b45dd6d4e5b))
+* **lambda:** add NODE_ENV variable for production environment ([f0cd010](https://github.com/World-Of-Einari/world-of-einari/commit/f0cd01076bd13e157b4465fec16f51c1666947e8))
+* **logging:** implement structured logging across chat and contact request handling ([510d0c9](https://github.com/World-Of-Einari/world-of-einari/commit/510d0c9a0ad22edfdbe85b0ede82406fbc6abd40))
+* move API settings to a config file ([c34c1df](https://github.com/World-Of-Einari/world-of-einari/commit/c34c1df467a372b98b7b5107418a54335ab24720))
+* **package:** update package name and add chat-types dependency ([7c64c7f](https://github.com/World-Of-Einari/world-of-einari/commit/7c64c7ffb45638165873d6415ec6c1322924314f))
+* **package:** update package name and adjust development script filters ([8c56010](https://github.com/World-Of-Einari/world-of-einari/commit/8c56010c39ec9be9b74422c4e0514d80f5579e99))
+* **rate-limit:** implement rate limiting functionality for API requests ([ca6771d](https://github.com/World-Of-Einari/world-of-einari/commit/ca6771dcbcdde4542afd10461b48fc6da23755f1))
+* **security:** add TruffleHog workflow for secret scanning ([8c77f85](https://github.com/World-Of-Einari/world-of-einari/commit/8c77f85e5d53cc53019f1d136e095226532db33d))
+
 # [1.7.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.6.0...v1.7.0) (2026-03-24)
 
 

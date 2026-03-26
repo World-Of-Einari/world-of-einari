@@ -5,7 +5,7 @@ import { isRateLimited } from './rate-limit';
 import { runChat } from './chat';
 import { logger } from './logger';
 import { verifyOriginSecret } from '../utilities/verify-secret-origin';
-import { config } from '../config';
+
 import { AppError } from '../utilities/resolve-http-error';
 import { ChatRequestSchema } from '../utilities/schemas';
 

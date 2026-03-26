@@ -9,12 +9,13 @@ data "archive_file" "placeholder" {
 }
 
 resource "aws_lambda_function" "chat" {
-  function_name = "world-of-einari-chat"
-  role          = aws_iam_role.chat_lambda.arn
-  runtime       = "nodejs22.x"
-  handler       = "lambda.handler"
-  timeout       = 60
-  memory_size   = 256
+  function_name                  = "world-of-einari-chat"
+  role                           = aws_iam_role.chat_lambda.arn
+  runtime                        = "nodejs22.x"
+  handler                        = "lambda.handler"
+  timeout                        = 60
+  memory_size                    = 256
+  reserved_concurrent_executions = 5
 
   filename         = data.archive_file.placeholder.output_path
   source_code_hash = data.archive_file.placeholder.output_base64sha256

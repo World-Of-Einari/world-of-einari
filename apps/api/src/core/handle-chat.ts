@@ -1,10 +1,12 @@
 import OpenAI from 'openai';
 import { getOpenAiKey } from './ssm';
+
+import { ChatRequestBody } from '@einarinau/chat-types';
+
 import { isRateLimited } from './rate-limit';
-import { verifyOriginSecret } from './cors';
 import { runChat } from './chat';
 import { logger } from './logger';
-import { ChatRequestBody } from '@einarinau/chat-types';
+import { verifyOriginSecret } from '../utilities/verify-secret-origin';
 
 /**
  * Validates the incoming request and delegates to runChat.

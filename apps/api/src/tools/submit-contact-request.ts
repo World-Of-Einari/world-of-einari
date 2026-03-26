@@ -2,27 +2,12 @@ import { DynamoDBClient, PutItemCommand } from '@aws-sdk/client-dynamodb';
 import { SNSClient, PublishCommand } from '@aws-sdk/client-sns';
 import { randomUUID } from 'crypto';
 import { logger } from '../core/logger';
+import { validateContactRequest } from '../utilities/validate-contact-request';
 
 export interface ContactRequest {
   name: string;
   email: string;
   message: string;
-}
-
-export function validateContactRequest(args: ContactRequest): void {
-  if (!args.name?.trim() || args.name.length > 200) {
-    throw new Error('Invalid name');
-  }
-  if (
-    !args.email?.trim() ||
-    args.email.length > 200 ||
-    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(args.email)
-  ) {
-    throw new Error('Invalid email');
-  }
-  if (!args.message?.trim() || args.message.length > 2000) {
-    throw new Error('Invalid message');
-  }
 }
 
 /**

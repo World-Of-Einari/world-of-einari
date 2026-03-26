@@ -11,7 +11,7 @@ import { ChatRequestBody } from '@einarinau/chat-types';
 
 import { handleChat } from './core/handle-chat';
 import { corsHeaders } from './core/cors.js';
-import { resolveHttpError } from './core/errors.js';
+import { resolveHttpError } from './utilities/resolve-http-error';
 import { logger } from './core/logger';
 
 const app = express();

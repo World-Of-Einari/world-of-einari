@@ -10,14 +10,3 @@ export const corsHeaders = {
   'Access-Control-Allow-Headers': 'Content-Type, X-Origin-Verify',
   'Access-Control-Expose-Headers': 'X-Tool-Action',
 };
-
-/**
- * Verifies the origin secret header to prevent direct Lambda invocation
- * from outside the CloudFront distribution.
- */
-export function verifyOriginSecret(headers: Record<string, string | undefined>): boolean {
-  const expectedSecret = process.env['ORIGIN_VERIFY_SECRET'];
-  if (!expectedSecret) return true;
-  const incoming = headers['x-origin-verify'] ?? headers['X-Origin-Verify'];
-  return incoming === expectedSecret;
-}

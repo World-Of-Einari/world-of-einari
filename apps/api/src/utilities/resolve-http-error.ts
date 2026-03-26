@@ -1,5 +1,5 @@
 /**
- * Maps an error to an HTTP status code and message.
+ * Maps an unknown error to an HTTP status code and message.
  * Used by both lambda.ts and local-server.ts entry points.
  */
 export function resolveHttpError(err: unknown): { statusCode: number; message: string } {
@@ -10,6 +10,7 @@ export function resolveHttpError(err: unknown): { statusCode: number; message: s
 
   if (errorMessage === 'Forbidden') return { statusCode: 403, message: 'Forbidden' };
   if (errorMessage === 'Rate limited') return { statusCode: 429, message: 'Too many requests' };
+  if (errorMessage === 'Message too long') return { statusCode: 400, message: 'Message too long' };
   if (errorStatus === 400 || /message is required/i.test(errorMessage)) {
     return { statusCode: 400, message: errorMessage || 'Bad Request' };
   }

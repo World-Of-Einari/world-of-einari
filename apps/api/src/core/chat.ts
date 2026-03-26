@@ -1,23 +1,11 @@
 import OpenAI from 'openai';
+
 import { tools } from '../tools/definitions';
 import { submitContactRequest } from '../tools/submit-contact-request';
 import { getShowContactFormHeader } from '../tools/show-contact-form';
-import { SYSTEM_PROMPT } from './system-prompt';
-import { logger } from './logger';
 
-/**
- * Builds the message array for an OpenAI request.
- */
-function buildMessages(
-  history: OpenAI.Chat.Completions.ChatCompletionMessageParam[],
-  message: string,
-): OpenAI.Chat.Completions.ChatCompletionMessageParam[] {
-  return [
-    { role: 'system', content: SYSTEM_PROMPT },
-    ...history.slice(-10),
-    { role: 'user', content: message },
-  ];
-}
+import { buildMessages } from '../utilities/build-messages';
+import { logger } from './logger';
 
 /**
  * Makes a non-streaming OpenAI request to detect whether the model

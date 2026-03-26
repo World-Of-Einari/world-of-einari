@@ -7,7 +7,7 @@ import { isRateLimited } from './rate-limit';
 import { runChat } from './chat';
 import { logger } from './logger';
 import { verifyOriginSecret } from '../utilities/verify-secret-origin';
-
+import { config } from '../config';
 /**
  * Validates the incoming request and delegates to runChat.
  *
@@ -37,7 +37,7 @@ export async function handleChat(
     throw new Error('Message is required');
   }
 
-  if (message.length > 1000) {
+  if (message.length > config.message.maxLength) {
     throw new Error('Message too long');
   }
 

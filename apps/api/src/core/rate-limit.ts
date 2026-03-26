@@ -1,5 +1,6 @@
-const RATE_LIMIT_MAX = 10;
-const RATE_LIMIT_WINDOW = 60_000;
+import { config } from '../config';
+
+const { max: RATE_LIMIT_MAX, windowMs: RATE_LIMIT_WINDOW } = config.rateLimit;
 
 interface RateLimitEntry {
   count: number;

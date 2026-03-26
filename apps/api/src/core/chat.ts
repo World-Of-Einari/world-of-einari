@@ -6,6 +6,7 @@ import { getShowContactFormHeader } from '../tools/show-contact-form';
 
 import { buildMessages } from '../utilities/build-messages';
 import { logger } from './logger';
+import { config } from '../config';
 
 /**
  * Makes a non-streaming OpenAI request to detect whether the model
@@ -19,8 +20,8 @@ async function detectToolCall(
   assistantMessage: OpenAI.Chat.Completions.ChatCompletionMessage;
 } | null> {
   const response = await openai.chat.completions.create({
-    model: 'gpt-4o',
-    max_tokens: 512,
+    model: config.openai.model,
+    max_tokens: config.openai.maxTokens.chat,
     stream: false,
     messages,
     tools,
@@ -51,8 +52,8 @@ async function streamToolFollowUp(
   responseStream: NodeJS.WritableStream,
 ): Promise<void> {
   const followUp = await openai.chat.completions.create({
-    model: 'gpt-4o',
-    max_tokens: 128,
+    model: config.openai.model,
+    max_tokens: config.openai.maxTokens.toolFollowUp,
     stream: true,
     messages: [
       ...messages,
@@ -76,8 +77,8 @@ async function streamResponse(
   responseStream: NodeJS.WritableStream,
 ): Promise<void> {
   const stream = await openai.chat.completions.create({
-    model: 'gpt-4o',
-    max_tokens: 512,
+    model: config.openai.model,
+    max_tokens: config.openai.maxTokens.chat,
     stream: true,
     messages,
     tools,
@@ -108,7 +109,7 @@ export async function runChat(
 
   if (toolResult) {
     const { toolCall, assistantMessage } = toolResult;
-    logger.info('tool_call', { tool: toolResult.toolCall.function.name });
+    logger.info('tool_call', { tool: toolCall.function.name });
 
     if (toolCall.function.name === 'show_contact_form') {
       const stream = getStream(getShowContactFormHeader());

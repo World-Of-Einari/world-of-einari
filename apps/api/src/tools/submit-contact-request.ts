@@ -3,6 +3,7 @@ import { SNSClient, PublishCommand } from '@aws-sdk/client-sns';
 import { randomUUID } from 'crypto';
 import { logger } from '../core/logger';
 import { validateContactRequest } from '../utilities/validate-contact-request';
+import { config } from '../config';
 
 export interface ContactRequest {
   name: string;
@@ -34,7 +35,7 @@ export async function submitContactRequest(args: ContactRequest): Promise<void> 
   const dynamo = new DynamoDBClient({});
   const sns = new SNSClient({});
 
-  const expiresAt = Math.floor(Date.now() / 1000) + 180 * 24 * 60 * 60;
+  const expiresAt = Math.floor(Date.now() / 1000) + config.contact.ttlDays * 24 * 60 * 60;
 
   await dynamo.send(
     new PutItemCommand({

@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.10.0...v1.11.0) (2026-03-26)
+
+
+### Features
+
+* restore polyfills in esbuild ([55133c0](https://github.com/World-Of-Einari/world-of-einari/commit/55133c0a91b668f8e80e1e7b506cc03cf14639c6))
+
 # [1.10.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.9.0...v1.10.0) (2026-03-26)
 
 

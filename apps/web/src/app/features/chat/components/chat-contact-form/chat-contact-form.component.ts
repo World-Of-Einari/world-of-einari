@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, output, signal } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export interface ContactFormData {
@@ -19,9 +19,9 @@ export class ChatContactFormComponent implements OnInit {
   readonly formOpen = signal(false);
   readonly formSubmit = output<ContactFormData>();
 
-  form!: FormGroup;
+  private fb = inject(FormBuilder);
 
-  constructor(private fb: FormBuilder) {}
+  form!: FormGroup;
 
   ngOnInit() {
     this.form = this.fb.nonNullable.group({

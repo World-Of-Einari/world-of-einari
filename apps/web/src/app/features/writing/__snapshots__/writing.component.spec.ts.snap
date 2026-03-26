@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WritingComponent should match snapshot 1`] = `
+<div
+  id="root1"
+>
+  <section
+    class="writing"
+    id="writing"
+  >
+    <en-section-header
+      ghost="notes"
+      label="writing"
+      title="Field"
+    >
+      <p
+        class="section-header__label"
+      >
+         writing
+
+      </p>
+      <h2
+        class="section-header__title"
+      >
+         Field
+        <br />
+        <em
+          class="section-header__ghost"
+        >
+          notes
+        </em>
+      </h2>
+    </en-section-header>
+    <div
+      class="writing__grid"
+    >
+      <article
+        class="writing__card reveal"
+        enreveal=""
+      >
+        <div
+          class="writing__card-header"
+        >
+          <img
+            alt="My First Article"
+            class="writing__card-thumb"
+            height="80"
+            loading="lazy"
+            src="https://cdn.example.com/thumb1.jpg"
+            width="120"
+          />
+          
+          <a
+            class="writing__card-title"
+            href="https://medium.com/@einarinau/first"
+            rel="noopener"
+            target="_blank"
+          >
+             My First Article 
+          </a>
+        </div>
+        <p
+          class="writing__card-subtitle"
+        >
+          A short subtitle here
+        </p>
+        <div
+          class="writing__card-tags"
+        >
+          <span
+            class="writing__card-tag"
+          >
+            Angular
+          </span>
+          <span
+            class="writing__card-tag"
+          >
+            TypeScript
+          </span>
+          
+        </div>
+        <a
+          class="writing__card-link"
+          href="https://medium.com/@einarinau/first"
+          rel="noopener"
+          target="_blank"
+        >
+          <span>
+            Read more
+          </span>
+          <span>
+             →
+          </span>
+        </a>
+      </article>
+      <article
+        class="writing__card reveal"
+        enreveal=""
+      >
+        <div
+          class="writing__card-header"
+        >
+          
+          <a
+            class="writing__card-title"
+            href="https://medium.com/@einarinau/second"
+            rel="noopener"
+            target="_blank"
+          >
+             Second Article 
+          </a>
+        </div>
+        <p
+          class="writing__card-subtitle"
+        >
+          Another subtitle
+        </p>
+        <div
+          class="writing__card-tags"
+        >
+          
+        </div>
+        <a
+          class="writing__card-link"
+          href="https://medium.com/@einarinau/second"
+          rel="noopener"
+          target="_blank"
+        >
+          <span>
+            Read more
+          </span>
+          <span>
+             →
+          </span>
+        </a>
+      </article>
+      
+    </div>
+  </section>
+</div>
+`;

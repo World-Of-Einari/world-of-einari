@@ -15,7 +15,9 @@
               width="120"
               height="80" />
           }
-          <h3 class="writing__card-title">{{ article.title }}</h3>
+          <a class="writing__card-title" [href]="article.url" target="_blank" rel="noopener">
+            {{ article.title }}
+          </a>
         </div>
         <p class="writing__card-subtitle">{{ article.subtitle }}</p>
         <div class="writing__card-tags">
@@ -24,7 +26,7 @@
           }
         </div>
         <a class="writing__card-link" [href]="article.url" target="_blank" rel="noopener">
-          Read more →
+          <span>Read more</span><span> →</span>
         </a>
       </article>
     }

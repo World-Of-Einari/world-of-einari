@@ -35,6 +35,10 @@ export async function handleChat(
     throw new Error('Message is required');
   }
 
+  if (message.length > 1000) {
+    throw new Error('Message too long');
+  }
+
   logger.info('chat_request', { ip, historyLength: history.length });
 
   const apiKey = await getOpenAiKey();

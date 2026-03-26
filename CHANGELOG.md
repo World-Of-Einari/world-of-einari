@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.12.0...v1.13.0) (2026-03-26)
+
+
+### Features
+
+* clickable article title ([1e22562](https://github.com/World-Of-Einari/world-of-einari/commit/1e22562acf03b7967ddbb311822088bfe755bdb2))
+
 # [1.12.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.11.0...v1.12.0) (2026-03-26)
 
 

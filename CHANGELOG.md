@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.8.1...v1.9.0) (2026-03-26)
+
+
+### Features
+
+* disable chat ([c05b370](https://github.com/World-Of-Einari/world-of-einari/commit/c05b370d60d5f3720714d2c0d543e24be33deb28))
+
 ## [1.8.1](https://github.com/World-Of-Einari/world-of-einari/compare/v1.8.0...v1.8.1) (2026-03-26)
 
 

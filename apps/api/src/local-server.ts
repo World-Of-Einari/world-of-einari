@@ -7,8 +7,6 @@
 import 'dotenv/config';
 import express, { Request, Response } from 'express';
 
-import { ChatRequestBody } from '@einarinau/chat-types';
-
 import { handleChat } from './core/handle-chat';
 import { corsHeaders } from './core/cors.js';
 import { resolveHttpError } from './utilities/resolve-http-error';
@@ -24,7 +22,7 @@ app.options('/chat', (_, res) => {
 });
 
 app.post('/chat', async (req: Request, res: Response) => {
-  const body = req.body as ChatRequestBody;
+  const body = req.body;
   const headers = req.headers as Record<string, string | undefined>;
 
   try {

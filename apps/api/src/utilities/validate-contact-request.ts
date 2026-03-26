@@ -1,22 +1,17 @@
-import { ContactRequest } from '../tools/submit-contact-request';
-import { config } from '../config';
+import { z } from 'zod/mini';
+
+import { ContactRequestSchema } from './schemas';
+import { AppError } from './resolve-http-error';
 
 /**
- * Validates a contact request payload.
- * Throws if any field is missing, malformed, or exceeds length limits.
+ * Validates a contact request payload using Zod.
+ * Throws an AppError with status 400 if validation fails.
  */
-export function validateContactRequest(args: ContactRequest): void {
-  if (!args.name?.trim() || args.name.length > config.contact.nameMaxLength) {
-    throw new Error('Invalid name');
+export function validateContactRequest(args: unknown): z.infer<typeof ContactRequestSchema> {
+  const result = ContactRequestSchema.safeParse(args);
+  if (!result.success) {
+    const message = result.error.issues[0]?.message ?? 'Invalid contact request';
+    throw new AppError(400, message);
   }
-  if (
-    !args.email?.trim() ||
-    args.email.length > config.contact.emailMaxLength ||
-    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(args.email)
-  ) {
-    throw new Error('Invalid email');
-  }
-  if (!args.message?.trim() || args.message.length > config.contact.messageMaxLength) {
-    throw new Error('Invalid message');
-  }
+  return result.data;
 }

@@ -4,12 +4,7 @@ import { randomUUID } from 'crypto';
 import { logger } from '../core/logger';
 import { validateContactRequest } from '../utilities/validate-contact-request';
 import { config } from '../config';
-
-export interface ContactRequest {
-  name: string;
-  email: string;
-  message: string;
-}
+import { ContactRequest } from '../utilities/schemas';
 
 /**
  * Persists a contact request to DynamoDB and publishes
@@ -17,7 +12,7 @@ export interface ContactRequest {
  * In local development, logs to console instead of hitting AWS.
  */
 export async function submitContactRequest(args: ContactRequest): Promise<void> {
-  validateContactRequest(args);
+  const { name, email, message } = validateContactRequest(args);
 
   const id = randomUUID();
   const createdAt = new Date().toISOString();
@@ -25,9 +20,9 @@ export async function submitContactRequest(args: ContactRequest): Promise<void> 
   if (process.env['NODE_ENV'] !== 'production') {
     logger.info('[submitContactRequest] local dev — skipping DynamoDB/SNS');
     logger.info(`[submitContactRequest] id: ${id}`);
-    logger.info(`[submitContactRequest] name: ${args.name}`);
-    logger.info(`[submitContactRequest] email: ${args.email}`);
-    logger.info(`[submitContactRequest] message: ${args.message}`);
+    logger.info(`[submitContactRequest] name: ${name}`);
+    logger.info(`[submitContactRequest] email: ${email}`);
+    logger.info(`[submitContactRequest] message: ${message}`);
     logger.info(`[submitContactRequest] createdAt: ${createdAt}`);
     return;
   }
@@ -42,9 +37,9 @@ export async function submitContactRequest(args: ContactRequest): Promise<void> 
       TableName: process.env['CONTACT_TABLE_NAME'],
       Item: {
         id: { S: id },
-        name: { S: args.name },
-        email: { S: args.email },
-        message: { S: args.message },
+        name: { S: name },
+        email: { S: email },
+        message: { S: message },
         createdAt: { S: createdAt },
         expiresAt: { N: expiresAt.toString() },
       },
@@ -54,11 +49,11 @@ export async function submitContactRequest(args: ContactRequest): Promise<void> 
   await sns.send(
     new PublishCommand({
       TopicArn: process.env['CONTACT_SNS_TOPIC_ARN'],
-      Subject: `New contact request from ${args.name}`,
+      Subject: `New contact request from ${name}`,
       Message: [
-        `Name: ${args.name}`,
-        `Email: ${args.email}`,
-        `Message: ${args.message}`,
+        `Name: ${name}`,
+        `Email: ${email}`,
+        `Message: ${message}`,
         `Received: ${createdAt}`,
       ].join('\n'),
     }),

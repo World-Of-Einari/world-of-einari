@@ -1,8 +1,6 @@
 import { APIGatewayProxyEventV2 } from 'aws-lambda';
 import { Writable } from 'stream';
 
-import { ChatRequestBody } from '@einarinau/chat-types';
-
 import { handleChat } from './core/handle-chat';
 import { corsHeaders } from './core/cors';
 import { resolveHttpError } from './utilities/resolve-http-error';
@@ -39,9 +37,25 @@ export const handler = awslambda.streamifyResponse(async (event, responseStream)
     return;
   }
 
-  let body: ChatRequestBody;
+  if (!event.body) {
+    awslambda.HttpResponseStream.from(responseStream, {
+      statusCode: 400,
+      headers: corsHeaders,
+    }).end('Request body is required');
+    return;
+  }
+
+  if (event.body.length > 10_000) {
+    awslambda.HttpResponseStream.from(responseStream, {
+      statusCode: 413,
+      headers: corsHeaders,
+    }).end('Request body too large');
+    return;
+  }
+
+  let parsedBody: unknown;
   try {
-    body = JSON.parse(event.body ?? '{}');
+    parsedBody = JSON.parse(event.body ?? '{}');
   } catch {
     awslambda.HttpResponseStream.from(responseStream, {
       statusCode: 400,
@@ -53,7 +67,7 @@ export const handler = awslambda.streamifyResponse(async (event, responseStream)
   const headers = event.headers as Record<string, string | undefined>;
 
   try {
-    await handleChat(body, headers, (extraHeaders) =>
+    await handleChat(parsedBody, headers, (extraHeaders) =>
       awslambda.HttpResponseStream.from(responseStream, {
         statusCode: 200,
         headers: {

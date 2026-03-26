@@ -1,14 +1,14 @@
 import OpenAI from 'openai';
 import { getOpenAiKey } from './ssm';
 
-import { ChatRequestBody } from '@einarinau/chat-types';
-
 import { isRateLimited } from './rate-limit';
 import { runChat } from './chat';
 import { logger } from './logger';
 import { verifyOriginSecret } from '../utilities/verify-secret-origin';
 import { config } from '../config';
 import { AppError } from '../utilities/resolve-http-error';
+import { ChatRequestSchema } from '../utilities/schemas';
+
 /**
  * Validates the incoming request and delegates to runChat.
  *
@@ -16,7 +16,7 @@ import { AppError } from '../utilities/resolve-http-error';
  *                    is complete, returns the writable stream for tokens
  */
 export async function handleChat(
-  body: ChatRequestBody,
+  body: unknown,
   headers: Record<string, string | undefined>,
   getStream: (extraHeaders: Record<string, string>) => NodeJS.WritableStream,
 ): Promise<void> {
@@ -32,15 +32,13 @@ export async function handleChat(
     throw new AppError(429, 'Rate limited');
   }
 
-  const { message, history = [] } = body;
-
-  if (!message?.trim()) {
-    throw new AppError(400, 'Message is required');
+  const result = ChatRequestSchema.safeParse(body);
+  if (!result.success) {
+    const message = result.error.issues[0]?.message ?? 'Invalid request';
+    throw new AppError(400, message);
   }
 
-  if (message.length > config.message.maxLength) {
-    throw new AppError(400, 'Message too long');
-  }
+  const { message, history = [] } = result.data;
 
   logger.info('chat_request', { ip, historyLength: history.length });
 

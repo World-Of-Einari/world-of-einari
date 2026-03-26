@@ -14,16 +14,16 @@ describe('validateContactRequest', () => {
 
   describe('name', () => {
     it('throws when name is empty', () => {
-      expect(() => validateContactRequest({ ...valid, name: '' })).toThrow('Invalid name');
+      expect(() => validateContactRequest({ ...valid, name: '' })).toThrow('Name is required');
     });
 
     it('throws when name is only whitespace', () => {
-      expect(() => validateContactRequest({ ...valid, name: '   ' })).toThrow('Invalid name');
+      expect(() => validateContactRequest({ ...valid, name: '   ' })).toThrow('Name is required');
     });
 
     it('throws when name exceeds 200 characters', () => {
       expect(() => validateContactRequest({ ...valid, name: 'a'.repeat(201) })).toThrow(
-        'Invalid name',
+        'Name too long',
       );
     });
 
@@ -59,7 +59,9 @@ describe('validateContactRequest', () => {
 
     it('throws when email exceeds 200 characters', () => {
       const longEmail = `${'a'.repeat(195)}@b.com`;
-      expect(() => validateContactRequest({ ...valid, email: longEmail })).toThrow('Invalid email');
+      expect(() => validateContactRequest({ ...valid, email: longEmail })).toThrow(
+        'Email too long',
+      );
     });
 
     it('passes for valid email formats', () => {
@@ -72,16 +74,20 @@ describe('validateContactRequest', () => {
 
   describe('message', () => {
     it('throws when message is empty', () => {
-      expect(() => validateContactRequest({ ...valid, message: '' })).toThrow('Invalid message');
+      expect(() => validateContactRequest({ ...valid, message: '' })).toThrow(
+        'Message is required',
+      );
     });
 
     it('throws when message is only whitespace', () => {
-      expect(() => validateContactRequest({ ...valid, message: '   ' })).toThrow('Invalid message');
+      expect(() => validateContactRequest({ ...valid, message: '   ' })).toThrow(
+        'Message is required',
+      );
     });
 
     it('throws when message exceeds 2000 characters', () => {
       expect(() => validateContactRequest({ ...valid, message: 'a'.repeat(2001) })).toThrow(
-        'Invalid message',
+        'Message too long',
       );
     });
 

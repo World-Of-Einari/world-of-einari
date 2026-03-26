@@ -6,7 +6,13 @@
     (keydown)="onKeyDown($event)"
     placeholder="Ask anything..."
     rows="1"
+    maxlength="1000"
     [disabled]="loading()"></textarea>
+  @if (value().length > 800) {
+    <span class="chat-input__counter" [class.chat-input__counter--warning]="value().length > 900">
+      {{ 1000 - value().length }}
+    </span>
+  }
   <button
     class="chat-input__send"
     (click)="send.emit()"

@@ -8,6 +8,7 @@ import { ChatComponent } from './features/chat/chat.component';
 @Component({
   selector: 'en-root',
   templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterOutlet, NavComponent, FooterComponent, CursorComponent, ChatComponent],

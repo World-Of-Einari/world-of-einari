@@ -12,4 +12,9 @@ resource "aws_dynamodb_table" "contact_requests" {
     ManagedBy = "terraform"
     Project   = "world-of-einari"
   }
+
+  ttl {
+    attribute_name = "expiresAt"
+    enabled        = true
+  }
 }

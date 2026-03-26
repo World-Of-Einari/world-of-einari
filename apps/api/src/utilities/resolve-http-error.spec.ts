@@ -20,25 +20,25 @@ describe('resolveHttpError', () => {
   it('uses .status field when it is a valid HTTP error code', () => {
     expect(resolveHttpError({ status: 400, message: 'Bad Request' })).toEqual({
       statusCode: 400,
-      message: 'Bad Request',
+      message: 'Error',
     });
   });
 
   it('uses .statusCode field when it is a valid HTTP error code', () => {
     expect(resolveHttpError({ statusCode: 422, message: 'Unprocessable' })).toEqual({
       statusCode: 422,
-      message: 'Unprocessable',
+      message: 'Error',
     });
   });
 
   it('prefers .status over .statusCode when both are present', () => {
     expect(resolveHttpError({ status: 401, statusCode: 500, message: 'Unauthorized' })).toEqual({
       statusCode: 401,
-      message: 'Unauthorized',
+      message: 'Error',
     });
   });
 
-  it('falls back to "Error" when message is missing', () => {
+  it('returns "Error" as message regardless of whether message field is present', () => {
     expect(resolveHttpError({ status: 404 })).toEqual({ statusCode: 404, message: 'Error' });
   });
 

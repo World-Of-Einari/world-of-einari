@@ -21,11 +21,12 @@ export function resolveHttpError(err: unknown): { statusCode: number; message: s
     return { statusCode: err.statusCode, message: err.message };
   }
 
+  // Never expose internal error details to the client
   const e = err as any;
   const errorStatus = typeof e?.status === 'number' ? e.status : e?.statusCode;
 
   if (typeof errorStatus === 'number' && errorStatus >= 400 && errorStatus <= 599) {
-    return { statusCode: errorStatus, message: e.message || 'Error' };
+    return { statusCode: errorStatus, message: 'Error' };
   }
 
   return { statusCode: 500, message: 'Internal Server Error' };

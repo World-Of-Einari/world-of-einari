@@ -56,6 +56,15 @@
       }
     </div>
 
+    <div class="ccf__field ccf__field--spaced">
+      <label class="ccf__field__consent">
+        <input class="ccf__field__consent__checkbox" type="checkbox" formControlName="consent" />
+        <span class="ccf__field__consent__text">
+          I agree to my details being stored and used to respond to my enquiry.
+        </span>
+      </label>
+    </div>
+
     <button class="ccf__submit" type="submit" [disabled]="form.invalid">Send →</button>
   </form>
 }

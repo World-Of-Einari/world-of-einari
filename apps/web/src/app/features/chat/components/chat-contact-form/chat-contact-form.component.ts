@@ -28,6 +28,7 @@ export class ChatContactFormComponent implements OnInit {
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       message: ['', Validators.required],
+      consent: [false, Validators.requiredTrue],
     });
   }
 

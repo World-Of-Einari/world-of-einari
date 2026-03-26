@@ -67,6 +67,32 @@
       margin: 0;
       letter-spacing: 0.04em;
     }
+
+    &--spaced {
+      margin-top: 4px;
+    }
+
+    &__consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+
+      &__checkbox {
+        margin-top: 2px;
+        flex-shrink: 0;
+        accent-color: var(--cyan);
+        cursor: pointer;
+      }
+
+      &__text {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--muted);
+        line-height: 1.5;
+        letter-spacing: 0.04em;
+      }
+    }
   }
 
   &__submit {

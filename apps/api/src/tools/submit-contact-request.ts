@@ -9,12 +9,30 @@ export interface ContactRequest {
   message: string;
 }
 
+export function validateContactRequest(args: ContactRequest): void {
+  if (!args.name?.trim() || args.name.length > 200) {
+    throw new Error('Invalid name');
+  }
+  if (
+    !args.email?.trim() ||
+    args.email.length > 200 ||
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(args.email)
+  ) {
+    throw new Error('Invalid email');
+  }
+  if (!args.message?.trim() || args.message.length > 2000) {
+    throw new Error('Invalid message');
+  }
+}
+
 /**
  * Persists a contact request to DynamoDB and publishes
  * an SNS notification to the configured topic.
  * In local development, logs to console instead of hitting AWS.
  */
 export async function submitContactRequest(args: ContactRequest): Promise<void> {
+  validateContactRequest(args);
+
   const id = randomUUID();
   const createdAt = new Date().toISOString();
 
@@ -31,6 +49,8 @@ export async function submitContactRequest(args: ContactRequest): Promise<void> 
   const dynamo = new DynamoDBClient({});
   const sns = new SNSClient({});
 
+  const expiresAt = Math.floor(Date.now() / 1000) + 180 * 24 * 60 * 60;
+
   await dynamo.send(
     new PutItemCommand({
       TableName: process.env['CONTACT_TABLE_NAME'],
@@ -40,6 +60,7 @@ export async function submitContactRequest(args: ContactRequest): Promise<void> 
         email: { S: args.email },
         message: { S: args.message },
         createdAt: { S: createdAt },
+        expiresAt: { N: expiresAt.toString() },
       },
     }),
   );

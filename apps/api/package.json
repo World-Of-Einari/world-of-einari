@@ -6,7 +6,9 @@
     "dev": "tsx watch src/local-server.ts",
     "build": "node esbuild.config.mjs",
     "start": "node dist/lambda.js",
-    "bundle:analyze": "node esbuild.config.mjs --analyze"
+    "bundle:analyze": "node esbuild.config.mjs --analyze",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.1016.0",
@@ -23,6 +25,7 @@
     "esbuild": "^0.25.0",
     "express": "^4.19.2",
     "tsx": "^4.15.7",
-    "typescript": "^5.5.2"
+    "typescript": "^5.5.2",
+    "vitest": "^4.1.1"
   }
 }

@@ -76,7 +76,9 @@ See [apps/api/.env.example](apps/api/.env.example) for all available environment
 
 | Command | Description |
 |---|---|
-| `pnpm dev:fe` | Start Angular dev server |
+| `pnpm dev:fe` | Start Angular dev server (proxies `/api/chat` to localhost:3001) |
+| `pnpm dev:fe:prod-api` | Start Angular dev server proxied to the production API |
+| `pnpm dev:api` | Start API local dev server on port 3001 |
 | `pnpm build` | Build all apps |
 | `pnpm test` | Run all tests |
 | `pnpm lint` | Lint all code |
@@ -120,6 +122,8 @@ Managed with Terraform (AWS provider ~> 5.0). State is stored in S3.
 | CloudFront | CDN + routing. A CloudFront Function rewrites requests to the current release SHA |
 | Lambda | Chat API — streams OpenAI responses via Lambda Response Stream API |
 | Lambda Function URL | Public HTTP endpoint (no API Gateway) with CORS |
+| DynamoDB | Stores contact form submissions from the chat |
+| SNS | Sends email notifications for contact requests |
 | SSM Parameter Store | Stores OpenAI API key as a SecureString |
 | IAM OIDC | GitHub Actions assumes a scoped role via OIDC — no stored credentials |
 | WAF | Web ACL attached to the CloudFront distribution |
@@ -194,4 +198,4 @@ Deployments skip commits starting with `chore(release):` to avoid re-deploying o
 
 Uses [semantic-release](https://semantic-release.gitbook.io/) with conventional commits. Merging to `main` automatically creates a release, updates [CHANGELOG.md](CHANGELOG.md), and tags the commit.
 
-Current version: **1.5.6**
+Current version: **1.13.0**

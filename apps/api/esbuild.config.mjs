@@ -9,13 +9,7 @@ const result = await build({
   target: 'node20',
   outfile: 'dist/lambda.js',
   format: 'cjs',
-  external: [
-    '@aws-sdk/*',
-    'whatwg-url',
-    'tr46',
-    'webidl-conversions',
-    'web-streams-polyfill',
-  ],
+  external: ['@aws-sdk/*'],
   metafile: true,
 });
 

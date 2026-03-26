@@ -4,11 +4,19 @@ Terraform configuration for the GitHub Actions → AWS deployment pipeline.
 
 ## What's in here
 
-| File             | Purpose                                                                    |
-| ---------------- | -------------------------------------------------------------------------- |
-| `github-oidc.tf` | OIDC trust between GitHub Actions and AWS, IAM role + scoped deploy policy |
-| `lambda.tf`      | Lambda function, IAM role, SSM parameter, Function URL                     |
-| `variables.tf`   | Variable declarations for all `.tf` files                                  |
+| File                     | Purpose                                                                    |
+| ------------------------ | -------------------------------------------------------------------------- |
+| `main.tf`                | Terraform provider config and backend                                      |
+| `github-oidc.tf`         | OIDC trust between GitHub Actions and AWS, IAM role + scoped deploy policy |
+| `iam.tf`                 | IAM policy documents for Lambda execution role                             |
+| `lambda.tf`              | Lambda function, Function URL, and resource-based invoke permission        |
+| `cloudfront.tf`          | CloudFront Function that rewrites requests to the current live S3 prefix   |
+| `dynamodb.tf`            | DynamoDB table for contact form submissions                                |
+| `sns.tf`                 | SNS topic for contact form email notifications                             |
+| `ssm.tf`                 | SSM SecureString parameter for the OpenAI API key (placeholder on init)    |
+| `variables.tf`           | Variable declarations for all `.tf` files                                  |
+| `terraform.tfvars`       | Variable values (not committed — create locally)                           |
+| `lambda-403-runbook.md`  | Incident runbook: Chat Lambda 403 / Function URL broken state              |
 
 ## Prerequisites
 

@@ -1,3 +1,10 @@
+## [1.8.1](https://github.com/World-Of-Einari/world-of-einari/compare/v1.8.0...v1.8.1) (2026-03-26)
+
+
+### Bug Fixes
+
+* restore workflow_call ([bddd058](https://github.com/World-Of-Einari/world-of-einari/commit/bddd058c5d7bb2150b6db2eb81976b270cb3ad5b))
+
 # [1.8.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.7.0...v1.8.0) (2026-03-26)
 
 

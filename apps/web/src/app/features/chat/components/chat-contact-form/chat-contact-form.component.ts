@@ -36,4 +36,9 @@ export class ChatContactFormComponent implements OnInit {
     this.formSubmit.emit(this.form.getRawValue());
     this.formOpen.set(true);
   }
+
+  isInvalid(field: string): boolean {
+    const control = this.form.get(field);
+    return !!(control?.invalid && control?.touched);
+  }
 }

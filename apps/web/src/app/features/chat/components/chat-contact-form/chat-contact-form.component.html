@@ -1,36 +1,61 @@
 @if (formOpen()) {
-  <div class="ccf__confirmed">
-    <p class="ccf__confirmed__label">// MESSAGE_SENT</p>
+  <div class="confirmed">
+    <p class="confirmed__label">// MESSAGE_SENT</p>
   </div>
 } @else {
   <form class="ccf" [formGroup]="form" (ngSubmit)="onSubmit()">
-    <p class="ccf__label">// CONTACT_FORM</p>
+    <p class="ccf__title">// CONTACT_FORM</p>
+
     <div class="ccf__field">
-      <label class="ccf__field-label">Name</label>
+      <label class="ccf__field__label" for="contactName">Name</label>
       <input
-        class="ccf__input"
+        class="ccf__field__input"
+        [class.ccf__field__input--error]="isInvalid('name')"
         type="text"
         formControlName="name"
+        id="contactName"
         placeholder="Your name"
         autocomplete="name" />
+      @if (isInvalid('name')) {
+        <p class="ccf__field__error">Name is required</p>
+      }
     </div>
+
     <div class="ccf__field">
-      <label class="ccf__field-label">Email</label>
+      <label class="ccf__field__label" for="contactEmail">Email</label>
       <input
-        class="ccf__input"
+        class="ccf__field__input"
+        [class.ccf__field__input--error]="isInvalid('email')"
         type="email"
         formControlName="email"
+        id="contactEmail"
         placeholder="your@email.com"
         autocomplete="email" />
+      @if (isInvalid('email')) {
+        <p class="ccf__field__error">
+          @if (form.get('email')?.errors?.['required']) {
+            Email is required
+          } @else {
+            Please enter a valid email address
+          }
+        </p>
+      }
     </div>
+
     <div class="ccf__field">
-      <label class="ccf__field-label">Message</label>
+      <label class="ccf__field__label" for="contactMessage">Message</label>
       <textarea
-        class="ccf__input ccf__input--textarea"
+        class="ccf__field__input ccf__field__input--textarea"
+        [class.ccf__field__input--error]="isInvalid('message')"
         formControlName="message"
+        id="contactMessage"
         placeholder="What's on your mind?"
         rows="3"></textarea>
+      @if (isInvalid('message')) {
+        <p class="ccf__field__error">Message is required</p>
+      }
     </div>
+
     <button class="ccf__submit" type="submit" [disabled]="form.invalid">Send →</button>
   </form>
 }

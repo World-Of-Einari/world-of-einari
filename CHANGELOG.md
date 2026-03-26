@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.11.0...v1.12.0) (2026-03-26)
+
+
+### Features
+
+* re-enabled chat component ([ff65e3b](https://github.com/World-Of-Einari/world-of-einari/commit/ff65e3be965c86d04dbf13ceae83d852a4e6a4eb))
+
 # [1.11.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.10.0...v1.11.0) (2026-03-26)
 
 

@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.9.0...v1.10.0) (2026-03-26)
+
+
+### Features
+
+* restore node-fetch in the lambda build ([55e4978](https://github.com/World-Of-Einari/world-of-einari/commit/55e49786441ebcbc1abdfbc103b5d2df6c1e984c))
+
 # [1.9.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.8.1...v1.9.0) (2026-03-26)
 
 

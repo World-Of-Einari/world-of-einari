@@ -15,6 +15,7 @@ jobs:
     permissions:
       contents: read
       pull-requests: read
+      security-events: write
 
   tests:
     uses: ./.github/workflows/tests.yml

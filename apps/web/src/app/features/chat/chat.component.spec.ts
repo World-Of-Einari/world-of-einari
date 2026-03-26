@@ -2,6 +2,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
 import { ChatComponent } from './chat.component';
+import { ContactFormData } from './components/chat-contact-form/chat-contact-form.component';
 
 type GlobalWithFetch = typeof globalThis & { fetch: jest.Mock };
 
@@ -17,7 +18,7 @@ function mockFetchRejected(error: unknown): jest.Mock {
   return mock;
 }
 
-function makeStreamResponse(chunks: string[]): Response {
+function makeStreamResponse(chunks: string[], headers: Record<string, string> = {}): Response {
   const encoder = new TextEncoder();
   const encoded = chunks.map((c) => encoder.encode(c));
   let index = 0;
@@ -33,6 +34,7 @@ function makeStreamResponse(chunks: string[]): Response {
     ok: true,
     status: 200,
     body: { getReader: () => reader },
+    headers: { get: (name: string) => headers[name] ?? null },
   } as unknown as Response;
 }
 
@@ -210,6 +212,82 @@ describe('ChatComponent', () => {
       );
     });
 
+    it('should filter contact_form messages from history', async () => {
+      const fetchMock = mockFetch(makeStreamResponse([]));
+      const { componentInstance: c } = createComponent();
+      c.messages.set([
+        { role: 'user', content: 'first' },
+        { role: 'contact_form', content: '' },
+        { role: 'assistant', content: 'response' },
+      ]);
+      c.inputValue.set('second');
+
+      await c.send();
+
+      expect(fetchMock).toHaveBeenCalledWith(
+        '/api/chat',
+        expect.objectContaining({
+          body: JSON.stringify({
+            message: 'second',
+            history: [
+              { role: 'user', content: 'first' },
+              { role: 'assistant', content: 'response' },
+            ],
+          }),
+        }),
+      );
+    });
+
+    it('should use overrideMessage instead of inputValue', async () => {
+      mockFetch(makeStreamResponse([]));
+      const { componentInstance: c } = createComponent();
+      c.inputValue.set('original');
+
+      await c.send('override');
+
+      expect(c.messages()[0]).toEqual({ role: 'user', content: 'override' });
+    });
+
+    it('should not clear inputValue when overrideMessage is provided', async () => {
+      mockFetch(makeStreamResponse([]));
+      const { componentInstance: c } = createComponent();
+      c.inputValue.set('original');
+
+      await c.send('override');
+
+      expect(c.inputValue()).toBe('original');
+    });
+
+    it('should not add a visible user message when hidden option is true', async () => {
+      mockFetch(makeStreamResponse([]));
+      const { componentInstance: c } = createComponent();
+
+      await c.send('hidden message', { hidden: true });
+
+      expect(c.messages().every((m) => m.role !== 'user')).toBe(true);
+    });
+
+    it('should add contact_form message when X-Tool-Action header is show_contact_form', async () => {
+      mockFetch(makeStreamResponse(['response text'], { 'X-Tool-Action': 'show_contact_form' }));
+      const { componentInstance: c } = createComponent();
+      c.inputValue.set('hello');
+
+      await c.send();
+
+      const messages = c.messages();
+      expect(messages[messages.length - 1]).toEqual({ role: 'contact_form', content: '' });
+    });
+
+    it('should not add contact_form message when X-Tool-Action header is absent', async () => {
+      mockFetch(makeStreamResponse(['response text']));
+      const { componentInstance: c } = createComponent();
+      c.inputValue.set('hello');
+
+      await c.send();
+
+      expect(c.messages().every((m) => m.role !== 'contact_form')).toBe(true);
+    });
+
     it('should set generic error message on fetch failure', async () => {
       mockFetchRejected(new Error('Network error'));
       const { componentInstance: c } = createComponent();
@@ -279,11 +357,51 @@ describe('ChatComponent', () => {
       const { componentInstance: c } = createComponent();
       const sendSpy = jest.spyOn(c, 'send');
 
-      await c.sendSuggestion('Tell me about yourself');
+      c.sendSuggestion('Tell me about yourself');
+      await sendSpy.mock.results[0].value;
 
-      // send() clears inputValue after use; verify the suggestion reached the messages list
       expect(sendSpy).toHaveBeenCalled();
       expect(c.messages()[0]).toEqual({ role: 'user', content: 'Tell me about yourself' });
+    });
+
+    it('should add a contact_form message when suggestion is get_in_touch', () => {
+      const { componentInstance: c } = createComponent();
+
+      c.sendSuggestion('get_in_touch');
+
+      expect(c.messages()).toEqual([{ role: 'contact_form', content: '' }]);
+    });
+
+    it('should not call send when suggestion is get_in_touch', () => {
+      const { componentInstance: c } = createComponent();
+      const sendSpy = jest.spyOn(c, 'send');
+
+      c.sendSuggestion('get_in_touch');
+
+      expect(sendSpy).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('submitContact()', () => {
+    it('should call send with serialized form data and hidden option', async () => {
+      mockFetch(makeStreamResponse([]));
+      const { componentInstance: c } = createComponent();
+      const sendSpy = jest.spyOn(c, 'send');
+      const data: ContactFormData = { name: 'Jane', email: 'jane@example.com', message: 'Hello' };
+
+      await c.submitContact(data);
+
+      expect(sendSpy).toHaveBeenCalledWith(JSON.stringify(data), { hidden: true });
+    });
+
+    it('should not add a visible user message', async () => {
+      mockFetch(makeStreamResponse([]));
+      const { componentInstance: c } = createComponent();
+      const data: ContactFormData = { name: 'Jane', email: 'jane@example.com', message: 'Hello' };
+
+      await c.submitContact(data);
+
+      expect(c.messages().every((m) => m.role !== 'user')).toBe(true);
     });
   });
 

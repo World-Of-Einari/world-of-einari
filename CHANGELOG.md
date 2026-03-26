@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.14.0...v1.15.0) (2026-03-26)
+
+
+### Features
+
+* **infra:** set lambda concurrency to 5 ([665eafb](https://github.com/World-Of-Einari/world-of-einari/commit/665eafba26207c6d0b14894aa4a8da784d306e96))
+
 # [1.14.0](https://github.com/World-Of-Einari/world-of-einari/compare/v1.13.0...v1.14.0) (2026-03-26)
 
 

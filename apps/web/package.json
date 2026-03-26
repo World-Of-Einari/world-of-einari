@@ -23,7 +23,6 @@
     "@angular/platform-browser-dynamic": "^20.2.14",
     "@angular/platform-server": "^20.2.14",
     "@angular/router": "^20.2.14",
-    "@einarinau/chat-types": "workspace:^",
     "@ngrx/effects": "^20.0.0",
     "@ngrx/signals": "^20.1.0",
     "@ngrx/store": "^20.0.0",

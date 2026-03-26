@@ -1,3 +1,4 @@
-import { Message } from '@einarinau/chat-types';
-
-export type ChatMessage = Message | { role: 'contact_form'; content: string };
+export interface ChatMessage {
+  role: 'user' | 'assistant' | 'contact_form';
+  content: string;
+}

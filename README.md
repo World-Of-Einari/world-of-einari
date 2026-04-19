@@ -5,7 +5,7 @@
 [![Deploy API](https://github.com/World-Of-Einari/world-of-einari/actions/workflows/deploy-api.yml/badge.svg)](https://github.com/World-Of-Einari/world-of-einari/actions/workflows/deploy-api.yml)
 [![Secret Scanning](https://github.com/World-Of-Einari/world-of-einari/actions/workflows/secret-scanning.yml/badge.svg)](https://github.com/World-Of-Einari/world-of-einari/actions/workflows/secret-scanning.yml)
 
-Personal portfolio website for Einari Naukkarinen, a Principal Software Engineer based in London. Built with Angular 20, deployed to AWS S3 + CloudFront, with a streaming OpenAI chat API backed by AWS Lambda.
+Personal portfolio website built with Angular 20, deployed to AWS S3 + CloudFront, with a streaming OpenAI chat API backed by AWS Lambda.
 
 Live at [einarinau.com](https://einarinau.com)
 
